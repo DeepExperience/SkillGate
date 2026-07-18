@@ -1,0 +1,44 @@
+# claw-eval agent sandbox image
+# 用途：per-task container where Claw unified_runner agent 跑 file IO + exec tools
+# 特性：
+#   - Debian bookworm (python:3.12-slim base)
+#   - apt 清华源（build-time 注入，不走 clash）
+#   - pip 清华源
+#   - curl + 常用 utils 预装
+#   - HF_ENDPOINT 环境默认 hf-mirror.com
+# 设计：无网络外出需求（所有外网通过 host 的 mock services via host.docker.internal）
+
+FROM python:3.12-slim
+
+# build-time proxy (Docker 主机 docker0 网关) — 供 apt 初始通外网拉 package
+ARG HTTP_PROXY=http://your-docker-gateway:8888
+ARG HTTPS_PROXY=http://your-docker-gateway:8888
+
+# 1. apt 源改清华（bookworm）— 用 deb822 格式（python:3.12-slim 默认格式）
+RUN rm -f /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list && \
+    printf "Types: deb\nURIs: https://mirrors.tuna.tsinghua.edu.cn/debian\nSuites: bookworm bookworm-updates bookworm-backports\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.gpg\n\nTypes: deb\nURIs: https://mirrors.tuna.tsinghua.edu.cn/debian-security\nSuites: bookworm-security\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.gpg\n" > /etc/apt/sources.list.d/debian.sources
+
+# 2. 装 curl + 常用 utils (精简：去掉 git/vim，避免依赖树解析失败)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl wget ca-certificates jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# 3. pip 清华源
+RUN mkdir -p /etc/pip /root/.pip && \
+    printf '[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple\ntrusted-host = pypi.tuna.tsinghua.edu.cn\n' | tee /etc/pip.conf /root/.pip/pip.conf
+
+# 4. 基础 python 包 (claw tasks 常用)
+RUN pip install --no-cache-dir \
+        requests==2.33.1 \
+        pandas==2.2.3 \
+        numpy==1.26.4 \
+        beautifulsoup4==4.13.3 \
+        lxml==5.3.0
+
+# 5. 运行时 env
+ENV HF_ENDPOINT=https://hf-mirror.com \
+    PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /workspace
+CMD ["sleep", "infinity"]

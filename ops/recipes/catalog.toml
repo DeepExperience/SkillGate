@@ -1,0 +1,102 @@
+schema_version = 2
+
+[recipes."rl.no-skill"]
+kind = "rl"
+description = "Canonical no-skill task-reward GRPO profile."
+entrypoint = "ops/workflows/rl_training/run_rl.sh"
+runner = "bash"
+safety = "env-dry-run"
+default_args = ["no_skill"]
+requires = [
+  "datasets/rl/parquet_4bench_factual_noskills_20260617/train.parquet",
+  "Relax/examples/agent_bench/run_agent_grpo_9B.sh",
+  "GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger/config.json",
+]
+
+[recipes."rl.mixed-task-reward"]
+kind = "rl"
+description = "All-gold 16-skill v8-production control with ordinary task-reward GRPO only."
+entrypoint = "ops/workflows/rl_training/run_rl.sh"
+runner = "bash"
+safety = "env-dry-run"
+default_args = ["mixed_task_reward"]
+requires = [
+  "datasets/rl/parquet_4bench_mixed_skill_bonus_compare_v8prod_allgold_20260710/train.parquet",
+  "skill_libraries/snapshots/rl/slate_skills_20260708_hard_negative_v8_production/manifest/slate_manifest_train.jsonl",
+  "GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger/config.json",
+]
+
+[recipes."rl.mixed-separated"]
+kind = "rl"
+description = "All-gold mixed-skill GRPO with a separate outcome-stratified selector advantage."
+entrypoint = "ops/workflows/rl_training/run_rl.sh"
+runner = "bash"
+safety = "env-dry-run"
+default_args = ["mixed_separated"]
+requires = [
+  "datasets/rl/parquet_4bench_mixed_skill_separated_continuous_advantage_v8prod_allgold_20260710/train.parquet",
+  "skill_libraries/snapshots/rl/slate_skills_20260708_hard_negative_v8_production/manifest/slate_manifest_train.jsonl",
+  "GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger/config.json",
+]
+
+[recipes."rl.hybrid-slate"]
+kind = "rl"
+description = "Hybrid SlateRL v2 with paired regret and strict-read stratified advantage."
+entrypoint = "ops/workflows/rl_training/run_rl.sh"
+runner = "bash"
+safety = "env-dry-run"
+default_args = ["hybrid_slate"]
+requires = [
+  "datasets/rl/parquet_4bench_slate_regret_hybridv8b0704d_gold_stratified_20260710/train.parquet",
+  "skill_libraries/snapshots/rl/slate_skills_20260710_hybrid_v8body_0704desc/manifest/slate_manifest_train.jsonl",
+  "GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger/config.json",
+]
+
+[recipes."rl.selector-action-credit"]
+kind = "rl"
+description = "Token-local oracle-versus-distractor selector credit on top of ordinary task GRPO."
+entrypoint = "ops/workflows/rl_training/run_rl.sh"
+runner = "bash"
+safety = "env-dry-run"
+default_args = ["selector_action_credit"]
+requires = [
+  "datasets/rl/parquet_4bench_selector_action_credit_hybridv8b0704d_allgold_20260713/train.parquet",
+  "skill_libraries/snapshots/rl/slate_skills_20260710_hybrid_v8body_0704desc/manifest/slate_manifest_train.jsonl",
+  "experiments/rl/runs/oraclegrpo60-hardspanv4params-pair-spec8-eval0/model/exports/iter-0000099-07932a57/config.json",
+]
+
+[recipes."eval.eval70-checkpoint-set"]
+kind = "eval"
+description = "Canonical owner-aware eval70 wrapper; pass --group, mode, snapshot, and model/checkpoint rows."
+entrypoint = "ops/workflows/rl_eval/run_eval70_checkpoint_set.sh"
+runner = "bash"
+safety = "env-dry-run"
+requires = [
+  "ops/workflows/rl_eval/specs/eval70_v1/tasks.tsv",
+  "datasets/rl/parquet_4bench_base_20260523/train.parquet",
+  "datasets/rl/parquet_4bench_base_20260523/eval.parquet",
+]
+
+[recipes."sft.final-9b"]
+kind = "sft"
+description = "Qwen3.5-9B LoRA r32, 49k context, five epochs on the final 1708-record dataset."
+entrypoint = "ops/workflows/sft_training/run_9b_clean_plus_claw_lora.sh"
+runner = "bash"
+safety = "print-only"
+requires = [
+  "models/Qwen3.5-9B/config.json",
+  "GeneralAgent/sft_training/llamafactory_data/20260512_sft_campaign_clean_plus_claw_thinkwrap/agent_sft_campaign_20260512_clean_plus_claw_thinkwrap.json",
+  "GeneralAgent/third_party/LLaMA-Factory/src/llamafactory/__init__.py",
+]
+
+[recipes."retrieval.rebuild-v6"]
+kind = "retrieval"
+description = "Rebuild the Qwen3-Embedding-8B index and run deterministic embedding-plus-reranker retrieval."
+entrypoint = "skill_libraries/rebuild_and_retrieve_v8.sh"
+runner = "bash"
+safety = "print-only"
+requires = [
+  "models/Qwen3-Embedding-8B/config.json",
+  "models/Qwen3-Reranker-8B/config.json",
+  "skill_libraries/merged/_index.json",
+]

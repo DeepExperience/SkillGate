@@ -1,0 +1,67 @@
+### model
+model_name_or_path: /path/to/skillRL/models/Qwen3.5-27B
+trust_remote_code: true
+flash_attn: auto
+disable_gradient_checkpointing: false
+use_reentrant_gc: true
+enable_liger_kernel: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target: all
+deepspeed: /path/to/skillRL/GeneralAgent/third_party/LLaMA-Factory/examples/deepspeed/ds_z3_config.json
+
+### dataset
+# agent_sft_campaign_20260511_clean_plus_claw_thinkwrap: old clean campaign plus docker-sandbox Claw supplement.
+#   - drop assistant content with `http://localhost:PORT` / `/tmp/claw_pilot` /
+#     `fixtures/` (host-mode-collected, mismatched current docker-sandbox runner)
+#   - drop trajectories with >=3 consecutive assistant turns sharing 80-char prefix
+#     (confirmation-loop noise)
+# Per-bench retention: claw 33/413 (8.0%, 11 unique tasks), sb_ns 104/108,
+# seta_synth 1014/1106, swe_lite 237/301, tb2 147/165.
+# All 1535 records: openclaw_compat=true, prompt_profile=openclaw_full,
+# tools_schema_injected=true, thinkwrap-aligned (first asst starts with
+# `<think>\n\n</think>\n\n<skill_reasoning>`).
+dataset: agent_sft_campaign_20260511_clean_plus_claw_thinkwrap
+dataset_dir: /path/to/skillRL/GeneralAgent/sft_training/llamafactory_data/20260511_sft_campaign_clean_plus_claw_thinkwrap
+template: qwen3_5_nothink
+# 65536 caused OOM at step 2 (27B + LoRA forward exceeded 80GB H800 by ~2GB).
+# 49152 covers 94% of clean data (p95=49893); 6% long-tail trajectories will be
+# truncated. p99=56755 so we keep nearly all of the body distribution.
+cutoff_len: 49152
+train_on_prompt: false
+mask_history: false
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+
+### output
+output_dir: /path/to/skillRL/GeneralAgent/sft_training/outputs/qwen35_27b_lora_campaign_20260511_clean_plus_claw_8gpu_49k_5epoch_r32_liger
+logging_steps: 1
+save_strategy: epoch
+save_total_limit: 6
+plot_loss: false
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+# 8 GPUs × micro=1 × GA=2 → effective batch 16 (same as 9B 4×1×4=16)
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 1.0e-4
+num_train_epochs: 5.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+val_size: 0.0

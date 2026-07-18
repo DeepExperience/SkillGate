@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "project_root": "/path/to/skillRL",
+  "frozen_skill_library": "skill_libraries/merged",
+  "frozen_retrieval": {
+    "date": "20260424",
+    "suffix": "v7pipeline_on_2046lib",
+    "retrieval_top_n": 10,
+    "files": {
+      "claw": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/claw.jsonl",
+      "tb2": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/tb2.jsonl",
+      "sb_ns": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/skillsbench.jsonl",
+      "seta_synth": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/seta_synth.jsonl",
+      "swe_lite": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/swe.jsonl"
+    },
+    "note": "seta_synth.jsonl regenerated 2026-04-26 covering 300 train tasks; seta.jsonl (30 eval task) kept for the 'seta' bench (eval split only, not used in SFT)."
+  },
+  "models": {
+    "student": "qwen3.5-9b",
+    "teacher": "glm-5.1"
+  },
+  "budgets": {
+    "student_use_skill_trials": 4,
+    "student_no_skill_trials": 4,
+    "student_baseline_trials": 0,
+    "teacher_trials": 4,
+    "reflection_per_failed_trial": 1,
+    "workers": 8,
+    "max_turns": 50,
+    "max_time": 2400,
+    "retrieval_top_n": 10,
+    "per_bench_budgets": {
+      "tb2": {
+        "student_use_skill_trials": 2,
+        "student_no_skill_trials": 2,
+        "max_time": 2400
+      },
+      "swe_lite": {
+        "max_time": 2400
+      }
+    },
+    "_comment": "Phase 1 = student_use_skill (K1) + student_no_skill (K2) trials per task, both with retrieval injected. Default K=4+4; per_bench_budgets overrides selected benches (tb2 is 2+2 because it is much slower). student_baseline kept at 0 by default since it adds no SFT data and adds inference cost; set >0 only if you want a no-retrieval-prompt control. Default Phase 2 is teacher fallback: for tasks where ALL Phase 1 student trials failed, make_teacher_fallback_plan.py generates teacher_retrieval_reflection rollouts with prior trajectory + verifier feedback in reflection context and the same use-skill implicit instruction. reflection_per_failed_trial is only for the legacy student_reflection mode."
+  },
+  "split_sources": {
+    "claw": {
+      "task_file": "GeneralAgent/eval_scripts/prebake_images/claw_161_t_series.txt",
+      "holdout_count": 16
+    },
+    "tb2": {
+      "dataset_dir": "datasets/terminal-bench-v2",
+      "holdout_count": 9
+    },
+    "sb_ns": {
+      "dataset_dir": "datasets/skillsbench/tasks-no-skills",
+      "holdout_count": 6,
+      "exclude_tasks": [
+        "scheduling-email-assistant"
+      ]
+    },
+    "seta_synth": {
+      "train_task_file": "GeneralAgent/eval_scripts/prebake_images/seta_300.txt",
+      "holdout_dataset_dir": "datasets/seta/dataset/seta_baseline_30"
+    },
+    "swe_lite": {
+      "train_task_file": "GeneralAgent/eval_scripts/prebake_images/swe_lite_100.txt",
+      "holdout_from_runner_all_images": "GeneralAgent/eval_scripts/unified_runner/run_unified_swe.py"
+    }
+  },
+  "loss_policy": {
+    "train_on_roles": [
+      "assistant"
+    ],
+    "mask_system": true,
+    "mask_user": true,
+    "mask_tool_results": true,
+    "max_trajectory_tokens": 60000,
+    "drop_overlong_by_default": true
+  }
+}

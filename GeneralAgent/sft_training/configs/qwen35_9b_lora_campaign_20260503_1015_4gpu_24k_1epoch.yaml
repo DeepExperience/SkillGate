@@ -1,0 +1,51 @@
+### model
+model_name_or_path: /path/to/skillRL/models/Qwen3.5-9B
+trust_remote_code: true
+flash_attn: auto
+disable_gradient_checkpointing: false
+use_reentrant_gc: false
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+deepspeed: /path/to/skillRL/GeneralAgent/third_party/LLaMA-Factory/examples/deepspeed/ds_z2_config.json
+
+### dataset
+dataset: agent_sft_campaign_20260503_1015
+dataset_dir: /path/to/skillRL/GeneralAgent/sft_training/llamafactory_data/20260503_sft_campaign_1015
+template: qwen3_5_nothink
+cutoff_len: 24576
+train_on_prompt: false
+mask_history: false
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+
+### output
+output_dir: /path/to/skillRL/GeneralAgent/sft_training/outputs/qwen35_9b_lora_campaign_20260503_1015_4gpu_24k_1epoch
+logging_steps: 1
+save_steps: 20
+plot_loss: false
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-4
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+val_size: 0.0

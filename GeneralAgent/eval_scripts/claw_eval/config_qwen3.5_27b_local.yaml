@@ -1,0 +1,21 @@
+# Claw-Eval config for Qwen3.5-27B via local SGLang
+model:
+  api_key: dummy
+  base_url: http://localhost:30000/v1
+  model_id: qwen3.5-27b
+  context_window: 131072
+
+judge:
+  api_key: your-maas-api-key
+  base_url: https://your-llm-endpoint/v1
+  model_id: deepseek-v3.2
+  enabled: true
+
+defaults:
+  trace_dir: traces
+  tasks_dir: tasks
+
+user_agent_model:
+  api_key: your-maas-api-key
+  base_url: https://your-llm-endpoint/v1
+  model_id: deepseek-v3.2

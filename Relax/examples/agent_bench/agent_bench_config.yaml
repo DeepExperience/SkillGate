@@ -1,0 +1,8 @@
+# agent_bench rollout config — passed to Relax via --custom-config-path.
+# Picked up inside rollout.generate() (see args.max_turns, args.rollout_interaction_env_path).
+#
+# Keep this YAML minimal: anything tunable should also have a CLI flag in
+# run_agent_grpo_9B.sh so we can sweep without editing this file.
+
+max_turns: 30                # hard ceiling on agent turns per task
+rollout_interaction_env_path: examples.agent_bench.env_agent_bench

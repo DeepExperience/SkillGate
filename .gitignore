@@ -1,0 +1,85 @@
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+secrets/.env.secrets
+/.validation/
+/.skillrl-root
+
+# The handover ships a local asset bundle beside the Git checkout. Keep its
+# code-facing manifests in Git, but never put the multi-GB payload into Git
+# objects. Integrity is recorded in assets/migrated-assets.json.
+/datasets/
+/experiments/
+/skill_libraries/*/
+/GeneralAgent/sft_training/datasets/
+/GeneralAgent/sft_training/llamafactory_data/
+/GeneralAgent/sft_data_collection/outputs/
+/GeneralAgent/eval_scripts/skills_retrieval/*.pkl
+/docs/progress/*.pdf
+
+# Offline runtime payloads. Small configuration files and Dockerfiles under
+# ops/cache remain trackable.
+/ops/cache/pkg/*.tar.gz
+/ops/cache/pkg/harbor-uv-minimal/
+/ops/cache/pkg/seta_deb/
+*.whl
+
+# Data/archive formats that should use the asset bundle, LFS, or artifact
+# storage if they are introduced outside the known data roots above.
+*.parquet
+*.pkl
+*.npy
+*.npz
+*.jsonl
+# Exception: the frozen eval70 replay plan is part of the versioned protocol
+# spec (referenced by run_eval70_model.py DEFAULT_SOURCE_PLAN).
+!/ops/workflows/rl_eval/specs/**/*.jsonl
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.pdf
+
+# External or generated model artifacts
+/models/*
+!/models/README.md
+/GeneralAgent/.venvs/
+/GeneralAgent/sft_training/outputs/
+/GeneralAgent/sft_training/merged_models/
+/Relax/wandb/
+/Relax/logs/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.gguf
+pytorch_model*.bin
+adapter_model*.bin
+
+# Generated experiment outputs and checkpoints (the migrated experiments asset
+# root is already excluded above).
+/experiments/rl/v2/checkpoints*/
+/experiments/rl/v2/*/driver.log
+/experiments/rl/v2/*/logs/
+/experiments/rl_eval/*/logs/
+/experiments/rl_eval/*/models/
+/experiments/rl/local_docker_migration/image_tars/
+/experiments/rl/local_docker_migration/image_bundles/
+**/wandb/
+**/logs/
+*.log
+*.sock
+
+# Local environment and editor state
+.venv/
+.direnv/
+.vscode/
+.idea/
+.DS_Store

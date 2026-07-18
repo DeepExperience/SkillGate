@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "eval_spec_id": "eval70_v1",
+  "description": "Frozen 70-task RL evaluation split used by the canonical eval70 wrappers.",
+  "tasks": "/path/to/skillRL/ops/workflows/rl_eval/specs/eval70_v1/tasks.tsv",
+  "tasks_sha256": "072365e971a54af6b45a09b27fb685c882dd24233f52ee0239f4e0e24e09f7d0",
+  "default_train_parquet": "/path/to/skillRL/datasets/rl/parquet_4bench_base_20260523/train.parquet",
+  "default_eval_parquet": "/path/to/skillRL/datasets/rl/parquet_4bench_base_20260523/eval.parquet",
+  "default_oracle_snapshot": "/path/to/skillRL/skill_libraries/snapshots/rl/eval70_oracle_selfread_20260612",
+  "migrated_from": "/path/to/skillRL/archive/experiments_rl_reorganization_20260713/legacy/rl_eval/20260615_base27b_eval70_retrieve_vs_oracle/plans/eval70_70tasks.tsv",
+  "created_at": "2026-07-13T10:48:14.579249+00:00"
+}

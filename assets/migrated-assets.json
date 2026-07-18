@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-18T04:27:12.207074+00:00",
+  "hash_mode": "path-size",
+  "groups": {
+    "code.generalagent": {
+      "paths": [
+        "GeneralAgent/eval_scripts",
+        "GeneralAgent/sft_data_collection",
+        "GeneralAgent/sft_training/configs",
+        "GeneralAgent/rl_data_prep"
+      ],
+      "missing": [],
+      "regular_files": 174,
+      "symlinks": 0,
+      "bytes": 53111249,
+      "tree_sha256": "9c368cb1389322d4b77acb995fa8458592e97b80ea7e906b9fa7e713521d5120",
+      "hash_mode": "path-size"
+    },
+    "code.relax": {
+      "paths": [
+        "Relax/relax",
+        "Relax/examples",
+        "Relax/scripts",
+        "Relax/deps"
+      ],
+      "missing": [],
+      "regular_files": 8962,
+      "symlinks": 8,
+      "bytes": 134721989,
+      "tree_sha256": "79b7300c29dbf06c7a9c6702cb6329e143ae1a89c92edea9e3fa9a8672de2c45",
+      "hash_mode": "path-size"
+    },
+    "code.eval_stack": {
+      "paths": [
+        "sglang",
+        "slime",
+        "Megatron-LM"
+      ],
+      "missing": [],
+      "regular_files": 6252,
+      "symlinks": 5,
+      "bytes": 84651663,
+      "tree_sha256": "e3f6a1893abdefb975b9feaf122a59c2a4bfa6be0b4b4dafea12d4765bb75257",
+      "hash_mode": "path-size"
+    },
+    "code.operations": {
+      "paths": [
+        "ops",
+        "tools",
+        "README.md",
+        "docs"
+      ],
+      "missing": [],
+      "regular_files": 129,
+      "symlinks": 5,
+      "bytes": 747680439,
+      "tree_sha256": "bf83a922a3bb87ddbf7171a2c0567ffd3bbebdbc4631d21e3adeb4d958eee004",
+      "hash_mode": "path-size"
+    },
+    "benchmarks": {
+      "paths": [
+        "datasets/terminal-bench-v2",
+        "datasets/seta",
+        "datasets/seta-env",
+        "datasets/skillsbench/tasks",
+        "datasets/skillsbench/tasks-no-skills",
+        "datasets/skillsbench/libs",
+        "datasets/claw-eval",
+        "datasets/swe-gym",
+        "datasets/swe-bench-verified"
+      ],
+      "missing": [],
+      "regular_files": 27052,
+      "symlinks": 332,
+      "bytes": 1875428254,
+      "tree_sha256": "aae4e54eb37dca2e35eafc07cc81dbddb47cc8f3702c43d957cca071257e9ee3",
+      "hash_mode": "path-size"
+    },
+    "retrieval.skills": {
+      "paths": [
+        "skill_libraries"
+      ],
+      "missing": [],
+      "regular_files": 40072,
+      "symlinks": 1056,
+      "bytes": 384573064,
+      "tree_sha256": "4101ab61f3d69478b6c9178fdf0b04e398ed704b91b68b13a9711cdaeca99545",
+      "hash_mode": "path-size"
+    },
+    "retrieval.indices": {
+      "paths": [
+        "GeneralAgent/eval_scripts/skills_retrieval/skill_index_qwen3emb8b.pkl",
+        "GeneralAgent/eval_scripts/skills_retrieval/skill_index_bm25.pkl"
+      ],
+      "missing": [],
+      "regular_files": 2,
+      "symlinks": 0,
+      "bytes": 43786958,
+      "tree_sha256": "c10d959932df1821ab50d7070d88b1b6df280dc40173639def5dfd26b6c9a0cf",
+      "hash_mode": "path-size"
+    },
+    "sft.raw": {
+      "paths": [
+        "experiments/sft_data_use"
+      ],
+      "missing": [],
+      "regular_files": 36887,
+      "symlinks": 0,
+      "bytes": 2685080310,
+      "tree_sha256": "21d58a2cc866f0383ce257ac7980d3a362df174ad0f4a9d06671600fd3cbaa1e",
+      "hash_mode": "path-size"
+    },
+    "sft.split": {
+      "paths": [
+        "GeneralAgent/sft_data_collection/outputs/splits/default"
+      ],
+      "missing": [],
+      "regular_files": 33,
+      "symlinks": 0,
+      "bytes": 75809,
+      "tree_sha256": "6de4cb8fc50c860f6cbb78dc0d9aea64fe1cf036d1226da97dd1f343170d903b",
+      "hash_mode": "path-size"
+    },
+    "sft.intermediate": {
+      "paths": [
+        "GeneralAgent/sft_training/datasets"
+      ],
+      "missing": [],
+      "regular_files": 21,
+      "symlinks": 0,
+      "bytes": 1845346769,
+      "tree_sha256": "ed219f3e40cc26067eeec0f2dbb281f4f7f3c09b498c6af22298a68b4751dabc",
+      "hash_mode": "path-size"
+    },
+    "sft.final": {
+      "paths": [
+        "GeneralAgent/sft_training/llamafactory_data/20260512_sft_campaign_clean_plus_claw_thinkwrap"
+      ],
+      "missing": [],
+      "regular_files": 2,
+      "symlinks": 0,
+      "bytes": 237913932,
+      "tree_sha256": "d7d6c2f67504ebc6f7fd9d04594d60191b11f2a6f1977529c35b87f55545345c",
+      "hash_mode": "path-size"
+    },
+    "rl.base_data": {
+      "paths": [
+        "datasets/rl/rl_split_v2.json",
+        "datasets/rl/parquet_4bench_base_20260523"
+      ],
+      "missing": [],
+      "regular_files": 5,
+      "symlinks": 0,
+      "bytes": 38075118,
+      "tree_sha256": "42f33977da9232ac6a701114b66d92cad6d657aa48f44c07937891441c8e72b6",
+      "hash_mode": "path-size"
+    },
+    "rl.recipe_data": {
+      "paths": [
+        "datasets/rl/parquet_4bench_factual_20260602",
+        "datasets/rl/parquet_4bench_factual_noskills_20260617",
+        "datasets/rl/parquet_4bench_oracle1_20260612",
+        "datasets/rl/parquet_4bench_oracle_promptbc_pair_noskill_grpo_20260623",
+        "datasets/rl/parquet_4bench_slate_regret_v8prod_20260708",
+        "datasets/rl/parquet_4bench_slate_regret_v8prod_gold_stratified_v2_20260710",
+        "datasets/rl/parquet_4bench_slate_regret_hybridv8b0704d_gold_stratified_20260710",
+        "datasets/rl/parquet_4bench_mixed_skill_bonus_compare_v8prod_allgold_20260710",
+        "datasets/rl/parquet_4bench_mixed_skill_separated_continuous_advantage_v8prod_allgold_20260710",
+        "datasets/rl/parquet_4bench_selector_action_credit_hybridv8b0704d_allgold_20260713"
+      ],
+      "missing": [],
+      "regular_files": 32,
+      "symlinks": 0,
+      "bytes": 167037565,
+      "tree_sha256": "161142dd05ff1dcdfe57b3123ef72cfe691dd917c4a4505debebc4dd036956c3",
+      "hash_mode": "path-size"
+    },
+    "rl.skills": {
+      "paths": [
+        "skill_libraries/snapshots/rl/oracle_top1_skills_20260612",
+        "skill_libraries/snapshots/rl/slate_skills_20260704",
+        "skill_libraries/snapshots/rl/slate_skills_20260708_hard_negative_v8_production",
+        "skill_libraries/snapshots/rl/slate_skills_20260710_hybrid_v8body_0704desc"
+      ],
+      "missing": [],
+      "regular_files": 10696,
+      "symlinks": 0,
+      "bytes": 97733867,
+      "tree_sha256": "5561b181cc9346dc68d0eb7354c911b60e9b6d765a424e390a27fa389424f817",
+      "hash_mode": "path-size"
+    },
+    "eval.frozen_inputs": {
+      "paths": [
+        "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results",
+        "skill_libraries/snapshots/rl/oracle_skills_full692_20260612",
+        "skill_libraries/snapshots/rl/eval70_oracle_selfread_20260612",
+        "ops/workflows/rl_eval/specs/eval70_v1"
+      ],
+      "missing": [],
+      "regular_files": 1398,
+      "symlinks": 0,
+      "bytes": 17172623,
+      "tree_sha256": "8d271c77dff2362c7d9574f15f3e3342b5b5776da3da1c95297b5f7109391303",
+      "hash_mode": "path-size"
+    },
+    "experiment.provenance": {
+      "paths": [
+        "experiments/rl/catalog.json",
+        "experiments/rl/HANDOVER_MANIFEST.json",
+        "experiments/rl/runs",
+        "experiments/rl/sample_trajectories",
+        "experiments/infra/rl/local_docker_migration"
+      ],
+      "missing": [],
+      "regular_files": 978,
+      "symlinks": 0,
+      "bytes": 4882822,
+      "tree_sha256": "486cdd1b1fa297aa9948164821b47c91cf67ab3339709a6f87fc1bd256e94ab5",
+      "hash_mode": "path-size"
+    },
+    "offline.package_cache": {
+      "paths": [
+        "ops/cache/pkg"
+      ],
+      "missing": [],
+      "regular_files": 13,
+      "symlinks": 0,
+      "bytes": 746349460,
+      "tree_sha256": "1333a4464a7d21a44434fc881607fcc4e4481a6400d90ee2eb9b7c90e6517a7d",
+      "hash_mode": "path-size"
+    }
+  },
+  "totals": {
+    "regular_files": 132708,
+    "symlinks": 1406,
+    "bytes": 9163621891,
+    "missing_paths": 0
+  }
+}

@@ -1,0 +1,2283 @@
+{
+  "total_sb_skill_versions_found": 204,
+  "added": 197,
+  "skipped_similar": 7,
+  "name_collisions": 0,
+  "final_skill_count": 2046,
+  "actions": [
+    {
+      "sb_name": "mesh-analysis",
+      "version_hash": "8bc3fa3c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/3d-scan-calc/environment/skills/mesh-analysis",
+      "action": "add_original_name",
+      "new_name": "mesh-analysis",
+      "used_tasks": [
+        "3d-scan-calc"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "csv-processing",
+      "version_hash": "868cfb77",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/adaptive-cruise-control/environment/skills/csv-processing",
+      "action": "add_original_name",
+      "new_name": "csv-processing",
+      "used_tasks": [
+        "adaptive-cruise-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pid-controller",
+      "version_hash": "a93ab732",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/adaptive-cruise-control/environment/skills/pid-controller",
+      "action": "add_original_name",
+      "new_name": "pid-controller",
+      "used_tasks": [
+        "adaptive-cruise-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "simulation-metrics",
+      "version_hash": "95f52125",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/adaptive-cruise-control/environment/skills/simulation-metrics",
+      "action": "add_original_name",
+      "new_name": "simulation-metrics",
+      "used_tasks": [
+        "adaptive-cruise-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "vehicle-dynamics",
+      "version_hash": "48758961",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/adaptive-cruise-control/environment/skills/vehicle-dynamics",
+      "action": "add_original_name",
+      "new_name": "vehicle-dynamics",
+      "used_tasks": [
+        "adaptive-cruise-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "yaml-config",
+      "version_hash": "774de8ec",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/adaptive-cruise-control/environment/skills/yaml-config",
+      "action": "add_original_name",
+      "new_name": "yaml-config",
+      "used_tasks": [
+        "adaptive-cruise-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "azure-bgp",
+      "version_hash": "2358eb98",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/azure-bgp-oscillation-route-leak/environment/skills/azure-bgp",
+      "action": "add_original_name",
+      "new_name": "azure-bgp",
+      "used_tasks": [
+        "azure-bgp-oscillation-route-leak"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "citation-management",
+      "version_hash": "caa3200c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/citation-check/environment/skills/citation-management",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "citation-check"
+      ],
+      "note": "SKILL.md similarity 99% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "civ6lib",
+      "version_hash": "924dccbc",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/civ6-adjacency-optimizer/environment/skills/civ6lib",
+      "action": "add_original_name",
+      "new_name": "civ6lib",
+      "used_tasks": [
+        "civ6-adjacency-optimizer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "hex-grid-spatial",
+      "version_hash": "7adee319",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/civ6-adjacency-optimizer/environment/skills/hex-grid-spatial",
+      "action": "add_original_name",
+      "new_name": "hex-grid-spatial",
+      "used_tasks": [
+        "civ6-adjacency-optimizer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "map-optimization-strategy",
+      "version_hash": "225bb25c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/civ6-adjacency-optimizer/environment/skills/map-optimization-strategy",
+      "action": "add_original_name",
+      "new_name": "map-optimization-strategy",
+      "used_tasks": [
+        "civ6-adjacency-optimizer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "sqlite-map-parser",
+      "version_hash": "518fa10e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/civ6-adjacency-optimizer/environment/skills/sqlite-map-parser",
+      "action": "add_original_name",
+      "new_name": "sqlite-map-parser",
+      "used_tasks": [
+        "civ6-adjacency-optimizer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pdf",
+      "version_hash": "baeb95aa",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/court-form-filling/environment/skills/pdf",
+      "action": "add_renamed",
+      "new_name": "sb-pdf-vbaeb95aa",
+      "used_tasks": [
+        "court-form-filling",
+        "flink-query",
+        "invoice-fraud-detection",
+        "jpg-ocr-stat",
+        "latex-formula-extraction",
+        "organize-messy-files",
+        "paper-anonymizer",
+        "pdf-excel-diff"
+      ],
+      "note": "SKILL.md similarity 89% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "pdf",
+      "version_hash": "6ed5ab62",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/financial-modeling-qa/environment/skills/pdf",
+      "action": "add_renamed",
+      "new_name": "sb-pdf-v6ed5ab62",
+      "used_tasks": [
+        "financial-modeling-qa"
+      ],
+      "note": "SKILL.md similarity 89% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "pdf",
+      "version_hash": "abff5897",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/find-topk-similiar-chemicals/environment/skills/pdf",
+      "action": "add_renamed",
+      "new_name": "sb-pdf-vabff5897",
+      "used_tasks": [
+        "find-topk-similiar-chemicals"
+      ],
+      "note": "SKILL.md similarity 77% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "pdf",
+      "version_hash": "6917b2e2",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/sales-pivot-analysis/environment/skills/pdf",
+      "action": "add_renamed",
+      "new_name": "sb-pdf-v6917b2e2",
+      "used_tasks": [
+        "sales-pivot-analysis"
+      ],
+      "note": "SKILL.md similarity 5% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "pdf",
+      "version_hash": "9a27f058",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/simpo-code-reproduction/environment/skills/pdf",
+      "action": "add_renamed",
+      "new_name": "sb-pdf-v9a27f058",
+      "used_tasks": [
+        "simpo-code-reproduction"
+      ],
+      "note": "SKILL.md similarity 89% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "pymatgen",
+      "version_hash": "5fbc492c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/crystallographic-wyckoff-position-analysis/environment/skills/pymatgen",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "crystallographic-wyckoff-position-analysis"
+      ],
+      "note": "SKILL.md similarity 98% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "sympy",
+      "version_hash": "030ced22",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/crystallographic-wyckoff-position-analysis/environment/skills/sympy",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "crystallographic-wyckoff-position-analysis"
+      ],
+      "note": "SKILL.md similarity 97% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "pcap-analysis",
+      "version_hash": "1c950a4e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dapt-intrusion-detection/environment/skills/pcap-analysis",
+      "action": "add_original_name",
+      "new_name": "pcap-analysis",
+      "used_tasks": [
+        "dapt-intrusion-detection"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "threat-detection",
+      "version_hash": "897b9232",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dapt-intrusion-detection/environment/skills/threat-detection",
+      "action": "add_renamed",
+      "new_name": "sb-threat-detection-v897b9232",
+      "used_tasks": [
+        "dapt-intrusion-detection"
+      ],
+      "note": "SKILL.md similarity 3% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "d3-visualization",
+      "version_hash": "df365b0f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/data-to-d3/environment/skills/d3-visualization",
+      "action": "add_original_name",
+      "new_name": "d3-visualization",
+      "used_tasks": [
+        "data-to-d3"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "dialogue_graph",
+      "version_hash": "6ade5ec5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dialogue-parser/environment/skills/dialogue_graph",
+      "action": "add_original_name",
+      "new_name": "dialogue_graph",
+      "used_tasks": [
+        "dialogue-parser"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "dyn-object-masks",
+      "version_hash": "fe61fbe5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dynamic-object-aware-egomotion/environment/skills/dyn-object-masks",
+      "action": "add_original_name",
+      "new_name": "dyn-object-masks",
+      "used_tasks": [
+        "dynamic-object-aware-egomotion"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "egomotion-estimation",
+      "version_hash": "95b29d25",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dynamic-object-aware-egomotion/environment/skills/egomotion-estimation",
+      "action": "add_original_name",
+      "new_name": "egomotion-estimation",
+      "used_tasks": [
+        "dynamic-object-aware-egomotion"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "output-validation",
+      "version_hash": "5bdc8903",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dynamic-object-aware-egomotion/environment/skills/output-validation",
+      "action": "add_original_name",
+      "new_name": "output-validation",
+      "used_tasks": [
+        "dynamic-object-aware-egomotion"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "sampling-and-indexing",
+      "version_hash": "1540ae79",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/dynamic-object-aware-egomotion/environment/skills/sampling-and-indexing",
+      "action": "add_original_name",
+      "new_name": "sampling-and-indexing",
+      "used_tasks": [
+        "dynamic-object-aware-egomotion"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gamma-phase-associator",
+      "version_hash": "7f06647b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-phase-association/environment/skills/gamma-phase-associator",
+      "action": "add_original_name",
+      "new_name": "gamma-phase-associator",
+      "used_tasks": [
+        "earthquake-phase-association"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "licenses",
+      "version_hash": "d41d8cd9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-phase-association/environment/skills/licenses",
+      "action": "add_original_name",
+      "new_name": "licenses",
+      "used_tasks": [
+        "earthquake-phase-association",
+        "seismic-phase-picking"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "obspy-data-api",
+      "version_hash": "50705465",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-phase-association/environment/skills/obspy-data-api",
+      "action": "add_original_name",
+      "new_name": "obspy-data-api",
+      "used_tasks": [
+        "earthquake-phase-association",
+        "seismic-phase-picking"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "seisbench-model-api",
+      "version_hash": "7123f329",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-phase-association/environment/skills/seisbench-model-api",
+      "action": "add_original_name",
+      "new_name": "seisbench-model-api",
+      "used_tasks": [
+        "earthquake-phase-association",
+        "seismic-phase-picking"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "seismic-picker-selection",
+      "version_hash": "afc7dce5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-phase-association/environment/skills/seismic-picker-selection",
+      "action": "add_original_name",
+      "new_name": "seismic-picker-selection",
+      "used_tasks": [
+        "earthquake-phase-association",
+        "seismic-phase-picking"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "geospatial-analysis",
+      "version_hash": "222217b6",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/earthquake-plate-calculation/environment/skills/geospatial-analysis",
+      "action": "add_original_name",
+      "new_name": "geospatial-analysis",
+      "used_tasks": [
+        "earthquake-plate-calculation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "timeseries-detrending",
+      "version_hash": "71917cdf",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/econ-detrending-correlation/environment/skills/timeseries-detrending",
+      "action": "add_original_name",
+      "new_name": "timeseries-detrending",
+      "used_tasks": [
+        "econ-detrending-correlation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pdf-editing",
+      "version_hash": "fe632a4c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/edit-pdf/environment/skills/pdf-editing",
+      "action": "add_original_name",
+      "new_name": "pdf-editing",
+      "used_tasks": [
+        "edit-pdf"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "text-parser",
+      "version_hash": "f0bb5407",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/edit-pdf/environment/skills/text-parser",
+      "action": "add_original_name",
+      "new_name": "text-parser",
+      "used_tasks": [
+        "edit-pdf"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ac-branch-pi-model",
+      "version_hash": "89742038",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-ac-optimal-power-flow/environment/skills/ac-branch-pi-model",
+      "action": "add_original_name",
+      "new_name": "ac-branch-pi-model",
+      "used_tasks": [
+        "energy-ac-optimal-power-flow"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "casadi-ipopt-nlp",
+      "version_hash": "a1051da8",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-ac-optimal-power-flow/environment/skills/casadi-ipopt-nlp",
+      "action": "add_original_name",
+      "new_name": "casadi-ipopt-nlp",
+      "used_tasks": [
+        "energy-ac-optimal-power-flow"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "power-flow-data",
+      "version_hash": "e0a42aaf",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-ac-optimal-power-flow/environment/skills/power-flow-data",
+      "action": "add_original_name",
+      "new_name": "power-flow-data",
+      "used_tasks": [
+        "energy-ac-optimal-power-flow",
+        "energy-market-pricing",
+        "grid-dispatch-operator"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "dc-power-flow",
+      "version_hash": "e6fac05d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-market-pricing/environment/skills/dc-power-flow",
+      "action": "add_original_name",
+      "new_name": "dc-power-flow",
+      "used_tasks": [
+        "energy-market-pricing",
+        "grid-dispatch-operator"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "economic-dispatch",
+      "version_hash": "4ea0d3c3",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-market-pricing/environment/skills/economic-dispatch",
+      "action": "add_original_name",
+      "new_name": "economic-dispatch",
+      "used_tasks": [
+        "energy-market-pricing",
+        "grid-dispatch-operator"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "locational-marginal-prices",
+      "version_hash": "1e14c94f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/energy-market-pricing/environment/skills/locational-marginal-prices",
+      "action": "add_original_name",
+      "new_name": "locational-marginal-prices",
+      "used_tasks": [
+        "energy-market-pricing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "enterprise-artifact-search",
+      "version_hash": "dae1dd0f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/enterprise-information-search/environment/skills/enterprise-artifact-search",
+      "action": "add_original_name",
+      "new_name": "enterprise-artifact-search",
+      "used_tasks": [
+        "enterprise-information-search"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pptx",
+      "version_hash": "d0eee1d5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exceltable-in-ppt/environment/skills/pptx",
+      "action": "add_renamed",
+      "new_name": "sb-pptx-vd0eee1d5",
+      "used_tasks": [
+        "exceltable-in-ppt",
+        "organize-messy-files",
+        "pptx-reference-formatting"
+      ],
+      "note": "SKILL.md similarity 4% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "xlsx",
+      "version_hash": "dab27944",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exceltable-in-ppt/environment/skills/xlsx",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "exceltable-in-ppt",
+        "invoice-fraud-detection",
+        "jpg-ocr-stat",
+        "pdf-excel-diff",
+        "powerlifting-coef-calc",
+        "protein-expression-analysis",
+        "reserves-at-risk-calc",
+        "shock-analysis-demand",
+        "shock-analysis-supply",
+        "weighted-gdp-calc",
+        "xlsx-recover-data"
+      ],
+      "note": "SKILL.md similarity 93% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "xlsx",
+      "version_hash": "c9359e6b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/financial-modeling-qa/environment/skills/xlsx",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "financial-modeling-qa"
+      ],
+      "note": "SKILL.md similarity 93% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "xlsx",
+      "version_hash": "131a9b6e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/sales-pivot-analysis/environment/skills/xlsx",
+      "action": "add_renamed",
+      "new_name": "sb-xlsx-v131a9b6e",
+      "used_tasks": [
+        "sales-pivot-analysis"
+      ],
+      "note": "SKILL.md similarity 3% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "box-least-squares",
+      "version_hash": "5e5587b5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exoplanet-detection-period/environment/skills/box-least-squares",
+      "action": "add_original_name",
+      "new_name": "box-least-squares",
+      "used_tasks": [
+        "exoplanet-detection-period"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "exoplanet-workflows",
+      "version_hash": "a82d7161",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exoplanet-detection-period/environment/skills/exoplanet-workflows",
+      "action": "add_original_name",
+      "new_name": "exoplanet-workflows",
+      "used_tasks": [
+        "exoplanet-detection-period"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "light-curve-preprocessing",
+      "version_hash": "a48523d5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exoplanet-detection-period/environment/skills/light-curve-preprocessing",
+      "action": "add_original_name",
+      "new_name": "light-curve-preprocessing",
+      "used_tasks": [
+        "exoplanet-detection-period"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "lomb-scargle-periodogram",
+      "version_hash": "bb2dfccf",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exoplanet-detection-period/environment/skills/lomb-scargle-periodogram",
+      "action": "add_original_name",
+      "new_name": "lomb-scargle-periodogram",
+      "used_tasks": [
+        "exoplanet-detection-period"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "transit-least-squares",
+      "version_hash": "ff852032",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/exoplanet-detection-period/environment/skills/transit-least-squares",
+      "action": "add_original_name",
+      "new_name": "transit-least-squares",
+      "used_tasks": [
+        "exoplanet-detection-period"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pubchem-database",
+      "version_hash": "4d0c71bb",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/find-topk-similiar-chemicals/environment/skills/pubchem-database",
+      "action": "add_original_name",
+      "new_name": "pubchem-database",
+      "used_tasks": [
+        "find-topk-similiar-chemicals"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "rdkit",
+      "version_hash": "7862bb54",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/find-topk-similiar-chemicals/environment/skills/rdkit",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "find-topk-similiar-chemicals"
+      ],
+      "note": "SKILL.md similarity 94% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "analyze-ci",
+      "version_hash": "36facd6b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-agentops/environment/skills/analyze-ci",
+      "action": "add_original_name",
+      "new_name": "analyze-ci",
+      "used_tasks": [
+        "fix-build-agentops"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "temporal-python-testing",
+      "version_hash": "7ac0d5db",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-agentops/environment/skills/temporal-python-testing",
+      "action": "add_original_name",
+      "new_name": "temporal-python-testing",
+      "used_tasks": [
+        "fix-build-agentops"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "testing-python",
+      "version_hash": "0721aa92",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-agentops/environment/skills/testing-python",
+      "action": "add_original_name",
+      "new_name": "testing-python",
+      "used_tasks": [
+        "fix-build-agentops"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "uv-package-manager",
+      "version_hash": "ab440c52",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-agentops/environment/skills/uv-package-manager",
+      "action": "add_original_name",
+      "new_name": "uv-package-manager",
+      "used_tasks": [
+        "fix-build-agentops"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "maven-build-lifecycle",
+      "version_hash": "9e5489fe",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-google-auto/environment/skills/maven-build-lifecycle",
+      "action": "add_original_name",
+      "new_name": "maven-build-lifecycle",
+      "used_tasks": [
+        "fix-build-google-auto"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "maven-dependency-management",
+      "version_hash": "057ee516",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-google-auto/environment/skills/maven-dependency-management",
+      "action": "add_original_name",
+      "new_name": "maven-dependency-management",
+      "used_tasks": [
+        "fix-build-google-auto"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "maven-plugin-configuration",
+      "version_hash": "cd70ab1a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-build-google-auto/environment/skills/maven-plugin-configuration",
+      "action": "add_original_name",
+      "new_name": "maven-plugin-configuration",
+      "used_tasks": [
+        "fix-build-google-auto"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "jackson-security",
+      "version_hash": "e4547c95",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-druid-loophole-cve/environment/skills/jackson-security",
+      "action": "add_original_name",
+      "new_name": "jackson-security",
+      "used_tasks": [
+        "fix-druid-loophole-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "senior-java",
+      "version_hash": "4dfedb83",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-druid-loophole-cve/environment/skills/senior-java",
+      "action": "add_original_name",
+      "new_name": "senior-java",
+      "used_tasks": [
+        "fix-druid-loophole-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "erlang-concurrency",
+      "version_hash": "638c87e0",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/erlang-concurrency",
+      "action": "add_original_name",
+      "new_name": "erlang-concurrency",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "erlang-distribution",
+      "version_hash": "8a48a7d3",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/erlang-distribution",
+      "action": "add_original_name",
+      "new_name": "erlang-distribution",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "erlang-otp-behaviors",
+      "version_hash": "9a22f064",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/erlang-otp-behaviors",
+      "action": "add_original_name",
+      "new_name": "erlang-otp-behaviors",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "find-bugs",
+      "version_hash": "975fc86d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/find-bugs",
+      "action": "add_original_name",
+      "new_name": "find-bugs",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "senior-security",
+      "version_hash": "408eda2e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/senior-security",
+      "action": "add_renamed",
+      "new_name": "sb-senior-security-v408eda2e",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "SKILL.md similarity 1% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "ssh-penetration-testing",
+      "version_hash": "6911bb68",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-erlang-ssh-cve/environment/skills/ssh-penetration-testing",
+      "action": "add_original_name",
+      "new_name": "ssh-penetration-testing",
+      "used_tasks": [
+        "fix-erlang-ssh-cve"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "browser-testing",
+      "version_hash": "cf87e29b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-visual-stability/environment/skills/browser-testing",
+      "action": "add_original_name",
+      "new_name": "browser-testing-vcf87e29b",
+      "used_tasks": [
+        "fix-visual-stability"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "browser-testing",
+      "version_hash": "38305e7b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/react-performance-debugging/environment/skills/browser-testing",
+      "action": "add_original_name",
+      "new_name": "browser-testing-v38305e7b",
+      "used_tasks": [
+        "react-performance-debugging"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "react-best-practices",
+      "version_hash": "f3fd1dec",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-visual-stability/environment/skills/react-best-practices",
+      "action": "add_renamed",
+      "new_name": "sb-react-best-practices-vf3fd1dec",
+      "used_tasks": [
+        "fix-visual-stability"
+      ],
+      "note": "SKILL.md similarity 71% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "react-best-practices",
+      "version_hash": "a460c5fe",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/react-performance-debugging/environment/skills/react-best-practices",
+      "action": "add_renamed",
+      "new_name": "sb-react-best-practices-va460c5fe",
+      "used_tasks": [
+        "react-performance-debugging"
+      ],
+      "note": "SKILL.md similarity 68% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "web-interface-guidelines",
+      "version_hash": "efb136ab",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/fix-visual-stability/environment/skills/web-interface-guidelines",
+      "action": "add_original_name",
+      "new_name": "web-interface-guidelines",
+      "used_tasks": [
+        "fix-visual-stability"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "senior-data-engineer",
+      "version_hash": "8a6ab1f9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/flink-query/environment/skills/senior-data-engineer",
+      "action": "add_renamed",
+      "new_name": "sb-senior-data-engineer-v8a6ab1f9",
+      "used_tasks": [
+        "flink-query"
+      ],
+      "note": "SKILL.md similarity 4% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "flood-detection",
+      "version_hash": "e6fcfa22",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/flood-risk-analysis/environment/skills/flood-detection",
+      "action": "add_original_name",
+      "new_name": "flood-detection",
+      "used_tasks": [
+        "flood-risk-analysis"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "nws-flood-thresholds",
+      "version_hash": "da053f5f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/flood-risk-analysis/environment/skills/nws-flood-thresholds",
+      "action": "add_original_name",
+      "new_name": "nws-flood-thresholds",
+      "used_tasks": [
+        "flood-risk-analysis"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "usgs-data-download",
+      "version_hash": "fcf6bf5e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/flood-risk-analysis/environment/skills/usgs-data-download",
+      "action": "add_original_name",
+      "new_name": "usgs-data-download",
+      "used_tasks": [
+        "flood-risk-analysis"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gh-cli",
+      "version_hash": "5fe5156a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/gh-repo-analytics/environment/skills/gh-cli",
+      "action": "add_renamed",
+      "new_name": "sb-gh-cli-v5fe5156a",
+      "used_tasks": [
+        "gh-repo-analytics"
+      ],
+      "note": "SKILL.md similarity 3% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "glm-basics",
+      "version_hash": "1facd754",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/glm-lake-mendota/environment/skills/glm-basics",
+      "action": "add_original_name",
+      "new_name": "glm-basics",
+      "used_tasks": [
+        "glm-lake-mendota"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "glm-calibration",
+      "version_hash": "ec5d957a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/glm-lake-mendota/environment/skills/glm-calibration",
+      "action": "add_original_name",
+      "new_name": "glm-calibration",
+      "used_tasks": [
+        "glm-lake-mendota"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "glm-output",
+      "version_hash": "9fae56aa",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/glm-lake-mendota/environment/skills/glm-output",
+      "action": "add_original_name",
+      "new_name": "glm-output",
+      "used_tasks": [
+        "glm-lake-mendota"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "conditioning",
+      "version_hash": "f0107700",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/gravitational-wave-detection/environment/skills/conditioning",
+      "action": "add_original_name",
+      "new_name": "conditioning",
+      "used_tasks": [
+        "gravitational-wave-detection"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "matched-filtering",
+      "version_hash": "3a48c0af",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/gravitational-wave-detection/environment/skills/matched-filtering",
+      "action": "add_original_name",
+      "new_name": "matched-filtering",
+      "used_tasks": [
+        "gravitational-wave-detection"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "excitation-signal-design",
+      "version_hash": "051fba98",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/hvac-control/environment/skills/excitation-signal-design",
+      "action": "add_original_name",
+      "new_name": "excitation-signal-design",
+      "used_tasks": [
+        "hvac-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "first-order-model-fitting",
+      "version_hash": "b068ccce",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/hvac-control/environment/skills/first-order-model-fitting",
+      "action": "add_original_name",
+      "new_name": "first-order-model-fitting",
+      "used_tasks": [
+        "hvac-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "imc-tuning-rules",
+      "version_hash": "1b518573",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/hvac-control/environment/skills/imc-tuning-rules",
+      "action": "add_original_name",
+      "new_name": "imc-tuning-rules",
+      "used_tasks": [
+        "hvac-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "safety-interlocks",
+      "version_hash": "315f1b96",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/hvac-control/environment/skills/safety-interlocks",
+      "action": "add_original_name",
+      "new_name": "safety-interlocks",
+      "used_tasks": [
+        "hvac-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "scipy-curve-fit",
+      "version_hash": "784cc0dc",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/hvac-control/environment/skills/scipy-curve-fit",
+      "action": "add_original_name",
+      "new_name": "scipy-curve-fit",
+      "used_tasks": [
+        "hvac-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "fuzzy-match",
+      "version_hash": "7d6a5158",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/invoice-fraud-detection/environment/skills/fuzzy-match",
+      "action": "add_original_name",
+      "new_name": "fuzzy-match",
+      "used_tasks": [
+        "invoice-fraud-detection"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "jax-skills",
+      "version_hash": "561a767d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/jax-computing-basics/environment/skills/jax-skills",
+      "action": "add_original_name",
+      "new_name": "jax-skills",
+      "used_tasks": [
+        "jax-computing-basics"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "image-ocr",
+      "version_hash": "81909e9d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/jpg-ocr-stat/environment/skills/image-ocr",
+      "action": "add_original_name",
+      "new_name": "image-ocr",
+      "used_tasks": [
+        "jpg-ocr-stat"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "openai-vision",
+      "version_hash": "4471e93d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/jpg-ocr-stat/environment/skills/openai-vision",
+      "action": "add_original_name",
+      "new_name": "openai-vision",
+      "used_tasks": [
+        "jpg-ocr-stat"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "video-frame-extraction",
+      "version_hash": "e077fa84",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/jpg-ocr-stat/environment/skills/video-frame-extraction",
+      "action": "add_original_name",
+      "new_name": "video-frame-extraction",
+      "used_tasks": [
+        "jpg-ocr-stat",
+        "pedestrian-traffic-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "lab-unit-harmonization",
+      "version_hash": "e776ba58",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lab-unit-harmonization/environment/skills/lab-unit-harmonization",
+      "action": "add_original_name",
+      "new_name": "lab-unit-harmonization",
+      "used_tasks": [
+        "lab-unit-harmonization"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "contribution-analysis",
+      "version_hash": "c9e856aa",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lake-warming-attribution/environment/skills/contribution-analysis",
+      "action": "add_original_name",
+      "new_name": "contribution-analysis",
+      "used_tasks": [
+        "lake-warming-attribution"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "meteorology-driver-classification",
+      "version_hash": "4500200c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lake-warming-attribution/environment/skills/meteorology-driver-classification",
+      "action": "add_original_name",
+      "new_name": "meteorology-driver-classification",
+      "used_tasks": [
+        "lake-warming-attribution"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pca-decomposition",
+      "version_hash": "47a66302",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lake-warming-attribution/environment/skills/pca-decomposition",
+      "action": "add_original_name",
+      "new_name": "pca-decomposition",
+      "used_tasks": [
+        "lake-warming-attribution"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "trend-analysis",
+      "version_hash": "8ed14426",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lake-warming-attribution/environment/skills/trend-analysis",
+      "action": "add_original_name",
+      "new_name": "trend-analysis",
+      "used_tasks": [
+        "lake-warming-attribution"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "marker",
+      "version_hash": "0627084a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/latex-formula-extraction/environment/skills/marker",
+      "action": "add_original_name",
+      "new_name": "marker",
+      "used_tasks": [
+        "latex-formula-extraction"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "lean4-memories",
+      "version_hash": "e1b276fb",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lean4-proof/environment/skills/lean4-memories",
+      "action": "add_original_name",
+      "new_name": "lean4-memories",
+      "used_tasks": [
+        "lean4-proof"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "lean4-theorem-proving",
+      "version_hash": "60f4784f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/lean4-proof/environment/skills/lean4-theorem-proving",
+      "action": "add_original_name",
+      "new_name": "lean4-theorem-proving",
+      "used_tasks": [
+        "lean4-proof"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "manufacturing-failure-reason-codebook-normalization",
+      "version_hash": "7032196c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization",
+      "action": "add_original_name",
+      "new_name": "manufacturing-failure-reason-codebook-normalization",
+      "used_tasks": [
+        "manufacturing-codebook-normalization"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "reflow-profile-compliance-toolkit",
+      "version_hash": "435fd399",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/manufacturing-equipment-maintenance/environment/skills/reflow-profile-compliance-toolkit",
+      "action": "add_original_name",
+      "new_name": "reflow-profile-compliance-toolkit",
+      "used_tasks": [
+        "manufacturing-equipment-maintenance"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "reflow_machine_maintenance_guidance",
+      "version_hash": "ed4c7e9c",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/manufacturing-equipment-maintenance/environment/skills/reflow_machine_maintenance_guidance",
+      "action": "add_original_name",
+      "new_name": "reflow_machine_maintenance_guidance",
+      "used_tasks": [
+        "manufacturing-equipment-maintenance"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "fjsp-baseline-repair-with-downtime-and-policy",
+      "version_hash": "81708426",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/manufacturing-fjsp-optimization/environment/skills/fjsp-baseline-repair-with-downtime-and-policy",
+      "action": "add_original_name",
+      "new_name": "fjsp-baseline-repair-with-downtime-and-policy",
+      "used_tasks": [
+        "manufacturing-fjsp-optimization"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ffmpeg",
+      "version_hash": "3b8bfd73",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mario-coin-counting/environment/skills/ffmpeg",
+      "action": "add_original_name",
+      "new_name": "ffmpeg",
+      "used_tasks": [
+        "mario-coin-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "image_editing",
+      "version_hash": "337f64d3",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mario-coin-counting/environment/skills/image_editing",
+      "action": "add_original_name",
+      "new_name": "image_editing",
+      "used_tasks": [
+        "mario-coin-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "object_counter",
+      "version_hash": "e8e2f5af",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mario-coin-counting/environment/skills/object_counter",
+      "action": "add_original_name",
+      "new_name": "object_counter",
+      "used_tasks": [
+        "mario-coin-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "custom-distance-metrics",
+      "version_hash": "b7b060c9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mars-clouds-clustering/environment/skills/custom-distance-metrics",
+      "action": "add_original_name",
+      "new_name": "custom-distance-metrics",
+      "used_tasks": [
+        "mars-clouds-clustering"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "parallel-processing",
+      "version_hash": "dac2adf0",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mars-clouds-clustering/environment/skills/parallel-processing",
+      "action": "add_original_name",
+      "new_name": "parallel-processing",
+      "used_tasks": [
+        "mars-clouds-clustering"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pareto-optimization",
+      "version_hash": "2b215cff",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mars-clouds-clustering/environment/skills/pareto-optimization",
+      "action": "add_original_name",
+      "new_name": "pareto-optimization",
+      "used_tasks": [
+        "mars-clouds-clustering"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "mhc-algorithm",
+      "version_hash": "8e49bb8b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mhc-layer-impl/environment/skills/mhc-algorithm",
+      "action": "add_original_name",
+      "new_name": "mhc-algorithm",
+      "used_tasks": [
+        "mhc-layer-impl"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "modal-gpu",
+      "version_hash": "a9631cc8",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mhc-layer-impl/environment/skills/modal-gpu",
+      "action": "add_original_name",
+      "new_name": "modal-gpu",
+      "used_tasks": [
+        "mhc-layer-impl"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "nanogpt-training",
+      "version_hash": "e1396f08",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/mhc-layer-impl/environment/skills/nanogpt-training",
+      "action": "add_original_name",
+      "new_name": "nanogpt-training",
+      "used_tasks": [
+        "mhc-layer-impl"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ffmpeg-audio-processing",
+      "version_hash": "31efb165",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/ffmpeg-audio-processing",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-audio-processing",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ffmpeg-format-conversion",
+      "version_hash": "0e1875ed",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/ffmpeg-format-conversion",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-format-conversion",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ffmpeg-media-info",
+      "version_hash": "2165c962",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/ffmpeg-media-info",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-media-info",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "ffmpeg-video-editing",
+      "version_hash": "5d6849e2",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/ffmpeg-video-editing",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-video-editing-v5d6849e2",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "ffmpeg-video-editing",
+      "version_hash": "beeaff49",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-filler-word-remover/environment/skills/ffmpeg-video-editing",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-video-editing-vbeeaff49",
+      "used_tasks": [
+        "video-filler-word-remover"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "ffmpeg-video-filters",
+      "version_hash": "3f02a53a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/ffmpeg-video-filters",
+      "action": "add_original_name",
+      "new_name": "ffmpeg-video-filters",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "text-to-speech",
+      "version_hash": "7e5f847d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/multilingual-video-dubbing/environment/skills/text-to-speech",
+      "action": "add_original_name",
+      "new_name": "text-to-speech",
+      "used_tasks": [
+        "multilingual-video-dubbing"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "docx",
+      "version_hash": "b12edcc9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/offer-letter-generator/environment/skills/docx",
+      "action": "add_renamed",
+      "new_name": "sb-docx-vb12edcc9",
+      "used_tasks": [
+        "offer-letter-generator"
+      ],
+      "note": "SKILL.md similarity 1% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "docx",
+      "version_hash": "29f83459",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/organize-messy-files/environment/skills/docx",
+      "action": "add_renamed",
+      "new_name": "sb-docx-v29f83459",
+      "used_tasks": [
+        "organize-messy-files"
+      ],
+      "note": "SKILL.md similarity 3% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "file-organizer",
+      "version_hash": "73ce4eb1",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/organize-messy-files/environment/skills/file-organizer",
+      "action": "add_original_name",
+      "new_name": "file-organizer",
+      "used_tasks": [
+        "organize-messy-files"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "planning-with-files",
+      "version_hash": "25250f22",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/organize-messy-files/environment/skills/planning-with-files",
+      "action": "add_original_name",
+      "new_name": "planning-with-files",
+      "used_tasks": [
+        "organize-messy-files"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "academic-pdf-redaction",
+      "version_hash": "9fed2ce3",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/paper-anonymizer/environment/skills/academic-pdf-redaction",
+      "action": "add_original_name",
+      "new_name": "academic-pdf-redaction",
+      "used_tasks": [
+        "paper-anonymizer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "memory-optimization",
+      "version_hash": "9c3210d4",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/parallel-tfidf-search/environment/skills/memory-optimization",
+      "action": "add_original_name",
+      "new_name": "memory-optimization",
+      "used_tasks": [
+        "parallel-tfidf-search"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-parallelization",
+      "version_hash": "48074608",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/parallel-tfidf-search/environment/skills/python-parallelization",
+      "action": "add_original_name",
+      "new_name": "python-parallelization",
+      "used_tasks": [
+        "parallel-tfidf-search"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "workload-balancing",
+      "version_hash": "f3555a8f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/parallel-tfidf-search/environment/skills/workload-balancing",
+      "action": "add_original_name",
+      "new_name": "workload-balancing",
+      "used_tasks": [
+        "parallel-tfidf-search"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pddl-skills",
+      "version_hash": "86f190a6",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pddl-tpp-planning/environment/skills/pddl-skills",
+      "action": "add_original_name",
+      "new_name": "pddl-skills",
+      "used_tasks": [
+        "pddl-tpp-planning",
+        "virtualhome-agent-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gemini-count-in-video",
+      "version_hash": "a6547be8",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pedestrian-traffic-counting/environment/skills/gemini-count-in-video",
+      "action": "add_original_name",
+      "new_name": "gemini-count-in-video",
+      "used_tasks": [
+        "pedestrian-traffic-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gemini-video-understanding",
+      "version_hash": "b807a87f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pedestrian-traffic-counting/environment/skills/gemini-video-understanding",
+      "action": "add_original_name",
+      "new_name": "gemini-video-understanding",
+      "used_tasks": [
+        "pedestrian-traffic-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gpt-multimodal",
+      "version_hash": "41e7a272",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pedestrian-traffic-counting/environment/skills/gpt-multimodal",
+      "action": "add_original_name",
+      "new_name": "gpt-multimodal",
+      "used_tasks": [
+        "pedestrian-traffic-counting"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "audiobook",
+      "version_hash": "960bd0d9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pg-essay-to-audiobook/environment/skills/audiobook",
+      "action": "add_original_name",
+      "new_name": "audiobook",
+      "used_tasks": [
+        "pg-essay-to-audiobook"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "elevenlabs-tts",
+      "version_hash": "e2ec8611",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pg-essay-to-audiobook/environment/skills/elevenlabs-tts",
+      "action": "add_original_name",
+      "new_name": "elevenlabs-tts",
+      "used_tasks": [
+        "pg-essay-to-audiobook"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gtts",
+      "version_hash": "85de26c2",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pg-essay-to-audiobook/environment/skills/gtts",
+      "action": "add_original_name",
+      "new_name": "gtts",
+      "used_tasks": [
+        "pg-essay-to-audiobook"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "openai-tts",
+      "version_hash": "20424aca",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/pg-essay-to-audiobook/environment/skills/openai-tts",
+      "action": "add_original_name",
+      "new_name": "openai-tts",
+      "used_tasks": [
+        "pg-essay-to-audiobook"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "powerlifting",
+      "version_hash": "804c4f09",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/powerlifting-coef-calc/environment/skills/powerlifting",
+      "action": "add_original_name",
+      "new_name": "powerlifting",
+      "used_tasks": [
+        "powerlifting-coef-calc"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "senior-data-scientist",
+      "version_hash": "d174c9dd",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/powerlifting-coef-calc/environment/skills/senior-data-scientist",
+      "action": "add_renamed",
+      "new_name": "sb-senior-data-scientist-vd174c9dd",
+      "used_tasks": [
+        "powerlifting-coef-calc"
+      ],
+      "note": "SKILL.md similarity 8% < 90%, preserving SB variant"
+    },
+    {
+      "sb_name": "python-scala-collections",
+      "version_hash": "3a9497c7",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-collections",
+      "action": "add_original_name",
+      "new_name": "python-scala-collections",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-scala-functional",
+      "version_hash": "7bd669c9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-functional",
+      "action": "add_original_name",
+      "new_name": "python-scala-functional",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-scala-idioms",
+      "version_hash": "19f1f03d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-idioms",
+      "action": "add_original_name",
+      "new_name": "python-scala-idioms",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-scala-libraries",
+      "version_hash": "8d2433ea",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-libraries",
+      "action": "add_original_name",
+      "new_name": "python-scala-libraries",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-scala-oop",
+      "version_hash": "2f351311",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-oop",
+      "action": "add_original_name",
+      "new_name": "python-scala-oop",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "python-scala-syntax-mapping",
+      "version_hash": "f4a127fc",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/python-scala-translation/environment/skills/python-scala-syntax-mapping",
+      "action": "add_original_name",
+      "new_name": "python-scala-syntax-mapping",
+      "used_tasks": [
+        "python-scala-translation"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "qutip",
+      "version_hash": "c4fc2a87",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/quantum-numerical-simulation/environment/skills/qutip",
+      "action": "skip_similar",
+      "new_name": null,
+      "used_tasks": [
+        "quantum-numerical-simulation"
+      ],
+      "note": "SKILL.md similarity 94% >= 90%, merged is sufficient"
+    },
+    {
+      "sb_name": "finite-horizon-lqr",
+      "version_hash": "355bdb91",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/r2r-mpc-control/environment/skills/finite-horizon-lqr",
+      "action": "add_original_name",
+      "new_name": "finite-horizon-lqr",
+      "used_tasks": [
+        "r2r-mpc-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "integral-action-design",
+      "version_hash": "889c6ccd",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/r2r-mpc-control/environment/skills/integral-action-design",
+      "action": "add_original_name",
+      "new_name": "integral-action-design",
+      "used_tasks": [
+        "r2r-mpc-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "mpc-horizon-tuning",
+      "version_hash": "e2a5864a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/r2r-mpc-control/environment/skills/mpc-horizon-tuning",
+      "action": "add_original_name",
+      "new_name": "mpc-horizon-tuning",
+      "used_tasks": [
+        "r2r-mpc-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "state-space-linearization",
+      "version_hash": "2869c619",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/r2r-mpc-control/environment/skills/state-space-linearization",
+      "action": "add_original_name",
+      "new_name": "state-space-linearization",
+      "used_tasks": [
+        "r2r-mpc-control"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "constraint-parser",
+      "version_hash": "e591891b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/scheduling-email-assistant/environment/skills/constraint-parser",
+      "action": "add_original_name",
+      "new_name": "constraint-parser",
+      "used_tasks": [
+        "scheduling-email-assistant"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "gmail-skill",
+      "version_hash": "bc15b0a0",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/scheduling-email-assistant/environment/skills/gmail-skill",
+      "action": "add_original_name",
+      "new_name": "gmail-skill",
+      "used_tasks": [
+        "scheduling-email-assistant"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "google-calendar-skill",
+      "version_hash": "6e9aef6e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/scheduling-email-assistant/environment/skills/google-calendar-skill",
+      "action": "add_original_name",
+      "new_name": "google-calendar-skill",
+      "used_tasks": [
+        "scheduling-email-assistant"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "13f-analyzer",
+      "version_hash": "71e71744",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/sec-financial-report/environment/skills/13f-analyzer",
+      "action": "add_original_name",
+      "new_name": "13f-analyzer",
+      "used_tasks": [
+        "sec-financial-report"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "fuzzy-name-search",
+      "version_hash": "118e5245",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/sec-financial-report/environment/skills/fuzzy-name-search",
+      "action": "add_original_name",
+      "new_name": "fuzzy-name-search",
+      "used_tasks": [
+        "sec-financial-report"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "obspy-datacenter-client",
+      "version_hash": "6ccec712",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/seismic-phase-picking/environment/skills/obspy-datacenter-client",
+      "action": "add_original_name",
+      "new_name": "obspy-datacenter-client",
+      "used_tasks": [
+        "seismic-phase-picking"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "discover-important-function",
+      "version_hash": "9f25b6d1",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/setup-fuzzing-py/environment/skills/discover-important-function",
+      "action": "add_original_name",
+      "new_name": "discover-important-function",
+      "used_tasks": [
+        "setup-fuzzing-py"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "fuzzing-python",
+      "version_hash": "85cd3b32",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/setup-fuzzing-py/environment/skills/fuzzing-python",
+      "action": "add_original_name",
+      "new_name": "fuzzing-python",
+      "used_tasks": [
+        "setup-fuzzing-py"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "setup-env",
+      "version_hash": "2262b926",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/setup-fuzzing-py/environment/skills/setup-env",
+      "action": "add_original_name",
+      "new_name": "setup-env",
+      "used_tasks": [
+        "setup-fuzzing-py"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "nlp-research-repo-package-installment",
+      "version_hash": "06490f03",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/simpo-code-reproduction/environment/skills/nlp-research-repo-package-installment",
+      "action": "add_original_name",
+      "new_name": "nlp-research-repo-package-installment",
+      "used_tasks": [
+        "simpo-code-reproduction"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "cvss-score-extraction",
+      "version_hash": "95ebd8a7",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/software-dependency-audit/environment/skills/cvss-score-extraction",
+      "action": "add_original_name",
+      "new_name": "cvss-score-extraction",
+      "used_tasks": [
+        "software-dependency-audit"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "trivy-offline-vulnerability-scanning",
+      "version_hash": "ddf3e03e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/software-dependency-audit/environment/skills/trivy-offline-vulnerability-scanning",
+      "action": "add_original_name",
+      "new_name": "trivy-offline-vulnerability-scanning",
+      "used_tasks": [
+        "software-dependency-audit"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "vulnerability-csv-reporting",
+      "version_hash": "7061af4e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/software-dependency-audit/environment/skills/vulnerability-csv-reporting",
+      "action": "add_original_name",
+      "new_name": "vulnerability-csv-reporting",
+      "used_tasks": [
+        "software-dependency-audit"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "automatic-speech-recognition",
+      "version_hash": "9b18066b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/speaker-diarization-subtitles/environment/skills/automatic-speech-recognition",
+      "action": "add_original_name",
+      "new_name": "automatic-speech-recognition",
+      "used_tasks": [
+        "speaker-diarization-subtitles"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "multimodal-fusion",
+      "version_hash": "c6a05be1",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/speaker-diarization-subtitles/environment/skills/multimodal-fusion",
+      "action": "add_original_name",
+      "new_name": "multimodal-fusion",
+      "used_tasks": [
+        "speaker-diarization-subtitles"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "speaker-clustering",
+      "version_hash": "0046a071",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/speaker-diarization-subtitles/environment/skills/speaker-clustering",
+      "action": "add_original_name",
+      "new_name": "speaker-clustering",
+      "used_tasks": [
+        "speaker-diarization-subtitles"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "voice-activity-detection",
+      "version_hash": "7719f546",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/speaker-diarization-subtitles/environment/skills/voice-activity-detection",
+      "action": "add_original_name",
+      "new_name": "voice-activity-detection",
+      "used_tasks": [
+        "speaker-diarization-subtitles"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "hibernate-upgrade",
+      "version_hash": "add645e1",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/spring-boot-jakarta-migration/environment/skills/hibernate-upgrade",
+      "action": "add_original_name",
+      "new_name": "hibernate-upgrade",
+      "used_tasks": [
+        "spring-boot-jakarta-migration"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "jakarta-namespace",
+      "version_hash": "f75c07f7",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/spring-boot-jakarta-migration/environment/skills/jakarta-namespace",
+      "action": "add_original_name",
+      "new_name": "jakarta-namespace",
+      "used_tasks": [
+        "spring-boot-jakarta-migration"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "restclient-migration",
+      "version_hash": "1c558715",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/spring-boot-jakarta-migration/environment/skills/restclient-migration",
+      "action": "add_original_name",
+      "new_name": "restclient-migration",
+      "used_tasks": [
+        "spring-boot-jakarta-migration"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "spring-boot-migration",
+      "version_hash": "ae50b914",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/spring-boot-jakarta-migration/environment/skills/spring-boot-migration",
+      "action": "add_original_name",
+      "new_name": "spring-boot-migration",
+      "used_tasks": [
+        "spring-boot-jakarta-migration"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "spring-security-6",
+      "version_hash": "7feed10f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/spring-boot-jakarta-migration/environment/skills/spring-security-6",
+      "action": "add_original_name",
+      "new_name": "spring-security-6",
+      "used_tasks": [
+        "spring-boot-jakarta-migration"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pcap-triage-tshark",
+      "version_hash": "ffa59a1e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/suricata-custom-exfil/environment/skills/pcap-triage-tshark",
+      "action": "add_original_name",
+      "new_name": "pcap-triage-tshark",
+      "used_tasks": [
+        "suricata-custom-exfil"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "suricata-offline-evejson",
+      "version_hash": "68fd24b1",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/suricata-custom-exfil/environment/skills/suricata-offline-evejson",
+      "action": "add_original_name",
+      "new_name": "suricata-offline-evejson",
+      "used_tasks": [
+        "suricata-custom-exfil"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "suricata-rules-basics",
+      "version_hash": "0553a188",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/suricata-custom-exfil/environment/skills/suricata-rules-basics",
+      "action": "add_original_name",
+      "new_name": "suricata-rules-basics",
+      "used_tasks": [
+        "suricata-custom-exfil"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "syz-extract-constants",
+      "version_hash": "57f858ee",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/syzkaller-ppdev-syzlang/environment/skills/syz-extract-constants",
+      "action": "add_original_name",
+      "new_name": "syz-extract-constants",
+      "used_tasks": [
+        "syzkaller-ppdev-syzlang"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "syzkaller-build-loop",
+      "version_hash": "b48319fa",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/syzkaller-ppdev-syzlang/environment/skills/syzkaller-build-loop",
+      "action": "add_original_name",
+      "new_name": "syzkaller-build-loop",
+      "used_tasks": [
+        "syzkaller-ppdev-syzlang"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "syzlang-ioctl-basics",
+      "version_hash": "7d9cb788",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/syzkaller-ppdev-syzlang/environment/skills/syzlang-ioctl-basics",
+      "action": "add_original_name",
+      "new_name": "syzlang-ioctl-basics",
+      "used_tasks": [
+        "syzkaller-ppdev-syzlang"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "hierarchical-taxonomy-clustering",
+      "version_hash": "b36ac9bd",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/taxonomy-tree-merge/environment/skills/hierarchical-taxonomy-clustering",
+      "action": "add_original_name",
+      "new_name": "hierarchical-taxonomy-clustering",
+      "used_tasks": [
+        "taxonomy-tree-merge"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "obj-exporter",
+      "version_hash": "0f002216",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/threejs-structure-parser/environment/skills/obj-exporter",
+      "action": "add_original_name",
+      "new_name": "obj-exporter-v0f002216",
+      "used_tasks": [
+        "threejs-structure-parser"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "obj-exporter",
+      "version_hash": "19a769d6",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/threejs-to-obj/environment/skills/obj-exporter",
+      "action": "add_original_name",
+      "new_name": "obj-exporter-v19a769d6",
+      "used_tasks": [
+        "threejs-to-obj"
+      ],
+      "note": "skill not in merged; using original name [name collision → added -v<hash> suffix]"
+    },
+    {
+      "sb_name": "threejs",
+      "version_hash": "3e633f0f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/threejs-structure-parser/environment/skills/threejs",
+      "action": "add_original_name",
+      "new_name": "threejs",
+      "used_tasks": [
+        "threejs-structure-parser",
+        "threejs-to-obj"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-accommodations",
+      "version_hash": "21a47c69",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-accommodations",
+      "action": "add_original_name",
+      "new_name": "search-accommodations",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-attractions",
+      "version_hash": "6a43449f",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-attractions",
+      "action": "add_original_name",
+      "new_name": "search-attractions",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-cities",
+      "version_hash": "eeef1af9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-cities",
+      "action": "add_original_name",
+      "new_name": "search-cities",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-driving-distance",
+      "version_hash": "eaac8966",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-driving-distance",
+      "action": "add_original_name",
+      "new_name": "search-driving-distance",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-flights",
+      "version_hash": "b48f36ac",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-flights",
+      "action": "add_original_name",
+      "new_name": "search-flights",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "search-restaurants",
+      "version_hash": "80354fbf",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/travel-planning/environment/skills/search-restaurants",
+      "action": "add_original_name",
+      "new_name": "search-restaurants",
+      "used_tasks": [
+        "travel-planning"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "data_cleaning",
+      "version_hash": "a363fce9",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/trend-anomaly-causal-inference/environment/skills/data_cleaning",
+      "action": "add_original_name",
+      "new_name": "data_cleaning",
+      "used_tasks": [
+        "trend-anomaly-causal-inference"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "did_causal_analysis",
+      "version_hash": "bf38469a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/trend-anomaly-causal-inference/environment/skills/did_causal_analysis",
+      "action": "add_original_name",
+      "new_name": "did_causal_analysis",
+      "used_tasks": [
+        "trend-anomaly-causal-inference"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "feature_engineering",
+      "version_hash": "79a5c7f5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/trend-anomaly-causal-inference/environment/skills/feature_engineering",
+      "action": "add_original_name",
+      "new_name": "feature_engineering",
+      "used_tasks": [
+        "trend-anomaly-causal-inference"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "time_series_anomaly_detection",
+      "version_hash": "57fbfbd4",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/trend-anomaly-causal-inference/environment/skills/time_series_anomaly_detection",
+      "action": "add_original_name",
+      "new_name": "time_series_anomaly_detection",
+      "used_tasks": [
+        "trend-anomaly-causal-inference"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "filler-word-processing",
+      "version_hash": "4a2ab86e",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-filler-word-remover/environment/skills/filler-word-processing",
+      "action": "add_original_name",
+      "new_name": "filler-word-processing",
+      "used_tasks": [
+        "video-filler-word-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "whisper-transcription",
+      "version_hash": "22ebe470",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-filler-word-remover/environment/skills/whisper-transcription",
+      "action": "add_original_name",
+      "new_name": "whisper-transcription",
+      "used_tasks": [
+        "video-filler-word-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "audio-extractor",
+      "version_hash": "6f7d351b",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/audio-extractor",
+      "action": "add_original_name",
+      "new_name": "audio-extractor",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "energy-calculator",
+      "version_hash": "d1f65fc4",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/energy-calculator",
+      "action": "add_original_name",
+      "new_name": "energy-calculator",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "pause-detector",
+      "version_hash": "52f20ba5",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/pause-detector",
+      "action": "add_original_name",
+      "new_name": "pause-detector",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "report-generator",
+      "version_hash": "17166c6a",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/report-generator",
+      "action": "add_original_name",
+      "new_name": "report-generator",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "segment-combiner",
+      "version_hash": "92788b36",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/segment-combiner",
+      "action": "add_original_name",
+      "new_name": "segment-combiner",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "silence-detector",
+      "version_hash": "6e11736d",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/silence-detector",
+      "action": "add_original_name",
+      "new_name": "silence-detector",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "video-processor",
+      "version_hash": "854a1b04",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-silence-remover/environment/skills/video-processor",
+      "action": "add_original_name",
+      "new_name": "video-processor",
+      "used_tasks": [
+        "video-silence-remover"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "speech-to-text",
+      "version_hash": "2d8c5e78",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/video-tutorial-indexer/environment/skills/speech-to-text",
+      "action": "add_original_name",
+      "new_name": "speech-to-text",
+      "used_tasks": [
+        "video-tutorial-indexer"
+      ],
+      "note": "skill not in merged; using original name"
+    },
+    {
+      "sb_name": "data-reconciliation",
+      "version_hash": "6cdbdd24",
+      "sb_dir": "/path/to/skillRL/datasets/skillsbench/tasks/xlsx-recover-data/environment/skills/data-reconciliation",
+      "action": "add_original_name",
+      "new_name": "data-reconciliation",
+      "used_tasks": [
+        "xlsx-recover-data"
+      ],
+      "note": "skill not in merged; using original name"
+    }
+  ]
+}

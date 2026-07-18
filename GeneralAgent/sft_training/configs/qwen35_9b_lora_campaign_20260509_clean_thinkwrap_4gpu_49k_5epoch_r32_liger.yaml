@@ -1,0 +1,59 @@
+### model
+model_name_or_path: /path/to/skillRL/models/Qwen3.5-9B
+trust_remote_code: true
+flash_attn: auto
+disable_gradient_checkpointing: false
+use_reentrant_gc: true
+enable_liger_kernel: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target: all
+deepspeed: /path/to/skillRL/GeneralAgent/third_party/LLaMA-Factory/examples/deepspeed/ds_z3_config.json
+
+### dataset
+# 20260509 clean variant: same cleaned/thinkwrap dataset used by the 27B run.
+# Records: 1535. Filter rules documented in the 27B clean config:
+#   - host-mode Claw artifacts removed
+#   - repeated assistant-loop noise removed
+#   - all records are openclaw_full, tools_schema_injected, and thinkwrap aligned.
+dataset: agent_sft_campaign_20260509_clean_thinkwrap
+dataset_dir: /path/to/skillRL/GeneralAgent/sft_training/llamafactory_data/20260509_sft_campaign_clean_thinkwrap
+template: qwen3_5_nothink
+cutoff_len: 49152
+train_on_prompt: false
+mask_history: false
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+
+### output
+output_dir: /path/to/skillRL/GeneralAgent/sft_training/outputs/qwen35_9b_lora_campaign_20260509_clean_thinkwrap_4gpu_49k_5epoch_r32_liger
+logging_steps: 1
+save_strategy: epoch
+save_total_limit: 6
+plot_loss: false
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+# 4 GPUs × micro=1 × GA=4 -> effective batch 16, matching prior 9B long-context runs.
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-4
+num_train_epochs: 5.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+val_size: 0.0

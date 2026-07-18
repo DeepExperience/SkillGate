@@ -1,0 +1,15 @@
+### model
+model_name_or_path: /path/to/skillRL/models/Qwen3.5-9B
+adapter_name_or_path: /path/to/skillRL/GeneralAgent/sft_training/outputs/qwen35_9b_lora_campaign_20260503_1015_4gpu_49k_3epoch_liger
+trust_remote_code: true
+
+### method
+stage: sft
+finetuning_type: lora
+
+### export
+template: qwen3_5_nothink
+export_dir: /path/to/skillRL/GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260503_1015_49k_3epoch_liger
+export_size: 5
+export_device: auto
+export_legacy_format: false

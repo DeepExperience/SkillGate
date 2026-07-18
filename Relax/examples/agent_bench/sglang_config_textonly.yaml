@@ -1,0 +1,30 @@
+# Force SGLang to load the Qwen3.5 9B merged model with the Qwen3_5ForCausalLM
+# (text-only) architecture even though config.json declares the VL class.
+#
+# Why: the merged_models/qwen35_9b_sft_campaign_*_thinkwrap_4gpu_*_liger dir
+# is the result of LLaMA-Factory LoRA merge on top of a Qwen3.5-VL base, so
+# config.json keeps architectures=["Qwen3_5ForConditionalGeneration"]. With
+# the relax/deps/sglang version, loading via that VL class silently mis-maps
+# some text-language-model weights, producing garbage 1-3 token outputs
+# (verified via direct /generate to sglang). The slime/sglang version handles
+# this correctly; relax/deps/sglang does not.
+#
+# json_model_override_args is a stock SGLang ServerArgs field that lets us
+# patch config.json fields at server-args time. Here we override only
+# `architectures` to force the loader to pick Qwen3_5ForCausalLM (which has a
+# proper "model.language_model.* -> model.*" rename path that also skips
+# `visual.*` weights).
+#
+# Megatron-Bridge on the training side still sees the on-disk config.json
+# (VL arch), so the Qwen35VLBridge load path is unaffected.
+sglang:
+  - name: default
+    engine_groups:
+      - worker_type: regular
+        num_gpus: 2
+        overrides:
+          # Qwen3_5ForCausalLM isn't a SGLang EntryClass (only the VL wrapper
+          # is). Qwen3NextForCausalLM IS an EntryClass and Qwen3.5's text
+          # config extends Qwen3NextConfig (qwen3_5_text → qwen3_next), so
+          # try loading the text shard via Qwen3NextForCausalLM instead.
+          json_model_override_args: '{"architectures": ["Qwen3NextForCausalLM"]}'

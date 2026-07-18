@@ -1,0 +1,13 @@
+Types: deb
+URIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu/
+Suites: noble noble-updates noble-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+Trusted: yes
+
+Types: deb
+URIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu/
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+Trusted: yes

@@ -1,0 +1,1129 @@
+{
+  "total_scanned": 160,
+  "added": 160,
+  "skipped_similar": 0,
+  "collisions": 0,
+  "final_merged_count": 1812,
+  "actions": [
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "dora",
+      "action": "add",
+      "new_name": "dora",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "dpdpa",
+      "action": "add",
+      "new_name": "dpdpa",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "fedramp",
+      "action": "add",
+      "new_name": "fedramp",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "gdpr-compliance",
+      "action": "add",
+      "new_name": "gdpr-compliance",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "hipaa-compliance",
+      "action": "add",
+      "new_name": "hipaa-compliance",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "iso27001",
+      "action": "add",
+      "new_name": "iso27001",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "iso27701",
+      "action": "add",
+      "new_name": "iso27701",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "iso42001",
+      "action": "add",
+      "new_name": "iso42001",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "nist-csf",
+      "action": "add",
+      "new_name": "nist-csf",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "pci-compliance",
+      "action": "add",
+      "new_name": "pci-compliance",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "soc2",
+      "action": "add",
+      "new_name": "soc2",
+      "renamed": false
+    },
+    {
+      "repo": "Claude-Skills-Governance-Risk-and-Compliance",
+      "slug": "tsa-compliance",
+      "action": "add",
+      "new_name": "tsa-compliance",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-ai-ml",
+      "action": "add",
+      "new_name": "ctf-ai-ml",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-crypto",
+      "action": "add",
+      "new_name": "ctf-crypto",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-forensics",
+      "action": "add",
+      "new_name": "ctf-forensics",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-malware",
+      "action": "add",
+      "new_name": "ctf-malware",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-misc",
+      "action": "add",
+      "new_name": "ctf-misc",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-osint",
+      "action": "add",
+      "new_name": "ctf-osint",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-pwn",
+      "action": "add",
+      "new_name": "ctf-pwn",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-reverse",
+      "action": "add",
+      "new_name": "ctf-reverse",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-web",
+      "action": "add",
+      "new_name": "ctf-web",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "ctf-writeup",
+      "action": "add",
+      "new_name": "ctf-writeup",
+      "renamed": false
+    },
+    {
+      "repo": "ctf-skills",
+      "slug": "solve-challenge",
+      "action": "add",
+      "new_name": "solve-challenge",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "assign-unowned-contacts",
+      "action": "add",
+      "new_name": "assign-unowned-contacts",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "backfill-geo-data",
+      "action": "add",
+      "new_name": "backfill-geo-data",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "bounce-monitoring-workflow",
+      "action": "add",
+      "new_name": "bounce-monitoring-workflow",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "build-lead-scoring",
+      "action": "add",
+      "new_name": "build-lead-scoring",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "build-smart-lists",
+      "action": "add",
+      "new_name": "build-smart-lists",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-dashboards",
+      "action": "add",
+      "new_name": "cleanup-dashboards",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-deals",
+      "action": "add",
+      "new_name": "cleanup-deals",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-forms",
+      "action": "add",
+      "new_name": "cleanup-forms",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-lead-owners",
+      "action": "add",
+      "new_name": "cleanup-lead-owners",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-lists",
+      "action": "add",
+      "new_name": "cleanup-lists",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-properties",
+      "action": "add",
+      "new_name": "cleanup-properties",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "cleanup-workflows",
+      "action": "add",
+      "new_name": "cleanup-workflows",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "create-icp-tiers",
+      "action": "add",
+      "new_name": "create-icp-tiers",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "create-segment-lists",
+      "action": "add",
+      "new_name": "create-segment-lists",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "delete-no-email-contacts",
+      "action": "add",
+      "new_name": "delete-no-email-contacts",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "engagement-suppression-workflow",
+      "action": "add",
+      "new_name": "engagement-suppression-workflow",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "enrich-company-name",
+      "action": "add",
+      "new_name": "enrich-company-name",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "enrich-industry",
+      "action": "add",
+      "new_name": "enrich-industry",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "fix-lifecycle-stages",
+      "action": "add",
+      "new_name": "fix-lifecycle-stages",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "hubspot-audit",
+      "action": "add",
+      "new_name": "hubspot-audit",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "hubspot-implementation-plan",
+      "action": "add",
+      "new_name": "hubspot-implementation-plan",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "lifecycle-progression-workflow",
+      "action": "add",
+      "new_name": "lifecycle-progression-workflow",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "merge-duplicate-companies",
+      "action": "add",
+      "new_name": "merge-duplicate-companies",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "new-contact-hygiene-workflow",
+      "action": "add",
+      "new_name": "new-contact-hygiene-workflow",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "quarterly-database-cleanup",
+      "action": "add",
+      "new_name": "quarterly-database-cleanup",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "reassign-deactivated-owners",
+      "action": "add",
+      "new_name": "reassign-deactivated-owners",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "review-bounced-contacts",
+      "action": "add",
+      "new_name": "review-bounced-contacts",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "standardize-geo-values",
+      "action": "add",
+      "new_name": "standardize-geo-values",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "suppress-ghost-contacts",
+      "action": "add",
+      "new_name": "suppress-ghost-contacts",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "suppress-global-unsubscribes",
+      "action": "add",
+      "new_name": "suppress-global-unsubscribes",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "suppress-hard-bounced",
+      "action": "add",
+      "new_name": "suppress-hard-bounced",
+      "renamed": false
+    },
+    {
+      "repo": "hubspot-admin-skills",
+      "slug": "weekly-cleanup-routine",
+      "action": "add",
+      "new_name": "weekly-cleanup-routine",
+      "renamed": false
+    },
+    {
+      "repo": "jira",
+      "slug": "jira",
+      "action": "add",
+      "new_name": "jira",
+      "renamed": false
+    },
+    {
+      "repo": "mastering-confluence-agent-skill",
+      "slug": "mastering-confluence-agent-skill",
+      "action": "add",
+      "new_name": "mastering-confluence-agent-skill",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentforce",
+      "action": "add",
+      "new_name": "sf-ai-agentforce",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentforce-grid",
+      "action": "add",
+      "new_name": "sf-ai-agentforce-grid",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentforce-observability",
+      "action": "add",
+      "new_name": "sf-ai-agentforce-observability",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentforce-persona",
+      "action": "add",
+      "new_name": "sf-ai-agentforce-persona",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentforce-testing",
+      "action": "add",
+      "new_name": "sf-ai-agentforce-testing",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-ai-agentscript",
+      "action": "add",
+      "new_name": "sf-ai-agentscript",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-apex",
+      "action": "add",
+      "new_name": "sf-apex",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-connected-apps",
+      "action": "add",
+      "new_name": "sf-connected-apps",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-data",
+      "action": "add",
+      "new_name": "sf-data",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud",
+      "action": "add",
+      "new_name": "sf-datacloud",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-act",
+      "action": "add",
+      "new_name": "sf-datacloud-act",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-connect",
+      "action": "add",
+      "new_name": "sf-datacloud-connect",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-harmonize",
+      "action": "add",
+      "new_name": "sf-datacloud-harmonize",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-prepare",
+      "action": "add",
+      "new_name": "sf-datacloud-prepare",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-retrieve",
+      "action": "add",
+      "new_name": "sf-datacloud-retrieve",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-datacloud-segment",
+      "action": "add",
+      "new_name": "sf-datacloud-segment",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-debug",
+      "action": "add",
+      "new_name": "sf-debug",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-deploy",
+      "action": "add",
+      "new_name": "sf-deploy",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-diagram-mermaid",
+      "action": "add",
+      "new_name": "sf-diagram-mermaid",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-diagram-nanobananapro",
+      "action": "add",
+      "new_name": "sf-diagram-nanobananapro",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-docs",
+      "action": "add",
+      "new_name": "sf-docs",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-flex-estimator",
+      "action": "add",
+      "new_name": "sf-flex-estimator",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-flow",
+      "action": "add",
+      "new_name": "sf-flow",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-cme-epc-model",
+      "action": "add",
+      "new_name": "sf-industry-cme-epc-model",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-callable-apex",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-callable-apex",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-datamapper",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-datamapper",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-flexcard",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-flexcard",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-integration-procedure",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-integration-procedure",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-omniscript",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-omniscript",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-industry-commoncore-omnistudio-analyze",
+      "action": "add",
+      "new_name": "sf-industry-commoncore-omnistudio-analyze",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-integration",
+      "action": "add",
+      "new_name": "sf-integration",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-lwc",
+      "action": "add",
+      "new_name": "sf-lwc",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-metadata",
+      "action": "add",
+      "new_name": "sf-metadata",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-permissions",
+      "action": "add",
+      "new_name": "sf-permissions",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-soql",
+      "action": "add",
+      "new_name": "sf-soql",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-testing",
+      "action": "add",
+      "new_name": "sf-testing",
+      "renamed": false
+    },
+    {
+      "repo": "sf-skills",
+      "slug": "sf-vlocity-build-deploy",
+      "action": "add",
+      "new_name": "sf-vlocity-build-deploy",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "analyst-estimates",
+      "action": "add",
+      "new_name": "analyst-estimates",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "balance-sheet",
+      "action": "add",
+      "new_name": "balance-sheet",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "balance-sheet-growth",
+      "action": "add",
+      "new_name": "balance-sheet-growth",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "batch-market-cap",
+      "action": "add",
+      "new_name": "batch-market-cap",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "cash-flow-growth",
+      "action": "add",
+      "new_name": "cash-flow-growth",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "cash-flow-statement",
+      "action": "add",
+      "new_name": "cash-flow-statement",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "commodities-list",
+      "action": "add",
+      "new_name": "commodities-list",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "commodities-quote",
+      "action": "add",
+      "new_name": "commodities-quote",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "company-market-cap",
+      "action": "add",
+      "new_name": "company-market-cap",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-analyst-master",
+      "action": "add",
+      "new_name": "earnings-analyst-master",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-analyst-questions",
+      "action": "add",
+      "new_name": "earnings-analyst-questions",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-call-analysis",
+      "action": "add",
+      "new_name": "earnings-call-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-call-insights",
+      "action": "add",
+      "new_name": "earnings-call-insights",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-capital-allocation",
+      "action": "add",
+      "new_name": "earnings-capital-allocation",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-competitive-review",
+      "action": "add",
+      "new_name": "earnings-competitive-review",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-conf-call-sentiment",
+      "action": "add",
+      "new_name": "earnings-conf-call-sentiment",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-cost-mgmt",
+      "action": "add",
+      "new_name": "earnings-cost-mgmt",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-financial-guidance",
+      "action": "add",
+      "new_name": "earnings-financial-guidance",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-market-expansion",
+      "action": "add",
+      "new_name": "earnings-market-expansion",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-mgmt-comments",
+      "action": "add",
+      "new_name": "earnings-mgmt-comments",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-product-pipeline",
+      "action": "add",
+      "new_name": "earnings-product-pipeline",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-qa-analysis",
+      "action": "add",
+      "new_name": "earnings-qa-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "earnings-revenue-guidance",
+      "action": "add",
+      "new_name": "earnings-revenue-guidance",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "esg-benchmark-comparison",
+      "action": "add",
+      "new_name": "esg-benchmark-comparison",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "esg-ratings",
+      "action": "add",
+      "new_name": "esg-ratings",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "financial-analyst-master",
+      "action": "add",
+      "new_name": "financial-analyst-master",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "financial-growth",
+      "action": "add",
+      "new_name": "financial-growth",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "financial-health-scores",
+      "action": "add",
+      "new_name": "financial-health-scores",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "financial-metrics-analysis",
+      "action": "add",
+      "new_name": "financial-metrics-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "forex-list",
+      "action": "add",
+      "new_name": "forex-list",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "historical-financial-ratings",
+      "action": "add",
+      "new_name": "historical-financial-ratings",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "historical-market-cap",
+      "action": "add",
+      "new_name": "historical-market-cap",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "income-statement",
+      "action": "add",
+      "new_name": "income-statement",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "income-statement-growth",
+      "action": "add",
+      "new_name": "income-statement-growth",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "industry-pe-ratios",
+      "action": "add",
+      "new_name": "industry-pe-ratios",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "industry-performance-snapshot",
+      "action": "add",
+      "new_name": "industry-performance-snapshot",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "market-analyst-master",
+      "action": "add",
+      "new_name": "market-analyst-master",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "prediction-markets-analysis",
+      "action": "add",
+      "new_name": "prediction-markets-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "price-target-consensus",
+      "action": "add",
+      "new_name": "price-target-consensus",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "price-target-summary",
+      "action": "add",
+      "new_name": "price-target-summary",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "ratings-snapshot",
+      "action": "add",
+      "new_name": "ratings-snapshot",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "revenue-geographic-segmentation",
+      "action": "add",
+      "new_name": "revenue-geographic-segmentation",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "revenue-product-segmentation",
+      "action": "add",
+      "new_name": "revenue-product-segmentation",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-10k-analysis",
+      "action": "add",
+      "new_name": "sec-10k-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-10q-analysis",
+      "action": "add",
+      "new_name": "sec-10q-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-8k-analysis",
+      "action": "add",
+      "new_name": "sec-8k-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-amendments-review",
+      "action": "add",
+      "new_name": "sec-amendments-review",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-analyst-master",
+      "action": "add",
+      "new_name": "sec-analyst-master",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-annual-comparison",
+      "action": "add",
+      "new_name": "sec-annual-comparison",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-business-desc-analysis",
+      "action": "add",
+      "new_name": "sec-business-desc-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-cash-flow-review",
+      "action": "add",
+      "new_name": "sec-cash-flow-review",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-corp-governance",
+      "action": "add",
+      "new_name": "sec-corp-governance",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-debt-covenant",
+      "action": "add",
+      "new_name": "sec-debt-covenant",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-footnotes-analysis",
+      "action": "add",
+      "new_name": "sec-footnotes-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-mda-analysis",
+      "action": "add",
+      "new_name": "sec-mda-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-proxy-analysis",
+      "action": "add",
+      "new_name": "sec-proxy-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-risk-factors",
+      "action": "add",
+      "new_name": "sec-risk-factors",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-s1-analysis",
+      "action": "add",
+      "new_name": "sec-s1-analysis",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sec-segment-reporting",
+      "action": "add",
+      "new_name": "sec-segment-reporting",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sector-pe-ratios",
+      "action": "add",
+      "new_name": "sector-pe-ratios",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "sector-performance-snapshot",
+      "action": "add",
+      "new_name": "sector-performance-snapshot",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "stock-grades",
+      "action": "add",
+      "new_name": "stock-grades",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "stock-historical-index",
+      "action": "add",
+      "new_name": "stock-historical-index",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "stock-performance",
+      "action": "add",
+      "new_name": "stock-performance",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "stock-price-change",
+      "action": "add",
+      "new_name": "stock-price-change",
+      "renamed": false
+    },
+    {
+      "repo": "skills",
+      "slug": "stock-quote",
+      "action": "add",
+      "new_name": "stock-quote",
+      "renamed": false
+    }
+  ]
+}

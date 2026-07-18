@@ -1,0 +1,12 @@
+### model
+model_name_or_path: /path/to/skillRL/models/Qwen3.5-9B
+adapter_name_or_path: /path/to/skillRL/GeneralAgent/sft_training/outputs/qwen35_9b_lora_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger
+template: qwen3_5_nothink
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: /path/to/skillRL/GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger
+export_size: 5
+export_device: auto
+export_legacy_format: false

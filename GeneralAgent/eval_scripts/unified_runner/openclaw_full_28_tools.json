@@ -1,0 +1,2478 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "agents_list",
+      "description": "List OpenClaw agent ids you can target with `sessions_spawn` when `runtime=\"subagent\"` (based on subagent allowlists).",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "browser",
+      "description": "Control the browser via OpenClaw's browser control server (status/start/stop/profiles/tabs/open/snapshot/screenshot/actions). Browser choice: omit profile by default for the isolated OpenClaw-managed browser (`openclaw`). For the logged-in user browser, use profile=\"user\". A supported Chromium-based browser (v144+) must be running on the selected host or browser node. Use only when existing logins/cookies matter and the user is present. For profile=\"user\" or other existing-session profiles, omit timeoutMs on act:type, evaluate, hover, scrollIntoView, drag, select, and fill; that driver rejects per-call timeout overrides for those actions. When a node-hosted browser proxy is available, the tool may auto-route to it. Pin a node with node=<id|name> or target=\"node\". When using refs from snapshot (e.g. e12), keep the same tab: prefer passing targetId from the snapshot response into subsequent actions (act/click/type/etc). For tab operations, targetId also accepts tabId handles (t1) and labels from action=tabs. For multi-step browser work, login checks, stale refs, duplicate tabs, or Google Meet flows, use the bundled browser-automation skill when it is available. For stable, self-resolving refs across calls, use snapshot with refs=\"aria\" (Playwright aria-ref ids). Default refs=\"role\" are role+name-based. Use snapshot+act for UI automation. Avoid act:wait by default; use only in exceptional cases when no reliable UI state exists. target selects browser location (sandbox|host|node). Default: host. Host target allowed.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "doctor",
+              "status",
+              "start",
+              "stop",
+              "profiles",
+              "tabs",
+              "open",
+              "focus",
+              "close",
+              "snapshot",
+              "screenshot",
+              "navigate",
+              "console",
+              "pdf",
+              "upload",
+              "dialog",
+              "act"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "sandbox",
+              "host",
+              "node"
+            ]
+          },
+          "node": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "targetUrl": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "maxChars": {
+            "type": "number"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "efficient"
+            ]
+          },
+          "snapshotFormat": {
+            "type": "string",
+            "enum": [
+              "aria",
+              "ai"
+            ]
+          },
+          "refs": {
+            "type": "string",
+            "enum": [
+              "role",
+              "aria"
+            ]
+          },
+          "interactive": {
+            "type": "boolean"
+          },
+          "compact": {
+            "type": "boolean"
+          },
+          "depth": {
+            "type": "number"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "frame": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "boolean"
+          },
+          "urls": {
+            "type": "boolean"
+          },
+          "fullPage": {
+            "type": "boolean"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "element": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "png",
+              "jpeg"
+            ]
+          },
+          "level": {
+            "type": "string"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inputRef": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "accept": {
+            "type": "boolean"
+          },
+          "promptText": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "click",
+              "clickCoords",
+              "type",
+              "press",
+              "hover",
+              "drag",
+              "select",
+              "fill",
+              "resize",
+              "wait",
+              "evaluate",
+              "close"
+            ]
+          },
+          "doubleClick": {
+            "type": "boolean"
+          },
+          "button": {
+            "type": "string"
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "text": {
+            "type": "string"
+          },
+          "submit": {
+            "type": "boolean"
+          },
+          "slowly": {
+            "type": "boolean"
+          },
+          "key": {
+            "type": "string"
+          },
+          "delayMs": {
+            "type": "number"
+          },
+          "startRef": {
+            "type": "string"
+          },
+          "endRef": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          },
+          "timeMs": {
+            "type": "number"
+          },
+          "textGone": {
+            "type": "string"
+          },
+          "loadState": {
+            "type": "string"
+          },
+          "fn": {
+            "type": "string"
+          },
+          "request": {
+            "type": "object",
+            "required": [
+              "kind"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "click",
+                  "clickCoords",
+                  "type",
+                  "press",
+                  "hover",
+                  "drag",
+                  "select",
+                  "fill",
+                  "resize",
+                  "wait",
+                  "evaluate",
+                  "close"
+                ]
+              },
+              "targetId": {
+                "type": "string"
+              },
+              "ref": {
+                "type": "string"
+              },
+              "doubleClick": {
+                "type": "boolean"
+              },
+              "button": {
+                "type": "string"
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "text": {
+                "type": "string"
+              },
+              "submit": {
+                "type": "boolean"
+              },
+              "slowly": {
+                "type": "boolean"
+              },
+              "key": {
+                "type": "string"
+              },
+              "delayMs": {
+                "type": "number"
+              },
+              "startRef": {
+                "type": "string"
+              },
+              "endRef": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true
+                }
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              },
+              "timeMs": {
+                "type": "number"
+              },
+              "selector": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "loadState": {
+                "type": "string"
+              },
+              "textGone": {
+                "type": "string"
+              },
+              "timeoutMs": {
+                "type": "number"
+              },
+              "fn": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "canvas",
+      "description": "Control node canvases (present/hide/navigate/eval/snapshot/A2UI). Use snapshot to capture the rendered UI.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "present",
+              "hide",
+              "navigate",
+              "eval",
+              "snapshot",
+              "a2ui_push",
+              "a2ui_reset"
+            ]
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "node": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          },
+          "url": {
+            "type": "string"
+          },
+          "javaScript": {
+            "type": "string"
+          },
+          "outputFormat": {
+            "type": "string",
+            "enum": [
+              "png",
+              "jpg",
+              "jpeg"
+            ]
+          },
+          "maxWidth": {
+            "type": "number"
+          },
+          "quality": {
+            "type": "number"
+          },
+          "delayMs": {
+            "type": "number"
+          },
+          "jsonl": {
+            "type": "string"
+          },
+          "jsonlPath": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "cron",
+      "description": "Manage Gateway cron jobs (status/list/add/update/remove/run/runs) and send wake events. Use this for reminders, \"check back later\" requests, delayed follow-ups, and recurring tasks. Do not emulate scheduling with exec sleep or process polling.\n\nMain-session cron jobs enqueue system events for heartbeat handling. Isolated cron jobs create background task runs that appear in `openclaw tasks`.\n\nACTIONS:\n- status: Check cron scheduler status\n- list: List jobs (use includeDisabled:true to include disabled)\n- add: Create job (requires job object, see schema below)\n- update: Modify job (requires jobId + patch object)\n- remove: Delete job (requires jobId)\n- run: Trigger job immediately (requires jobId)\n- runs: Get job run history (requires jobId)\n- wake: Send wake event (requires text, optional mode)\n\nJOB SCHEMA (for add action):\n{\n  \"name\": \"string (optional)\",\n  \"schedule\": { ... },      // Required: when to run\n  \"payload\": { ... },       // Required: what to execute\n  \"delivery\": { ... },      // Optional: announce summary (isolated/current/session:xxx only) or webhook POST\n  \"sessionTarget\": \"main\" | \"isolated\" | \"current\" | \"session:<custom-id>\",  // Optional, defaults based on context\n  \"enabled\": true | false   // Optional, default true\n}\n\nSESSION TARGET OPTIONS:\n- \"main\": Run in the main session (requires payload.kind=\"systemEvent\")\n- \"isolated\": Run in an ephemeral isolated session (requires payload.kind=\"agentTurn\")\n- \"current\": Bind to the current session where the cron is created (resolved at creation time)\n- \"session:<custom-id>\": Run in a persistent named session (e.g., \"session:project-alpha-daily\")\n\nDEFAULT BEHAVIOR (unchanged for backward compatibility):\n- payload.kind=\"systemEvent\" → defaults to \"main\"\n- payload.kind=\"agentTurn\" → defaults to \"isolated\"\nTo use current session binding, explicitly set sessionTarget=\"current\".\n\nSCHEDULE TYPES (schedule.kind):\n- \"at\": One-shot at absolute time\n  { \"kind\": \"at\", \"at\": \"<ISO-8601 timestamp>\" }\n- \"every\": Recurring interval\n  { \"kind\": \"every\", \"everyMs\": <interval-ms>, \"anchorMs\": <optional-start-ms> }\n- \"cron\": Cron expression evaluated in the supplied timezone, or the Gateway host local timezone when tz is omitted\n  { \"kind\": \"cron\", \"expr\": \"<cron-expression>\", \"tz\": \"<optional-IANA-timezone>\" }\n  Write expr in the selected timezone's local wall-clock time; do not convert the requested local time to UTC first.\n  If tz is omitted, do not assume UTC; the Gateway host local timezone is used.\n  Example: \"Remind me every day at 6pm Shanghai time\" -> { \"kind\": \"cron\", \"expr\": \"0 18 * * *\", \"tz\": \"Asia/Shanghai\" }\n\nFor schedule.kind=\"at\", ISO timestamps without an explicit timezone are treated as UTC.\n\nPAYLOAD TYPES (payload.kind):\n- \"systemEvent\": Injects text as system event into session\n  { \"kind\": \"systemEvent\", \"text\": \"<message>\" }\n- \"agentTurn\": Runs agent with message (isolated sessions only)\n  { \"kind\": \"agentTurn\", \"message\": \"<prompt>\", \"model\": \"<optional>\", \"thinking\": \"<optional>\", \"timeoutSeconds\": <optional, 0 means no timeout> }\n\nDELIVERY (top-level):\n  { \"mode\": \"none|announce|webhook\", \"channel\": \"<optional>\", \"to\": \"<optional>\", \"threadId\": \"<optional>\", \"bestEffort\": <optional-bool> }\n  - Default for isolated agentTurn jobs (when delivery omitted): \"announce\"\n  - announce: send to chat channel (optional channel/to target)\n  - threadId: chat thread/topic id for channels that support threaded delivery\n  - webhook: send finished-run event as HTTP POST to delivery.to (URL required)\n  - If the task needs to send to a specific chat/recipient, set announce delivery.channel/to; do not call messaging tools inside the run.\n\nCRITICAL CONSTRAINTS:\n- sessionTarget=\"main\" REQUIRES payload.kind=\"systemEvent\"\n- sessionTarget=\"isolated\" | \"current\" | \"session:xxx\" REQUIRES payload.kind=\"agentTurn\"\n- For webhook callbacks, use delivery.mode=\"webhook\" with delivery.to set to a URL.\nDefault: prefer isolated agentTurn jobs unless the user explicitly wants current-session binding.\n\nWAKE MODES (for wake action):\n- \"next-heartbeat\" (default): Wake on next heartbeat\n- \"now\": Wake immediately\n\nUse jobId as the canonical identifier; id is accepted for compatibility. Use contextMessages (0-10) to add previous messages as context to the job text.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "status",
+              "list",
+              "add",
+              "update",
+              "remove",
+              "run",
+              "runs",
+              "wake"
+            ]
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "includeDisabled": {
+            "type": "boolean"
+          },
+          "job": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Job name"
+              },
+              "schedule": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "at",
+                      "every",
+                      "cron"
+                    ],
+                    "description": "Schedule type"
+                  },
+                  "at": {
+                    "type": "string",
+                    "description": "ISO-8601 timestamp (kind=at)"
+                  },
+                  "everyMs": {
+                    "type": "number",
+                    "description": "Interval in milliseconds (kind=every)"
+                  },
+                  "anchorMs": {
+                    "type": "number",
+                    "description": "Optional start anchor in milliseconds (kind=every)"
+                  },
+                  "expr": {
+                    "type": "string",
+                    "description": "Cron expression (kind=cron) written in the supplied tz's local wall-clock time, or the Gateway host local timezone when tz is omitted; do not convert the requested local time to UTC first. Example: 6pm Shanghai daily is \"0 18 * * *\" with tz \"Asia/Shanghai\"."
+                  },
+                  "tz": {
+                    "type": "string",
+                    "description": "IANA timezone for interpreting cron wall-clock fields (kind=cron), e.g. \"Asia/Shanghai\"; if omitted, cron uses the Gateway host local timezone."
+                  },
+                  "staggerMs": {
+                    "type": "number",
+                    "description": "Random jitter in ms (kind=cron)"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "sessionTarget": {
+                "type": "string",
+                "description": "Session target: \"main\", \"isolated\", \"current\", or \"session:<id>\""
+              },
+              "wakeMode": {
+                "type": "string",
+                "enum": [
+                  "now",
+                  "next-heartbeat"
+                ],
+                "description": "When to wake the session"
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "systemEvent",
+                      "agentTurn"
+                    ],
+                    "description": "Payload type"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Message text (kind=systemEvent)"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Agent prompt (kind=agentTurn)"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Model override"
+                  },
+                  "thinking": {
+                    "type": "string",
+                    "description": "Thinking level override"
+                  },
+                  "timeoutSeconds": {
+                    "type": "number"
+                  },
+                  "lightContext": {
+                    "type": "boolean"
+                  },
+                  "allowUnsafeExternalContent": {
+                    "type": "boolean"
+                  },
+                  "fallbacks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Fallback model ids"
+                  },
+                  "toolsAllow": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Allowed tool ids"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "delivery": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "announce",
+                      "webhook"
+                    ],
+                    "description": "Delivery mode"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "description": "Delivery channel"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Delivery target"
+                  },
+                  "threadId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Thread/topic id for channels that support threaded delivery"
+                  },
+                  "bestEffort": {
+                    "type": "boolean"
+                  },
+                  "accountId": {
+                    "type": "string",
+                    "description": "Account target for delivery"
+                  },
+                  "failureDestination": {
+                    "type": "object",
+                    "properties": {
+                      "channel": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "announce",
+                          "webhook"
+                        ]
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                },
+                "additionalProperties": true
+              },
+              "agentId": {
+                "type": "string",
+                "description": "Agent id, or null to keep it unset"
+              },
+              "description": {
+                "type": "string",
+                "description": "Human-readable description"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "deleteAfterRun": {
+                "type": "boolean",
+                "description": "Delete after first execution"
+              },
+              "sessionKey": {
+                "type": "string",
+                "description": "Explicit session key, or null to clear it"
+              },
+              "failureAlert": {
+                "type": "object",
+                "properties": {
+                  "after": {
+                    "type": "number",
+                    "description": "Failures before alerting"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "description": "Alert channel"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Alert target"
+                  },
+                  "cooldownMs": {
+                    "type": "number",
+                    "description": "Cooldown between alerts in ms"
+                  },
+                  "includeSkipped": {
+                    "type": "boolean",
+                    "description": "Count consecutive skipped runs toward alerting"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "announce",
+                      "webhook"
+                    ]
+                  },
+                  "accountId": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true,
+                "description": "Failure alert config object, or the boolean value false to disable alerts for this job"
+              }
+            },
+            "additionalProperties": true
+          },
+          "jobId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "patch": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Job name"
+              },
+              "schedule": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "at",
+                      "every",
+                      "cron"
+                    ],
+                    "description": "Schedule type"
+                  },
+                  "at": {
+                    "type": "string",
+                    "description": "ISO-8601 timestamp (kind=at)"
+                  },
+                  "everyMs": {
+                    "type": "number",
+                    "description": "Interval in milliseconds (kind=every)"
+                  },
+                  "anchorMs": {
+                    "type": "number",
+                    "description": "Optional start anchor in milliseconds (kind=every)"
+                  },
+                  "expr": {
+                    "type": "string",
+                    "description": "Cron expression (kind=cron) written in the supplied tz's local wall-clock time, or the Gateway host local timezone when tz is omitted; do not convert the requested local time to UTC first. Example: 6pm Shanghai daily is \"0 18 * * *\" with tz \"Asia/Shanghai\"."
+                  },
+                  "tz": {
+                    "type": "string",
+                    "description": "IANA timezone for interpreting cron wall-clock fields (kind=cron), e.g. \"Asia/Shanghai\"; if omitted, cron uses the Gateway host local timezone."
+                  },
+                  "staggerMs": {
+                    "type": "number",
+                    "description": "Random jitter in ms (kind=cron)"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "sessionTarget": {
+                "type": "string",
+                "description": "Session target"
+              },
+              "wakeMode": {
+                "type": "string",
+                "enum": [
+                  "now",
+                  "next-heartbeat"
+                ]
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "systemEvent",
+                      "agentTurn"
+                    ],
+                    "description": "Payload type"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Message text (kind=systemEvent)"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Agent prompt (kind=agentTurn)"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "Model override"
+                  },
+                  "thinking": {
+                    "type": "string",
+                    "description": "Thinking level override"
+                  },
+                  "timeoutSeconds": {
+                    "type": "number"
+                  },
+                  "lightContext": {
+                    "type": "boolean"
+                  },
+                  "allowUnsafeExternalContent": {
+                    "type": "boolean"
+                  },
+                  "fallbacks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Fallback model ids"
+                  },
+                  "toolsAllow": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Allowed tool ids, or null to clear"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "delivery": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "announce",
+                      "webhook"
+                    ],
+                    "description": "Delivery mode"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "description": "Delivery channel"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Delivery target"
+                  },
+                  "threadId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Thread/topic id for channels that support threaded delivery"
+                  },
+                  "bestEffort": {
+                    "type": "boolean"
+                  },
+                  "accountId": {
+                    "type": "string",
+                    "description": "Account target for delivery"
+                  },
+                  "failureDestination": {
+                    "type": "object",
+                    "properties": {
+                      "channel": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "announce",
+                          "webhook"
+                        ]
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                },
+                "additionalProperties": true
+              },
+              "description": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "deleteAfterRun": {
+                "type": "boolean"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "Agent id, or null to clear it"
+              },
+              "sessionKey": {
+                "type": "string",
+                "description": "Explicit session key, or null to clear it"
+              },
+              "failureAlert": {
+                "type": "object",
+                "properties": {
+                  "after": {
+                    "type": "number",
+                    "description": "Failures before alerting"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "description": "Alert channel"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "Alert target"
+                  },
+                  "cooldownMs": {
+                    "type": "number",
+                    "description": "Cooldown between alerts in ms"
+                  },
+                  "includeSkipped": {
+                    "type": "boolean",
+                    "description": "Count consecutive skipped runs toward alerting"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "announce",
+                      "webhook"
+                    ]
+                  },
+                  "accountId": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true,
+                "description": "Failure alert config object, or the boolean value false to disable alerts for this job"
+              }
+            },
+            "additionalProperties": true
+          },
+          "text": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "now",
+              "next-heartbeat"
+            ]
+          },
+          "runMode": {
+            "type": "string",
+            "enum": [
+              "due",
+              "force"
+            ]
+          },
+          "contextMessages": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "dir_fetch",
+      "description": "Retrieve a directory tree from a paired node as a gzipped tarball, unpack it on the gateway, and return a manifest of saved paths. Use to pull source trees, asset folders, or log directories in a single round-trip. The unpacked files live on the GATEWAY (not your local machine); pass localPath into other tools or use file_fetch on individual entries to ship them elsewhere. Rejects trees larger than 16 MB compressed. Requires operator opt-in: gateway.nodes.allowCommands must include 'dir.fetch' AND plugins.entries.file-transfer.config.nodes.<node>.allowReadPaths must match the directory path.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "node",
+          "path"
+        ],
+        "properties": {
+          "node": {
+            "type": "string",
+            "description": "Node id, name, or IP. Resolves the same way as the nodes tool."
+          },
+          "path": {
+            "type": "string",
+            "description": "Absolute path to the directory on the node to fetch. Canonicalized server-side."
+          },
+          "maxBytes": {
+            "type": "number",
+            "description": "Max gzipped tarball bytes to fetch. Default 8 MB, hard ceiling 16 MB (single round-trip)."
+          },
+          "includeDotfiles": {
+            "type": "boolean",
+            "description": "Reserved for v2; currently always includes dotfiles (v1 quirk in BSD tar)."
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "dir_list",
+      "description": "Retrieve a structured directory listing from a paired node. Returns file and subdirectory metadata (name, path, size, mimeType, isDir, mtime) without transferring file content. Use this to discover what files exist before fetching them with file_fetch. Pagination is offset-based; pass nextPageToken from the previous result. Requires operator opt-in: gateway.nodes.allowCommands must include 'dir.list' AND plugins.entries.file-transfer.config.nodes.<node>.allowReadPaths must match the directory path. Without policy configured, every call is denied.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "node",
+          "path"
+        ],
+        "properties": {
+          "node": {
+            "type": "string",
+            "description": "Node id, name, or IP. Resolves the same way as the nodes tool."
+          },
+          "path": {
+            "type": "string",
+            "description": "Absolute path to the directory on the node. Canonicalized server-side."
+          },
+          "pageToken": {
+            "type": "string",
+            "description": "Pagination token from a previous dir_list call. Omit to start from the beginning."
+          },
+          "maxEntries": {
+            "type": "number",
+            "description": "Max entries per page. Default 200, hard ceiling 5000."
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "edit",
+      "description": "Edit a single file using exact text replacement. Every edits[].oldText must match a unique, non-overlapping region of the original file. If two changes affect the same block or nearby lines, merge them into one edit instead of emitting overlapping edits. Do not include large unchanged regions just to connect distant changes.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "path",
+          "edits"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file to edit (relative or absolute)"
+          },
+          "edits": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "oldText",
+                "newText"
+              ],
+              "properties": {
+                "oldText": {
+                  "type": "string",
+                  "description": "Exact text for one targeted replacement. It must be unique in the original file and must not overlap with any other edits[].oldText in the same call."
+                },
+                "newText": {
+                  "type": "string",
+                  "description": "Replacement text for this targeted edit."
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": "One or more targeted replacements. Each edit is matched against the original file, not incrementally. Do not include overlapping or nested edits. If two changes touch the same block or nearby lines, merge them into one edit instead."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "exec",
+      "description": "Execute shell commands with background continuation for work that starts now. Use yieldMs/background to continue later via process tool. For long-running work started now, rely on automatic completion wake when it is enabled and the command emits output or fails; otherwise use process to confirm completion. Use process whenever you need logs, status, input, or intervention. Do not use exec sleep or delay loops for reminders or deferred follow-ups; use cron instead. Use pty=true for TTY-required commands (terminal UIs, coding agents).",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "Shell command to execute"
+          },
+          "workdir": {
+            "type": "string",
+            "description": "Working directory (defaults to cwd)"
+          },
+          "env": {
+            "type": "object",
+            "patternProperties": {
+              "^.*$": {
+                "type": "string"
+              }
+            }
+          },
+          "yieldMs": {
+            "type": "number",
+            "description": "Milliseconds to wait before backgrounding (default 10000)"
+          },
+          "background": {
+            "type": "boolean",
+            "description": "Run in background immediately"
+          },
+          "timeout": {
+            "type": "number",
+            "description": "Timeout in seconds (optional, kills process on expiry)"
+          },
+          "pty": {
+            "type": "boolean",
+            "description": "Run in a pseudo-terminal (PTY) when available (TTY-required CLIs, coding agents)"
+          },
+          "elevated": {
+            "type": "boolean",
+            "description": "Run on the host with elevated permissions (if allowed)"
+          },
+          "host": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "sandbox",
+              "gateway",
+              "node"
+            ],
+            "description": "Exec host/target (auto|sandbox|gateway|node)."
+          },
+          "security": {
+            "type": "string",
+            "description": "Exec security mode (deny|allowlist|full)."
+          },
+          "ask": {
+            "type": "string",
+            "description": "Exec ask mode (off|on-miss|always)."
+          },
+          "node": {
+            "type": "string",
+            "description": "Node id/name for host=node."
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_fetch",
+      "description": "Retrieve a file from a paired node by absolute path. Returns image content blocks for image MIME types, inlines small text files (≤8 KB) as text content, and saves everything else under the gateway media store with a path you can pass to file_write or other tools. Use this for screenshots, photos, receipts, logs, source files. Pair with file_write to copy a file from one node to another (no exec/cp shell-out needed). Requires operator opt-in: gateway.nodes.allowCommands must include 'file.fetch' AND plugins.entries.file-transfer.config.nodes.<node>.allowReadPaths must match the path. Without policy configured, every call is denied.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "node",
+          "path"
+        ],
+        "properties": {
+          "node": {
+            "type": "string",
+            "description": "Node id, name, or IP. Resolves the same way as the nodes tool."
+          },
+          "path": {
+            "type": "string",
+            "description": "Absolute path to the file on the node. Canonicalized server-side."
+          },
+          "maxBytes": {
+            "type": "number",
+            "description": "Max bytes to fetch. Default 8 MB, hard ceiling 16 MB (single round-trip)."
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_write",
+      "description": "Write file bytes to a paired node by absolute path. Atomic write (temp + rename). Refuses to overwrite by default — pass overwrite=true to replace. Refuses to write through symlink targets unless policy explicitly allows following symlinks. Pair with file_fetch by passing its mediaId as sourceMediaId for binary copy. Requires operator opt-in: gateway.nodes.allowCommands must include 'file.write' AND plugins.entries.file-transfer.config.nodes.<node>.allowWritePaths must match the destination path. Without policy configured, every call is denied.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "node",
+          "path"
+        ],
+        "properties": {
+          "node": {
+            "type": "string",
+            "description": "Node id or display name to write the file on."
+          },
+          "path": {
+            "type": "string",
+            "description": "Absolute path on the node to write. Canonicalized server-side."
+          },
+          "contentBase64": {
+            "type": "string",
+            "description": "Base64-encoded bytes to write. Maximum 16 MB after decode."
+          },
+          "sourceMediaId": {
+            "type": "string",
+            "description": "Media id returned by file_fetch. Preferred for binary copies because bytes stay in the gateway media store."
+          },
+          "mimeType": {
+            "type": "string",
+            "description": "Content type hint. Not validated against the content."
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "Allow overwriting an existing file. Default false.",
+            "default": false
+          },
+          "createParents": {
+            "type": "boolean",
+            "description": "Create missing parent directories (mkdir -p). Default false.",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "gateway",
+      "description": "Restart, inspect a specific config schema path, apply config, or update the gateway in-place (SIGUSR1). Use config.schema.lookup with a targeted dot path before config edits. Use config.patch for safe partial config updates (merges with existing). Use config.apply only when replacing entire config. Config writes hot-reload when possible and restart when required. Always pass a human-readable completion message via the `note` parameter so the system can deliver it to the user after restart. If restarting during a user task and you still owe the user a reply, pass a specific one-shot `continuationMessage` for what to verify or report after boot; do not write restart sentinel files directly.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "restart",
+              "config.get",
+              "config.schema.lookup",
+              "config.apply",
+              "config.patch",
+              "update.run"
+            ]
+          },
+          "delayMs": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "continuationMessage": {
+            "type": "string"
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "path": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          },
+          "baseHash": {
+            "type": "string"
+          },
+          "sessionKey": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "restartDelayMs": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_get",
+      "description": "Safe exact excerpt read from MEMORY.md or memory/*.md. Defaults to a bounded excerpt when lines are omitted, includes truncation/continuation info when more content exists, and `corpus=wiki` reads from registered compiled-wiki supplements.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "from": {
+            "type": "number"
+          },
+          "lines": {
+            "type": "number"
+          },
+          "corpus": {
+            "type": "string",
+            "enum": [
+              "memory",
+              "wiki",
+              "all"
+            ]
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_search",
+      "description": "Mandatory recall step: semantically search MEMORY.md + memory/*.md (and optional session transcripts) before answering questions about prior work, decisions, dates, people, preferences, or todos. Optional `corpus=wiki` or `corpus=all` also searches registered compiled-wiki supplements. `corpus=memory` restricts hits to indexed memory files (excludes session transcript chunks from ranking). `corpus=sessions` restricts hits to indexed session transcripts (same visibility rules as session history tools). If response has disabled=true, memory retrieval is unavailable and should be surfaced to the user.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "maxResults": {
+            "type": "number"
+          },
+          "minScore": {
+            "type": "number"
+          },
+          "corpus": {
+            "type": "string",
+            "enum": [
+              "memory",
+              "wiki",
+              "all",
+              "sessions"
+            ]
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "message",
+      "description": "Send, delete, and manage messages via channel plugins. Supports actions: broadcast, send.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "send",
+              "broadcast"
+            ]
+          },
+          "channel": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "description": "Recipient/channel: E.164 for WhatsApp/Signal, Telegram chat id/@username, Discord/Slack/Mattermost <channelId|user:ID|channel:ID>, or iMessage handle/chat_id"
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Recipient/channel targets (same format as --target); accepts ids or names when the directory is available."
+            }
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "dryRun": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "effectId": {
+            "type": "string",
+            "description": "Message effect name/id for sendWithEffect (e.g., invisible ink)."
+          },
+          "effect": {
+            "type": "string",
+            "description": "Alias for effectId (e.g., invisible-ink, balloons)."
+          },
+          "media": {
+            "type": "string",
+            "description": "Media URL or local path. data: URLs are not supported here, use buffer."
+          },
+          "filename": {
+            "type": "string"
+          },
+          "buffer": {
+            "type": "string",
+            "description": "Base64 payload for attachments (optionally a data: URL)."
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "filePath": {
+            "type": "string"
+          },
+          "replyTo": {
+            "type": "string"
+          },
+          "threadId": {
+            "type": "string"
+          },
+          "asVoice": {
+            "type": "boolean"
+          },
+          "silent": {
+            "type": "boolean"
+          },
+          "quoteText": {
+            "type": "string",
+            "description": "Quote text for Telegram reply_parameters"
+          },
+          "bestEffort": {
+            "type": "boolean"
+          },
+          "gifPlayback": {
+            "type": "boolean"
+          },
+          "forceDocument": {
+            "type": "boolean",
+            "description": "Send image/GIF as document to avoid Telegram compression (Telegram only)."
+          },
+          "asDocument": {
+            "type": "boolean",
+            "description": "Send image/GIF as document to avoid Telegram compression. Alias for forceDocument (Telegram only)."
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Target message id for read, reaction, edit, delete, pin, or unpin. If omitted for reaction-like actions, defaults to the current inbound message id when available."
+          },
+          "message_id": {
+            "type": "string",
+            "description": "snake_case alias of messageId. If omitted for reaction-like actions, defaults to the current inbound message id when available."
+          },
+          "emoji": {
+            "type": "string"
+          },
+          "remove": {
+            "type": "boolean"
+          },
+          "trackToolCalls": {
+            "type": "boolean",
+            "description": "When true for a reaction to the current inbound message, use that reacted message as the status-reaction target for subsequent tool progress when the channel supports it."
+          },
+          "track_tool_calls": {
+            "type": "boolean",
+            "description": "snake_case alias of trackToolCalls."
+          },
+          "targetAuthor": {
+            "type": "string"
+          },
+          "targetAuthorUuid": {
+            "type": "string"
+          },
+          "groupId": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "pageSize": {
+            "type": "number"
+          },
+          "pageToken": {
+            "type": "string"
+          },
+          "before": {
+            "type": "string"
+          },
+          "after": {
+            "type": "string"
+          },
+          "around": {
+            "type": "string"
+          },
+          "fromMe": {
+            "type": "boolean"
+          },
+          "includeArchived": {
+            "type": "boolean"
+          },
+          "pollId": {
+            "type": "string"
+          },
+          "pollOptionId": {
+            "type": "string",
+            "description": "Poll answer id to vote for. Use when the channel exposes stable answer ids."
+          },
+          "pollOptionIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Poll answer ids to vote for in a multiselect poll. Use when the channel exposes stable answer ids."
+            }
+          },
+          "pollOptionIndex": {
+            "type": "number",
+            "description": "1-based poll option number to vote for, matching the rendered numbered poll choices."
+          },
+          "pollOptionIndexes": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "1-based poll option numbers to vote for in a multiselect poll, matching the rendered numbered poll choices."
+            }
+          },
+          "pollQuestion": {
+            "type": "string"
+          },
+          "pollOption": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pollDurationHours": {
+            "type": "number"
+          },
+          "pollMulti": {
+            "type": "boolean"
+          },
+          "channelId": {
+            "type": "string",
+            "description": "Channel id filter (search/thread list/event create)."
+          },
+          "chatId": {
+            "type": "string",
+            "description": "Chat id for chat-scoped metadata actions."
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Channel id filter (repeatable)."
+            }
+          },
+          "memberId": {
+            "type": "string"
+          },
+          "memberIdType": {
+            "type": "string"
+          },
+          "guildId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "openId": {
+            "type": "string"
+          },
+          "unionId": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "authorIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "roleId": {
+            "type": "string"
+          },
+          "roleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "participant": {
+            "type": "string"
+          },
+          "includeMembers": {
+            "type": "boolean"
+          },
+          "members": {
+            "type": "boolean"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "fileId": {
+            "type": "string"
+          },
+          "emojiName": {
+            "type": "string"
+          },
+          "stickerId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stickerName": {
+            "type": "string"
+          },
+          "stickerDesc": {
+            "type": "string"
+          },
+          "stickerTags": {
+            "type": "string"
+          },
+          "threadName": {
+            "type": "string"
+          },
+          "autoArchiveMin": {
+            "type": "number"
+          },
+          "appliedTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "query": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "eventType": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "description": "Cover image URL or local file path for the event."
+          },
+          "durationMin": {
+            "type": "number"
+          },
+          "until": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "deleteDays": {
+            "type": "number"
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "number"
+          },
+          "parentId": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "position": {
+            "type": "number"
+          },
+          "nsfw": {
+            "type": "boolean"
+          },
+          "rateLimitPerUser": {
+            "type": "number"
+          },
+          "categoryId": {
+            "type": "string"
+          },
+          "clearParent": {
+            "type": "boolean",
+            "description": "Clear the parent/category when supported by the provider."
+          },
+          "activityType": {
+            "type": "string",
+            "description": "Activity type: playing, streaming, listening, watching, competing, custom."
+          },
+          "activityName": {
+            "type": "string",
+            "description": "Activity name shown in sidebar (e.g. 'with fire'). Ignored for custom type."
+          },
+          "activityUrl": {
+            "type": "string",
+            "description": "Streaming URL (Twitch or YouTube). Only used with streaming type; may not render for bots."
+          },
+          "activityState": {
+            "type": "string",
+            "description": "State text. For custom type this is the status text; for others it shows in the flyout."
+          },
+          "status": {
+            "type": "string",
+            "description": "Bot status: online, dnd, idle, invisible."
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "nodes",
+      "description": "Discover and control paired nodes (status/describe/pairing/notify/camera/photos/screen/location/notifications/invoke). For file retrieval, use the dedicated file_fetch tool.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "status",
+              "describe",
+              "pending",
+              "approve",
+              "reject",
+              "notify",
+              "camera_snap",
+              "camera_list",
+              "camera_clip",
+              "photos_latest",
+              "screen_record",
+              "location_get",
+              "notifications_list",
+              "notifications_action",
+              "device_status",
+              "device_info",
+              "device_permissions",
+              "device_health",
+              "invoke"
+            ]
+          },
+          "gatewayUrl": {
+            "type": "string"
+          },
+          "gatewayToken": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number"
+          },
+          "node": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "sound": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "passive",
+              "active",
+              "timeSensitive"
+            ]
+          },
+          "delivery": {
+            "type": "string",
+            "enum": [
+              "system",
+              "overlay",
+              "auto"
+            ]
+          },
+          "facing": {
+            "type": "string",
+            "enum": [
+              "front",
+              "back",
+              "both"
+            ],
+            "description": "camera_snap: front/back/both; camera_clip: front/back only."
+          },
+          "maxWidth": {
+            "type": "number"
+          },
+          "quality": {
+            "type": "number"
+          },
+          "delayMs": {
+            "type": "number"
+          },
+          "deviceId": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "durationMs": {
+            "type": "number",
+            "maximum": 300000
+          },
+          "includeAudio": {
+            "type": "boolean"
+          },
+          "fps": {
+            "type": "number"
+          },
+          "screenIndex": {
+            "type": "number"
+          },
+          "outPath": {
+            "type": "string"
+          },
+          "maxAgeMs": {
+            "type": "number"
+          },
+          "locationTimeoutMs": {
+            "type": "number"
+          },
+          "desiredAccuracy": {
+            "type": "string",
+            "enum": [
+              "coarse",
+              "balanced",
+              "precise"
+            ]
+          },
+          "notificationAction": {
+            "type": "string",
+            "enum": [
+              "open",
+              "dismiss",
+              "reply"
+            ]
+          },
+          "notificationKey": {
+            "type": "string"
+          },
+          "notificationReplyText": {
+            "type": "string"
+          },
+          "invokeCommand": {
+            "type": "string"
+          },
+          "invokeParamsJson": {
+            "type": "string"
+          },
+          "invokeTimeoutMs": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "process",
+      "description": "Manage running exec sessions for commands already started: list, poll, log, write, send-keys, submit, paste, kill. Use poll/log when you need status, logs, quiet-success confirmation, or completion confirmation when automatic completion wake is unavailable. Use write/send-keys/submit/paste/kill for input or intervention. Do not use process polling to emulate timers or reminders; use cron for scheduled follow-ups.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Process action"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Session id for actions other than list"
+          },
+          "data": {
+            "type": "string",
+            "description": "Data to write for write"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Key tokens to send for send-keys"
+          },
+          "hex": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Hex bytes to send for send-keys"
+          },
+          "literal": {
+            "type": "string",
+            "description": "Literal string for send-keys"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text to paste for paste"
+          },
+          "bracketed": {
+            "type": "boolean",
+            "description": "Wrap paste in bracketed mode"
+          },
+          "eof": {
+            "type": "boolean",
+            "description": "Close stdin after write"
+          },
+          "offset": {
+            "type": "number",
+            "description": "Log offset"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Log length"
+          },
+          "timeout": {
+            "type": "number",
+            "description": "For poll: wait up to this many milliseconds before returning; max 30000 ms, higher values are clamped to 30000",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read",
+      "description": "Read the contents of a file. Supports text files and images (jpg, png, gif, webp). Images are sent as attachments. For text files, output is truncated to 2000 lines or 50KB (whichever is hit first). Use offset/limit for large files. When you need the full file, continue with offset until complete.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file to read (relative or absolute)"
+          },
+          "offset": {
+            "type": "number",
+            "description": "Line number to start reading from (1-indexed)"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of lines to read"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "session_status",
+      "description": "Show a /status-equivalent session status card for the current or another visible session, including usage, time, cost when available, and linked background task context. Use `sessionKey=\"current\"` for the current session; do not use UI/client labels such as `openclaw-tui` as session keys. Optional `model` sets a per-session model override; `model=default` resets overrides. Use this for questions like what model is active or how a session is configured.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sessionKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sessions_history",
+      "description": "Fetch sanitized message history for a visible session. Supports limits and optional tool messages; use this to inspect another session before replying, debugging, or resuming work.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "sessionKey"
+        ],
+        "properties": {
+          "sessionKey": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number",
+            "minimum": 1
+          },
+          "includeTools": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sessions_list",
+      "description": "List visible sessions with optional filters for kind, label, agentId, search, recent activity, derived titles, and last-message previews. Use this to discover a target session before calling sessions_history or sessions_send.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "kinds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "type": "number",
+            "minimum": 1
+          },
+          "activeMinutes": {
+            "type": "number",
+            "minimum": 1
+          },
+          "messageLimit": {
+            "type": "number",
+            "minimum": 0
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "agentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "search": {
+            "type": "string",
+            "minLength": 1
+          },
+          "includeDerivedTitles": {
+            "type": "boolean"
+          },
+          "includeLastMessage": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sessions_send",
+      "description": "Send a message into another visible session by sessionKey or label. Thread-scoped chat sessions are rejected; target the parent channel session for inter-agent coordination. Use this to delegate follow-up work to an existing session; waits for the target run and returns the updated assistant reply when available.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "sessionKey": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "agentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "message": {
+            "type": "string"
+          },
+          "timeoutSeconds": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sessions_spawn",
+      "description": "Spawn a clean isolated session by default with the native subagent runtime. `mode=\"run\"` is one-shot background work. Subagents inherit the parent workspace directory automatically. For native subagents only, set `context=\"fork\"` when the child needs the current transcript context; otherwise omit it or use `context=\"isolated\"`. Use this when the work should happen in a fresh child session instead of the current one.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "task"
+        ],
+        "properties": {
+          "task": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "runtime": {
+            "type": "string",
+            "enum": [
+              "subagent"
+            ]
+          },
+          "agentId": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "thinking": {
+            "type": "string"
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "runTimeoutSeconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "timeoutSeconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "run"
+            ]
+          },
+          "cleanup": {
+            "type": "string",
+            "enum": [
+              "delete",
+              "keep"
+            ]
+          },
+          "sandbox": {
+            "type": "string",
+            "enum": [
+              "inherit",
+              "require"
+            ]
+          },
+          "context": {
+            "type": "string",
+            "enum": [
+              "isolated",
+              "fork"
+            ],
+            "description": "Native subagent context mode. Omit or use \"isolated\" for a clean child session; use \"fork\" only when the child needs the requester transcript context."
+          },
+          "lightContext": {
+            "type": "boolean",
+            "description": "When true, spawned subagent runs use lightweight bootstrap context. Only applies to runtime='subagent'."
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "content"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "encoding": {
+                  "type": "string",
+                  "enum": [
+                    "utf8",
+                    "base64"
+                  ]
+                },
+                "mimeType": {
+                  "type": "string"
+                }
+              }
+            },
+            "maxItems": 50
+          },
+          "attachAs": {
+            "type": "object",
+            "properties": {
+              "mountPath": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sessions_yield",
+      "description": "End your current turn. Use after spawning subagents to receive their results as the next message.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "subagents",
+      "description": "List, kill, or steer spawned sub-agents for this requester session. Use this for sub-agent orchestration.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "list",
+              "kill",
+              "steer"
+            ]
+          },
+          "target": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "recentMinutes": {
+            "type": "number",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "tts",
+      "description": "Use only for explicit audio intent (audio, voice, speech, TTS) or active TTS config. Never use for ordinary text replies. Audio is delivered automatically from the tool result. After a successful call, follow the current conversation's reply instructions and avoid sending a duplicate text/audio response.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text to convert to speech."
+          },
+          "channel": {
+            "type": "string",
+            "description": "Optional channel id to pick output format."
+          },
+          "timeoutMs": {
+            "type": "number",
+            "description": "Optional provider request timeout in milliseconds.",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "web_fetch",
+      "description": "Fetch and extract readable content from a URL (HTML → markdown/text). Use for lightweight page access without browser automation.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "HTTP or HTTPS URL to fetch."
+          },
+          "extractMode": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "text"
+            ],
+            "description": "Extraction mode (\"markdown\" or \"text\").",
+            "default": "markdown"
+          },
+          "maxChars": {
+            "type": "number",
+            "description": "Maximum characters to return (truncates when exceeded).",
+            "minimum": 100
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "web_search",
+      "description": "Search the web. Returns provider-normalized results for current information lookup.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query string."
+          },
+          "count": {
+            "type": "number",
+            "description": "Number of results to return.",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "country": {
+            "type": "string",
+            "description": "2-letter country code for region-specific results."
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code for results."
+          },
+          "freshness": {
+            "type": "string",
+            "description": "Filter by time: day, week, month, or year."
+          },
+          "date_after": {
+            "type": "string",
+            "description": "Only results published after this date (YYYY-MM-DD)."
+          },
+          "date_before": {
+            "type": "string",
+            "description": "Only results published before this date (YYYY-MM-DD)."
+          },
+          "search_lang": {
+            "type": "string",
+            "description": "Brave search result language code."
+          },
+          "ui_lang": {
+            "type": "string",
+            "description": "Brave UI locale code in language-region format."
+          },
+          "domain_filter": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Perplexity native Search API domain filter."
+          },
+          "max_tokens": {
+            "type": "number",
+            "description": "Perplexity native Search API total content budget.",
+            "minimum": 1,
+            "maximum": 1000000
+          },
+          "max_tokens_per_page": {
+            "type": "number",
+            "description": "Perplexity native Search API max tokens extracted per page.",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "write",
+      "description": "Write content to a file. Creates the file if it doesn't exist, overwrites if it does. Automatically creates parent directories.",
+      "parameters": {
+        "type": "object",
+        "required": [
+          "path",
+          "content"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file to write (relative or absolute)"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content to write to the file"
+          }
+        }
+      }
+    }
+  }
+]

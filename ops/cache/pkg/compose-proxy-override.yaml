@@ -1,0 +1,50 @@
+# Compose override injected by harbor docker.py so all native-harbor
+# bench containers (SkillsBench / SETA / TB 2.0) can reach external
+# GitHub / PyPI / HuggingFace via the Docker host proxy (bound 0.0.0.0:8888).
+#
+# 两层代理：
+# 1. build.args: `docker compose build` 阶段的 RUN 代理。BuildKit 有独立
+#    network namespace，`host.docker.internal` DNS 解析不到，所以这里**必须
+#    用 Docker 主机 docker0 网关 IP** 直连 clash bind (0.0.0.0:8888)。
+#    BuildKit 预定义 HTTP_PROXY 等 build-args，Dockerfile 无需 ARG 声明。
+# 2. environment: 运行时代理。container 已经加入 bridge network，host-gateway
+#    别名可用，但保持一致用 docker0 IP 也 OK。
+#
+# build.extra_hosts 在 buildkit 下不可靠（不传给 RUN 阶段的 DNS），所以 build
+# 侧不再依赖 host.docker.internal 别名；只保留运行时用。
+## NO_PROXY — CN 镜像 + 内网域，统一列表（2026-04-20 修漏水）
+## Before: clash 漏水 ~20-25 GB/run，aliyun/tsinghua 走代理计费
+x-no-proxy: &no_proxy >-
+  localhost,127.0.0.1,0.0.0.0,::1,
+  mirrors.aliyun.com,mirrors.cloud.aliyuncs.com,
+  pypi.tuna.tsinghua.edu.cn,mirrors.tuna.tsinghua.edu.cn,
+  mirrors.ustc.edu.cn,mirror.nju.edu.cn,mirrors.bfsu.edu.cn,
+  mirrors.163.com,mirrors.huaweicloud.com,mirrors.cernet.edu.cn,
+  hf-mirror.com,
+  .aliyun.com,.tsinghua.edu.cn,.ustc.edu.cn,.nju.edu.cn,
+  .bfsu.edu.cn,.cernet.edu.cn,.163.com,.huaweicloud.com,.hf-mirror.com
+services:
+  main:
+    build:
+      args:
+        # Docker 主机 docker0 网关，buildkit 默认 bridge network 能直连
+        HTTP_PROXY: "http://your-docker-gateway:8888"
+        HTTPS_PROXY: "http://your-docker-gateway:8888"
+        http_proxy: "http://your-docker-gateway:8888"
+        https_proxy: "http://your-docker-gateway:8888"
+        NO_PROXY: *no_proxy
+        no_proxy: *no_proxy
+    environment:
+      # 运行时也用 docker0 IP 统一（host.docker.internal 在 user-defined network 下不总行）
+      HTTP_PROXY: "http://your-docker-gateway:8888"
+      HTTPS_PROXY: "http://your-docker-gateway:8888"
+      http_proxy: "http://your-docker-gateway:8888"
+      https_proxy: "http://your-docker-gateway:8888"
+      NO_PROXY: *no_proxy
+      no_proxy: *no_proxy
+      # HuggingFace 走国内 mirror，不占 clash 流量
+      HF_ENDPOINT: "https://hf-mirror.com"
+      HF_HUB_ENDPOINT: "https://hf-mirror.com"
+      HUGGINGFACE_HUB_ENDPOINT: "https://hf-mirror.com"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

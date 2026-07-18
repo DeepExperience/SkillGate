@@ -1,0 +1,52 @@
+schema_version = 1
+
+[[assets]]
+id = "qwen35-9b-base"
+kind = "huggingface-model"
+source = "Qwen/Qwen3.5-9B"
+destination = "models/Qwen3.5-9B"
+required_for = ["sft.final-9b", "RL from base variants"]
+
+[[assets]]
+id = "qwen35-27b-base"
+kind = "huggingface-model"
+source = "Qwen/Qwen3.5-27B"
+destination = "models/Qwen3.5-27B"
+required_for = ["SFT teacher collection", "base-model eval"]
+
+[[assets]]
+id = "qwen3-embedding-8b"
+kind = "huggingface-model"
+source = "Qwen/Qwen3-Embedding-8B"
+destination = "models/Qwen3-Embedding-8B"
+required_for = ["retrieval.rebuild-v6"]
+
+[[assets]]
+id = "qwen3-reranker-8b"
+kind = "huggingface-model"
+source = "Qwen/Qwen3-Reranker-8B"
+destination = "models/Qwen3-Reranker-8B"
+required_for = ["retrieval.rebuild-v6"]
+
+[[assets]]
+id = "local-docker-images"
+kind = "docker-images"
+source = "rebuild from benchmark Dockerfiles or restore from independent artifact storage"
+destination = "/data/cache/local-docker-overlay2-root"
+manifest = "experiments/infra/rl/local_docker_migration/current/image_manifest.jsonl"
+expected_images_min = 500
+required_for = ["high-concurrency eval", "RL rollout"]
+
+[[assets]]
+id = "slime-conda-environment"
+kind = "python-environment"
+source = "rebuild from env/ plus docs/OPERATIONS_GUIDE.md and validate against the recorded runtime versions"
+destination = "${SKILLRL_CONDA_ROOT}/envs/slime"
+required_for = ["eval", "retrieval", "SFT"]
+
+[[assets]]
+id = "relax-conda-environment"
+kind = "python-environment"
+source = "rebuild from Relax/requirements.txt and env runbook"
+destination = "${SKILLRL_CONDA_ROOT}/envs/relax"
+required_for = ["two-node Relax RL"]

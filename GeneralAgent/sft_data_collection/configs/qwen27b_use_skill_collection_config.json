@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "project_root": "/path/to/skillRL",
+  "frozen_skill_library": "skill_libraries/merged",
+  "frozen_retrieval": {
+    "date": "20260424",
+    "suffix": "v7pipeline_on_2046lib",
+    "retrieval_top_n": 10,
+    "files": {
+      "claw": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/claw.jsonl",
+      "tb2": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/tb2.jsonl",
+      "sb_ns": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/skillsbench.jsonl",
+      "seta_synth": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/seta_synth.jsonl",
+      "swe_lite": "experiments/archive_sft_runs/20260424/20260424_v7pipeline_on_2046lib/retrieval_results/swe.jsonl"
+    },
+    "note": "Qwen 27B local use-skill collection uses the frozen v9/v7 retrieval pipeline unchanged."
+  },
+  "models": {
+    "student": "qwen3.5-27b",
+    "teacher": "qwen3.5-27b"
+  },
+  "budgets": {
+    "student_use_skill_trials": 8,
+    "student_no_skill_trials": 0,
+    "student_baseline_trials": 0,
+    "teacher_trials": 8,
+    "reflection_per_failed_trial": 1,
+    "workers": 8,
+    "max_turns": 50,
+    "max_time": 2400,
+    "retrieval_top_n": 10,
+    "per_bench_budgets": {
+      "tb2": {
+        "max_turns": 80,
+        "max_time": 2400
+      },
+      "swe_lite": {
+        "max_turns": 80,
+        "max_time": 2400
+      }
+    },
+    "_comment": "Local 27B diagnostic/collection config. Phase 1 and Phase 2 both inject retrieval and use UNIFIED_IMPLICIT_MODE=use_skill; Phase 2 is teacher_retrieval_reflection only for unresolved Phase 1 tasks."
+  },
+  "split_sources": {
+    "claw": {
+      "task_file": "GeneralAgent/eval_scripts/prebake_images/claw_161_t_series.txt",
+      "holdout_count": 16
+    },
+    "tb2": {
+      "dataset_dir": "datasets/terminal-bench-v2",
+      "holdout_count": 9
+    },
+    "sb_ns": {
+      "dataset_dir": "datasets/skillsbench/tasks-no-skills",
+      "holdout_count": 6,
+      "exclude_tasks": [
+        "scheduling-email-assistant"
+      ]
+    },
+    "seta_synth": {
+      "train_task_file": "GeneralAgent/eval_scripts/prebake_images/seta_300.txt",
+      "holdout_dataset_dir": "datasets/seta/dataset/seta_baseline_30"
+    },
+    "swe_lite": {
+      "train_task_file": "GeneralAgent/eval_scripts/prebake_images/swe_lite_100.txt",
+      "holdout_from_runner_all_images": "GeneralAgent/eval_scripts/unified_runner/run_unified_swe.py"
+    }
+  },
+  "loss_policy": {
+    "train_on_roles": [
+      "assistant"
+    ],
+    "mask_system": true,
+    "mask_user": true,
+    "mask_tool_results": true,
+    "max_trajectory_tokens": 60000,
+    "drop_overlong_by_default": true
+  }
+}

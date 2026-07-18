@@ -1,0 +1,4784 @@
+{
+  "total_scanned": 682,
+  "added": 490,
+  "skipped_similar": 192,
+  "skipped_exists": 0,
+  "collisions": 0,
+  "final_merged_count": 1633,
+  "actions": [
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "clinical-decision-support-documents",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "degenerate-input-filtering",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "hypothesis-generation",
+      "action": "add",
+      "new_name": "sci-hypothesis-generation",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "matplotlib-scientific-plotting",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "nan-safe-correlation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pyhealth",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pymc-bayesian-modeling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scikit-learn-machine-learning",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scikit-survival-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "shap-model-explainability",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "statistical-analysis",
+      "action": "add",
+      "new_name": "sci-statistical-analysis",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "statsmodels-statistical-modeling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cellpose-cell-segmentation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "flowio-flow-cytometry",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "histolab-wsi-processing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "imaging-data-commons",
+      "action": "add",
+      "new_name": "sci-imaging-data-commons",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "napari-image-viewer",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "nnunet-segmentation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "omero-integration",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "opencv-bioimage-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pathml",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pydicom-medical-imaging",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pyimagej-fiji-bridge",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scikit-image-processing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "simpleitk-image-registration",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "single-cell-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "trackpy-particle-tracking",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "plotly-interactive-plots",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "plotly-interactive-visualization",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-visualization",
+      "action": "add",
+      "new_name": "sci-scientific-visualization",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "seaborn-statistical-plots",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "seaborn-statistical-visualization",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "statistical-significance-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "anndata-data-structure",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "arboreto-grn-inference",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "archs4-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "bcftools-variant-manipulation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "bedtools-genomic-intervals",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "biopython-molecular-biology",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "biopython-sequence-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "bioservices-multi-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "busco-status-interpretation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "bwa-mem2-dna-aligner",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cbioportal-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "celltypist-cell-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cellxgene-census",
+      "action": "add",
+      "new_name": "sci-cellxgene-census",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "clinpgx-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "clinvar-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cnvkit-copy-number",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cosmic-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "dbsnp-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "deeptools-ngs-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "depmap-crispr-essentiality",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "deseq2-differential-expression",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "ena-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "encode-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "ensembl-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "etetoolkit",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "fastp-fastq-preprocessing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "featurecounts-rna-counting",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gatk-variant-calling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gene-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "geniml",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "geo-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gget-genomic-databases",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gnomad-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gseapy-gene-enrichment",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gtars",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gwas-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "harmony-batch-correction",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "homer-motif-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "jaspar-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "kegg-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "macs3-peak-calling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "monarch-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "mouse-phenome-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "multiqc-qc-reports",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "plink2-gwas-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "popv-cell-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "prokka-genome-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pubmed-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pydeseq2-differential-expression",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pysam-genomic-files",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "quickgo-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "regulomedb-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "remap-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "salmon-rna-quantification",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "samtools-bam-processing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scanpy-scrna-seq",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scikit-bio",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scvi-tools-single-cell",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "single-cell-annotation-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "snpeff-variant-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "star-rna-seq-aligner",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "ucsc-genome-browser",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "vcf-variant-filtering",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "benchling-integration",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "opentrons-integration",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "opentrons-protocol-api",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "protocolsio-integration",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pylabrobot",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "western-blot-quantification",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "plannotate-plasmid-annotation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "sgrna-design-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "viennarna-structure-prediction",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "adaptyv-bio",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "esm-protein-language-model",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "hmdb-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "interpro-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "matchms-spectral-matching",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "maxquant-proteomics",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "metabolomics-workbench-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pride-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pyopenms-mass-spectrometry",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "uniprot-protein-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "aeon",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "astropy-astronomy",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "dask-parallel-computing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "exploratory-data-analysis",
+      "action": "add",
+      "new_name": "sci-exploratory-data-analysis",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "geopandas-geospatial",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "hypogenic-hypothesis-generation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "matlab-scientific-computing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "networkx-graph-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "neurokit2",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "neuropixels-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "nextflow-workflow-engine",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "polars-dataframes",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pymatgen",
+      "action": "add",
+      "new_name": "sci-pymatgen",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pymoo",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "simpy-discrete-event-simulation",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "snakemake-workflow-engine",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "spikeinterface-electrophysiology",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "sympy-symbolic-math",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "torch-geometric-graph-neural-networks",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "transformers-bio-nlp",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "umap-learn",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "uspto-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "vaex-dataframes",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "zarr-python",
+      "action": "add",
+      "new_name": "sci-zarr-python",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "biorxiv-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cancer-research-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cell-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "citation-management",
+      "action": "add",
+      "new_name": "sci-citation-management",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "elife-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "general-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "lancet-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "latex-research-posters",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "literature-review",
+      "action": "add",
+      "new_name": "sci-literature-review",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "nature-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "nejm-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "openalex-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "peer-review-methodology",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pnas-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "science-figure-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-brainstorming",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-critical-thinking",
+      "action": "add",
+      "new_name": "sci-scientific-critical-thinking",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-literature-search",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-manuscript-writing",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-schematics",
+      "action": "add",
+      "new_name": "sci-scientific-schematics",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "scientific-slides",
+      "action": "add",
+      "new_name": "sci-scientific-slides",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "alphafold-database-access",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "autodock-vina-docking",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "chembl-database-bioactivity",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "clinicaltrials-database-search",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "dailymed-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "datamol-cheminformatics",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "ddinter-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "deepchem",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "diffdock",
+      "action": "add",
+      "new_name": "sci-diffdock",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "drugbank-database-access",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "emdb-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "fda-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "gtopdb-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "mdanalysis-trajectory",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "medchem",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "molfeat-molecular-featurization",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "opentargets-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pdb-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pubchem-compound-search",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "pytdc-therapeutics-data-commons",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "rdkit-cheminformatics",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "rowan",
+      "action": "add",
+      "new_name": "sci-rowan",
+      "used_prefix": true
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "sar-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "torchdrug",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "unichem-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "zinc-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "brenda-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cellchat-cell-communication",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "cobrapy-metabolic-modeling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "kegg-pathway-analysis",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "lamindb-data-management",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "libsbml-network-modeling",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "mofaplus-multi-omics",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "muon-multiomics-singlecell",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "omics-analysis-guide",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "reactome-database",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "SciAgent-Skills",
+      "slug": "string-database-ppi",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bioskills-installer",
+      "action": "add",
+      "new_name": "bioskills-installer",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-io",
+      "action": "add",
+      "new_name": "alignment-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "msa-parsing",
+      "action": "add",
+      "new_name": "msa-parsing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "msa-statistics",
+      "action": "add",
+      "new_name": "msa-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multiple-alignment",
+      "action": "add",
+      "new_name": "multiple-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pairwise-alignment",
+      "action": "add",
+      "new_name": "pairwise-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-filtering",
+      "action": "add",
+      "new_name": "alignment-filtering",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-indexing",
+      "action": "add",
+      "new_name": "alignment-indexing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-sorting",
+      "action": "add",
+      "new_name": "alignment-sorting",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-validation",
+      "action": "add",
+      "new_name": "alignment-validation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bam-statistics",
+      "action": "add",
+      "new_name": "bam-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "duplicate-handling",
+      "action": "add",
+      "new_name": "duplicate-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pileup-generation",
+      "action": "add",
+      "new_name": "pileup-generation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "reference-operations",
+      "action": "add",
+      "new_name": "reference-operations",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sam-bam-basics",
+      "action": "add",
+      "new_name": "sam-bam-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-splicing",
+      "action": "add",
+      "new_name": "differential-splicing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "isoform-switching",
+      "action": "add",
+      "new_name": "isoform-switching",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sashimi-plots",
+      "action": "add",
+      "new_name": "sashimi-plots",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "single-cell-splicing",
+      "action": "add",
+      "new_name": "single-cell-splicing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "splicing-qc",
+      "action": "add",
+      "new_name": "splicing-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "splicing-quantification",
+      "action": "add",
+      "new_name": "splicing-quantification",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "atac-peak-calling",
+      "action": "add",
+      "new_name": "atac-peak-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "atac-qc",
+      "action": "add",
+      "new_name": "atac-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-accessibility",
+      "action": "add",
+      "new_name": "differential-accessibility",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "footprinting",
+      "action": "add",
+      "new_name": "footprinting",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "motif-deviation",
+      "action": "add",
+      "new_name": "motif-deviation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "nucleosome-positioning",
+      "action": "add",
+      "new_name": "nucleosome-positioning",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "colocalization-analysis",
+      "action": "add",
+      "new_name": "colocalization-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fine-mapping",
+      "action": "add",
+      "new_name": "fine-mapping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mediation-analysis",
+      "action": "add",
+      "new_name": "mediation-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mendelian-randomization",
+      "action": "add",
+      "new_name": "mendelian-randomization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pleiotropy-detection",
+      "action": "add",
+      "new_name": "pleiotropy-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "admet-prediction",
+      "action": "add",
+      "new_name": "admet-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "molecular-descriptors",
+      "action": "add",
+      "new_name": "molecular-descriptors",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "molecular-io",
+      "action": "add",
+      "new_name": "molecular-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "reaction-enumeration",
+      "action": "add",
+      "new_name": "reaction-enumeration",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "similarity-searching",
+      "action": "add",
+      "new_name": "similarity-searching",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "substructure-search",
+      "action": "add",
+      "new_name": "substructure-search",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "virtual-screening",
+      "action": "add",
+      "new_name": "virtual-screening",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "chipseq-qc",
+      "action": "add",
+      "new_name": "chipseq-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "chipseq-visualization",
+      "action": "add",
+      "new_name": "chipseq-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-binding",
+      "action": "add",
+      "new_name": "differential-binding",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "motif-analysis",
+      "action": "add",
+      "new_name": "motif-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "peak-annotation",
+      "action": "add",
+      "new_name": "peak-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "peak-calling",
+      "action": "add",
+      "new_name": "peak-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "super-enhancers",
+      "action": "add",
+      "new_name": "super-enhancers",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "categorical-tests",
+      "action": "add",
+      "new_name": "categorical-tests",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cdisc-data-handling",
+      "action": "add",
+      "new_name": "cdisc-data-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "effect-measures",
+      "action": "add",
+      "new_name": "effect-measures",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "logistic-regression",
+      "action": "add",
+      "new_name": "logistic-regression",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "subgroup-analysis",
+      "action": "add",
+      "new_name": "subgroup-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "trial-reporting",
+      "action": "add",
+      "new_name": "trial-reporting",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clinvar-lookup",
+      "action": "add",
+      "new_name": "clinvar-lookup",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "dbsnp-queries",
+      "action": "add",
+      "new_name": "dbsnp-queries",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gnomad-frequencies",
+      "action": "add",
+      "new_name": "gnomad-frequencies",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hla-typing",
+      "action": "add",
+      "new_name": "hla-typing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "myvariant-queries",
+      "action": "add",
+      "new_name": "myvariant-queries",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pharmacogenomics",
+      "action": "add",
+      "new_name": "pharmacogenomics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "polygenic-risk",
+      "action": "add",
+      "new_name": "polygenic-risk",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "somatic-signatures",
+      "action": "add",
+      "new_name": "somatic-signatures",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tumor-mutational-burden",
+      "action": "add",
+      "new_name": "tumor-mutational-burden",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "variant-prioritization",
+      "action": "add",
+      "new_name": "variant-prioritization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "binding-site-annotation",
+      "action": "add",
+      "new_name": "binding-site-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clip-alignment",
+      "action": "add",
+      "new_name": "clip-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clip-motif-analysis",
+      "action": "add",
+      "new_name": "clip-motif-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clip-peak-calling",
+      "action": "add",
+      "new_name": "clip-peak-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clip-preprocessing",
+      "action": "add",
+      "new_name": "clip-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ancestral-reconstruction",
+      "action": "add",
+      "new_name": "ancestral-reconstruction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hgt-detection",
+      "action": "add",
+      "new_name": "hgt-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ortholog-inference",
+      "action": "add",
+      "new_name": "ortholog-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "positive-selection",
+      "action": "add",
+      "new_name": "positive-selection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "synteny-analysis",
+      "action": "add",
+      "new_name": "synteny-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cnv-annotation",
+      "action": "add",
+      "new_name": "cnv-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cnv-visualization",
+      "action": "add",
+      "new_name": "cnv-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cnvkit-analysis",
+      "action": "add",
+      "new_name": "cnvkit-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gatk-cnv",
+      "action": "add",
+      "new_name": "gatk-cnv",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "base-editing-analysis",
+      "action": "add",
+      "new_name": "base-editing-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-correction",
+      "action": "add",
+      "new_name": "batch-correction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "crispresso-editing",
+      "action": "add",
+      "new_name": "crispresso-editing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hit-calling",
+      "action": "add",
+      "new_name": "hit-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "jacks-analysis",
+      "action": "add",
+      "new_name": "jacks-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "library-design",
+      "action": "add",
+      "new_name": "library-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mageck-analysis",
+      "action": "add",
+      "new_name": "mageck-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "screen-qc",
+      "action": "add",
+      "new_name": "screen-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "circos-plots",
+      "action": "add",
+      "new_name": "circos-plots",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "color-palettes",
+      "action": "add",
+      "new_name": "color-palettes",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "genome-browser-tracks",
+      "action": "add",
+      "new_name": "genome-browser-tracks",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "genome-tracks",
+      "action": "add",
+      "new_name": "genome-tracks",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ggplot2-fundamentals",
+      "action": "add",
+      "new_name": "ggplot2-fundamentals",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "heatmaps-clustering",
+      "action": "add",
+      "new_name": "heatmaps-clustering",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "interactive-visualization",
+      "action": "add",
+      "new_name": "interactive-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multipanel-figures",
+      "action": "add",
+      "new_name": "multipanel-figures",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "network-visualization",
+      "action": "add",
+      "new_name": "network-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "specialized-omics-plots",
+      "action": "add",
+      "new_name": "specialized-omics-plots",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "upset-plots",
+      "action": "add",
+      "new_name": "upset-plots",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "volcano-customization",
+      "action": "add",
+      "new_name": "volcano-customization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-downloads",
+      "action": "add",
+      "new_name": "batch-downloads",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "blast-searches",
+      "action": "add",
+      "new_name": "blast-searches",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "entrez-fetch",
+      "action": "add",
+      "new_name": "entrez-fetch",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "entrez-link",
+      "action": "add",
+      "new_name": "entrez-link",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "entrez-search",
+      "action": "add",
+      "new_name": "entrez-search",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "geo-data",
+      "action": "add",
+      "new_name": "geo-data",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "interaction-databases",
+      "action": "add",
+      "new_name": "interaction-databases",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "local-blast",
+      "action": "add",
+      "new_name": "local-blast",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sequence-similarity",
+      "action": "add",
+      "new_name": "sequence-similarity",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sra-data",
+      "action": "add",
+      "new_name": "sra-data",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "uniprot-access",
+      "action": "add",
+      "new_name": "uniprot-access",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-correction",
+      "action": "add",
+      "new_name": "bio-batch-correction",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "de-results",
+      "action": "add",
+      "new_name": "de-results",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "de-visualization",
+      "action": "add",
+      "new_name": "de-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "deseq2-basics",
+      "action": "add",
+      "new_name": "deseq2-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "edger-basics",
+      "action": "add",
+      "new_name": "edger-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "timeseries-de",
+      "action": "add",
+      "new_name": "timeseries-de",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "biodiversity-metrics",
+      "action": "add",
+      "new_name": "biodiversity-metrics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "community-ecology",
+      "action": "add",
+      "new_name": "community-ecology",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "conservation-genetics",
+      "action": "add",
+      "new_name": "conservation-genetics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "edna-metabarcoding",
+      "action": "add",
+      "new_name": "edna-metabarcoding",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "landscape-genomics",
+      "action": "add",
+      "new_name": "landscape-genomics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "species-delimitation",
+      "action": "add",
+      "new_name": "species-delimitation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "amr-surveillance",
+      "action": "add",
+      "new_name": "amr-surveillance",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pathogen-typing",
+      "action": "add",
+      "new_name": "pathogen-typing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "phylodynamics",
+      "action": "add",
+      "new_name": "phylodynamics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "transmission-inference",
+      "action": "add",
+      "new_name": "transmission-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "variant-surveillance",
+      "action": "add",
+      "new_name": "variant-surveillance",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "m6a-differential",
+      "action": "add",
+      "new_name": "m6a-differential",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "m6a-peak-calling",
+      "action": "add",
+      "new_name": "m6a-peak-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "m6anet-analysis",
+      "action": "add",
+      "new_name": "m6anet-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "merip-preprocessing",
+      "action": "add",
+      "new_name": "merip-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "modification-visualization",
+      "action": "add",
+      "new_name": "modification-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-design",
+      "action": "add",
+      "new_name": "batch-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multiple-testing",
+      "action": "add",
+      "new_name": "multiple-testing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "power-analysis",
+      "action": "add",
+      "new_name": "power-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sample-size",
+      "action": "add",
+      "new_name": "sample-size",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "counts-ingest",
+      "action": "add",
+      "new_name": "counts-ingest",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gene-id-mapping",
+      "action": "add",
+      "new_name": "gene-id-mapping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metadata-joins",
+      "action": "add",
+      "new_name": "metadata-joins",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "normalization",
+      "action": "add",
+      "new_name": "normalization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sparse-handling",
+      "action": "add",
+      "new_name": "sparse-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bead-normalization",
+      "action": "add",
+      "new_name": "bead-normalization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clustering-phenotyping",
+      "action": "add",
+      "new_name": "clustering-phenotyping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "compensation-transformation",
+      "action": "add",
+      "new_name": "compensation-transformation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cytometry-qc",
+      "action": "add",
+      "new_name": "cytometry-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-analysis",
+      "action": "add",
+      "new_name": "differential-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "doublet-detection",
+      "action": "add",
+      "new_name": "doublet-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fcs-handling",
+      "action": "add",
+      "new_name": "fcs-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gating-analysis",
+      "action": "add",
+      "new_name": "gating-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "coexpression-networks",
+      "action": "add",
+      "new_name": "coexpression-networks",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-networks",
+      "action": "add",
+      "new_name": "differential-networks",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multiomics-grn",
+      "action": "add",
+      "new_name": "multiomics-grn",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "perturbation-simulation",
+      "action": "add",
+      "new_name": "perturbation-simulation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scenic-regulons",
+      "action": "add",
+      "new_name": "scenic-regulons",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "annotation-transfer",
+      "action": "add",
+      "new_name": "annotation-transfer",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "eukaryotic-gene-prediction",
+      "action": "add",
+      "new_name": "eukaryotic-gene-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "functional-annotation",
+      "action": "add",
+      "new_name": "functional-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ncrna-annotation",
+      "action": "add",
+      "new_name": "ncrna-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "prokaryotic-annotation",
+      "action": "add",
+      "new_name": "prokaryotic-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "repeat-annotation",
+      "action": "add",
+      "new_name": "repeat-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "assembly-polishing",
+      "action": "add",
+      "new_name": "assembly-polishing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "assembly-qc",
+      "action": "add",
+      "new_name": "assembly-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "contamination-detection",
+      "action": "add",
+      "new_name": "contamination-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hifi-assembly",
+      "action": "add",
+      "new_name": "hifi-assembly",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "long-read-assembly",
+      "action": "add",
+      "new_name": "long-read-assembly",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metagenome-assembly",
+      "action": "add",
+      "new_name": "metagenome-assembly",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scaffolding",
+      "action": "add",
+      "new_name": "scaffolding",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "short-read-assembly",
+      "action": "add",
+      "new_name": "short-read-assembly",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "base-editing-design",
+      "action": "add",
+      "new_name": "base-editing-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "grna-design",
+      "action": "add",
+      "new_name": "grna-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hdr-template-design",
+      "action": "add",
+      "new_name": "hdr-template-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "off-target-prediction",
+      "action": "add",
+      "new_name": "off-target-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "prime-editing-design",
+      "action": "add",
+      "new_name": "prime-editing-design",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bed-file-basics",
+      "action": "add",
+      "new_name": "bed-file-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bedgraph-handling",
+      "action": "add",
+      "new_name": "bedgraph-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bigwig-tracks",
+      "action": "add",
+      "new_name": "bigwig-tracks",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "coverage-analysis",
+      "action": "add",
+      "new_name": "bio-coverage-analysis",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gtf-gff-handling",
+      "action": "add",
+      "new_name": "gtf-gff-handling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "interval-arithmetic",
+      "action": "add",
+      "new_name": "interval-arithmetic",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "proximity-operations",
+      "action": "add",
+      "new_name": "proximity-operations",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "compartment-analysis",
+      "action": "add",
+      "new_name": "compartment-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "contact-pairs",
+      "action": "add",
+      "new_name": "contact-pairs",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hic-data-io",
+      "action": "add",
+      "new_name": "hic-data-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hic-differential",
+      "action": "add",
+      "new_name": "hic-differential",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hic-visualization",
+      "action": "add",
+      "new_name": "hic-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "loop-calling",
+      "action": "add",
+      "new_name": "loop-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "matrix-operations",
+      "action": "add",
+      "new_name": "matrix-operations",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tad-detection",
+      "action": "add",
+      "new_name": "tad-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cell-segmentation",
+      "action": "add",
+      "new_name": "cell-segmentation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "data-preprocessing",
+      "action": "add",
+      "new_name": "data-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "interactive-annotation",
+      "action": "add",
+      "new_name": "interactive-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "phenotyping",
+      "action": "add",
+      "new_name": "phenotyping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "quality-metrics",
+      "action": "add",
+      "new_name": "quality-metrics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-analysis",
+      "action": "add",
+      "new_name": "spatial-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "epitope-prediction",
+      "action": "add",
+      "new_name": "epitope-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "immunogenicity-scoring",
+      "action": "add",
+      "new_name": "immunogenicity-scoring",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mhc-binding-prediction",
+      "action": "add",
+      "new_name": "mhc-binding-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "neoantigen-prediction",
+      "action": "add",
+      "new_name": "neoantigen-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tcr-epitope-binding",
+      "action": "add",
+      "new_name": "tcr-epitope-binding",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cfdna-preprocessing",
+      "action": "add",
+      "new_name": "cfdna-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ctdna-mutation-detection",
+      "action": "add",
+      "new_name": "ctdna-mutation-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fragment-analysis",
+      "action": "add",
+      "new_name": "fragment-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "longitudinal-monitoring",
+      "action": "add",
+      "new_name": "longitudinal-monitoring",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "methylation-based-detection",
+      "action": "add",
+      "new_name": "methylation-based-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tumor-fraction-estimation",
+      "action": "add",
+      "new_name": "tumor-fraction-estimation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "basecalling",
+      "action": "add",
+      "new_name": "basecalling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clair3-variants",
+      "action": "add",
+      "new_name": "clair3-variants",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "isoseq-analysis",
+      "action": "add",
+      "new_name": "isoseq-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "long-read-alignment",
+      "action": "add",
+      "new_name": "long-read-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "long-read-qc",
+      "action": "add",
+      "new_name": "long-read-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "medaka-polishing",
+      "action": "add",
+      "new_name": "medaka-polishing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "nanopore-methylation",
+      "action": "add",
+      "new_name": "nanopore-methylation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structural-variants",
+      "action": "add",
+      "new_name": "structural-variants",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "atlas-mapping",
+      "action": "add",
+      "new_name": "atlas-mapping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "biomarker-discovery",
+      "action": "add",
+      "new_name": "biomarker-discovery",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "model-validation",
+      "action": "add",
+      "new_name": "model-validation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "omics-classifiers",
+      "action": "add",
+      "new_name": "omics-classifiers",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "prediction-explanation",
+      "action": "add",
+      "new_name": "prediction-explanation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "survival-analysis",
+      "action": "add",
+      "new_name": "survival-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "lipidomics",
+      "action": "add",
+      "new_name": "lipidomics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metabolite-annotation",
+      "action": "add",
+      "new_name": "metabolite-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "msdial-preprocessing",
+      "action": "add",
+      "new_name": "msdial-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "normalization-qc",
+      "action": "add",
+      "new_name": "normalization-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "pathway-mapping",
+      "action": "add",
+      "new_name": "pathway-mapping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "statistical-analysis",
+      "action": "add",
+      "new_name": "bio-statistical-analysis",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "targeted-analysis",
+      "action": "add",
+      "new_name": "targeted-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "xcms-preprocessing",
+      "action": "add",
+      "new_name": "xcms-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "abundance-estimation",
+      "action": "add",
+      "new_name": "abundance-estimation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "amr-detection",
+      "action": "add",
+      "new_name": "amr-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "functional-profiling",
+      "action": "add",
+      "new_name": "functional-profiling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "kraken-classification",
+      "action": "add",
+      "new_name": "kraken-classification",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metagenome-visualization",
+      "action": "add",
+      "new_name": "metagenome-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metaphlan-profiling",
+      "action": "add",
+      "new_name": "metaphlan-profiling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "strain-tracking",
+      "action": "add",
+      "new_name": "strain-tracking",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bismark-alignment",
+      "action": "add",
+      "new_name": "bismark-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-cpg-testing",
+      "action": "add",
+      "new_name": "differential-cpg-testing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "dmr-detection",
+      "action": "add",
+      "new_name": "dmr-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "methylation-calling",
+      "action": "add",
+      "new_name": "methylation-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "methylkit-analysis",
+      "action": "add",
+      "new_name": "methylkit-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "amplicon-processing",
+      "action": "add",
+      "new_name": "amplicon-processing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-abundance",
+      "action": "add",
+      "new_name": "differential-abundance",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "diversity-analysis",
+      "action": "add",
+      "new_name": "diversity-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "functional-prediction",
+      "action": "add",
+      "new_name": "functional-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "qiime2-workflow",
+      "action": "add",
+      "new_name": "qiime2-workflow",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "taxonomy-assignment",
+      "action": "add",
+      "new_name": "taxonomy-assignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "data-harmonization",
+      "action": "add",
+      "new_name": "data-harmonization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mixomics-analysis",
+      "action": "add",
+      "new_name": "mixomics-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mofa-integration",
+      "action": "add",
+      "new_name": "mofa-integration",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "similarity-network",
+      "action": "add",
+      "new_name": "similarity-network",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "enrichment-visualization",
+      "action": "add",
+      "new_name": "enrichment-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "go-enrichment",
+      "action": "add",
+      "new_name": "go-enrichment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gsea",
+      "action": "add",
+      "new_name": "gsea",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "kegg-pathways",
+      "action": "add",
+      "new_name": "kegg-pathways",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "reactome-pathways",
+      "action": "add",
+      "new_name": "reactome-pathways",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "wikipathways",
+      "action": "add",
+      "new_name": "wikipathways",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "genotype-imputation",
+      "action": "add",
+      "new_name": "genotype-imputation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "haplotype-phasing",
+      "action": "add",
+      "new_name": "haplotype-phasing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "imputation-qc",
+      "action": "add",
+      "new_name": "imputation-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "reference-panels",
+      "action": "add",
+      "new_name": "reference-panels",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bayesian-inference",
+      "action": "add",
+      "new_name": "bayesian-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "distance-calculations",
+      "action": "add",
+      "new_name": "distance-calculations",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "divergence-dating",
+      "action": "add",
+      "new_name": "divergence-dating",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "modern-tree-inference",
+      "action": "add",
+      "new_name": "modern-tree-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "species-trees",
+      "action": "add",
+      "new_name": "species-trees",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tree-io",
+      "action": "add",
+      "new_name": "tree-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tree-manipulation",
+      "action": "add",
+      "new_name": "tree-manipulation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tree-visualization",
+      "action": "add",
+      "new_name": "tree-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "association-testing",
+      "action": "add",
+      "new_name": "association-testing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "linkage-disequilibrium",
+      "action": "add",
+      "new_name": "linkage-disequilibrium",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "plink-basics",
+      "action": "add",
+      "new_name": "plink-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "population-structure",
+      "action": "add",
+      "new_name": "population-structure",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scikit-allel-analysis",
+      "action": "add",
+      "new_name": "scikit-allel-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "selection-statistics",
+      "action": "add",
+      "new_name": "selection-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "primer-basics",
+      "action": "add",
+      "new_name": "primer-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "primer-validation",
+      "action": "add",
+      "new_name": "primer-validation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "qpcr-primers",
+      "action": "add",
+      "new_name": "qpcr-primers",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "data-import",
+      "action": "add",
+      "new_name": "data-import",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "dia-analysis",
+      "action": "add",
+      "new_name": "dia-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-abundance",
+      "action": "add",
+      "new_name": "bio-differential-abundance",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "peptide-identification",
+      "action": "add",
+      "new_name": "peptide-identification",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "protein-inference",
+      "action": "add",
+      "new_name": "protein-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "proteomics-qc",
+      "action": "add",
+      "new_name": "proteomics-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ptm-analysis",
+      "action": "add",
+      "new_name": "ptm-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "quantification",
+      "action": "add",
+      "new_name": "quantification",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spectral-libraries",
+      "action": "add",
+      "new_name": "spectral-libraries",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bowtie2-alignment",
+      "action": "add",
+      "new_name": "bowtie2-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "bwa-alignment",
+      "action": "add",
+      "new_name": "bwa-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hisat2-alignment",
+      "action": "add",
+      "new_name": "hisat2-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "star-alignment",
+      "action": "add",
+      "new_name": "star-alignment",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "adapter-trimming",
+      "action": "add",
+      "new_name": "adapter-trimming",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "contamination-screening",
+      "action": "add",
+      "new_name": "contamination-screening",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fastp-workflow",
+      "action": "add",
+      "new_name": "fastp-workflow",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "quality-filtering",
+      "action": "add",
+      "new_name": "quality-filtering",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "quality-reports",
+      "action": "add",
+      "new_name": "quality-reports",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "rnaseq-qc",
+      "action": "add",
+      "new_name": "rnaseq-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "umi-processing",
+      "action": "add",
+      "new_name": "umi-processing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "automated-qc-reports",
+      "action": "add",
+      "new_name": "automated-qc-reports",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "figure-export",
+      "action": "add",
+      "new_name": "figure-export",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "jupyter-reports",
+      "action": "add",
+      "new_name": "jupyter-reports",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "quarto-reports",
+      "action": "add",
+      "new_name": "quarto-reports",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "rmarkdown-reports",
+      "action": "add",
+      "new_name": "rmarkdown-reports",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "enzyme-selection",
+      "action": "add",
+      "new_name": "enzyme-selection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fragment-analysis",
+      "action": "add",
+      "new_name": "bio-fragment-analysis",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "restriction-mapping",
+      "action": "add",
+      "new_name": "restriction-mapping",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "restriction-sites",
+      "action": "add",
+      "new_name": "restriction-sites",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "orf-detection",
+      "action": "add",
+      "new_name": "orf-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "riboseq-preprocessing",
+      "action": "add",
+      "new_name": "riboseq-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ribosome-periodicity",
+      "action": "add",
+      "new_name": "ribosome-periodicity",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ribosome-stalling",
+      "action": "add",
+      "new_name": "ribosome-stalling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "translation-efficiency",
+      "action": "add",
+      "new_name": "translation-efficiency",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alignment-free-quant",
+      "action": "add",
+      "new_name": "alignment-free-quant",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "count-matrix-qc",
+      "action": "add",
+      "new_name": "count-matrix-qc",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "featurecounts-counting",
+      "action": "add",
+      "new_name": "featurecounts-counting",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tximport-workflow",
+      "action": "add",
+      "new_name": "tximport-workflow",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "ncrna-search",
+      "action": "add",
+      "new_name": "ncrna-search",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "secondary-structure-prediction",
+      "action": "add",
+      "new_name": "secondary-structure-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structure-probing",
+      "action": "add",
+      "new_name": "structure-probing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-processing",
+      "action": "add",
+      "new_name": "batch-processing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "compressed-files",
+      "action": "add",
+      "new_name": "compressed-files",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fastq-quality",
+      "action": "add",
+      "new_name": "fastq-quality",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "filter-sequences",
+      "action": "add",
+      "new_name": "filter-sequences",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "format-conversion",
+      "action": "add",
+      "new_name": "format-conversion",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "paired-end-fastq",
+      "action": "add",
+      "new_name": "paired-end-fastq",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "read-sequences",
+      "action": "add",
+      "new_name": "read-sequences",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sequence-statistics",
+      "action": "add",
+      "new_name": "sequence-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "write-sequences",
+      "action": "add",
+      "new_name": "write-sequences",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "codon-usage",
+      "action": "add",
+      "new_name": "codon-usage",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "motif-search",
+      "action": "add",
+      "new_name": "motif-search",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "reverse-complement",
+      "action": "add",
+      "new_name": "reverse-complement",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "seq-objects",
+      "action": "add",
+      "new_name": "seq-objects",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sequence-properties",
+      "action": "add",
+      "new_name": "sequence-properties",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "sequence-slicing",
+      "action": "add",
+      "new_name": "sequence-slicing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "transcription-translation",
+      "action": "add",
+      "new_name": "transcription-translation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "batch-integration",
+      "action": "add",
+      "new_name": "batch-integration",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cell-annotation",
+      "action": "add",
+      "new_name": "cell-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cell-communication",
+      "action": "add",
+      "new_name": "cell-communication",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clustering",
+      "action": "add",
+      "new_name": "clustering",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "data-io",
+      "action": "add",
+      "new_name": "data-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "doublet-detection",
+      "action": "add",
+      "new_name": "bio-doublet-detection",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "lineage-tracing",
+      "action": "add",
+      "new_name": "lineage-tracing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "markers-annotation",
+      "action": "add",
+      "new_name": "markers-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metabolite-communication",
+      "action": "add",
+      "new_name": "metabolite-communication",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multimodal-integration",
+      "action": "add",
+      "new_name": "multimodal-integration",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "perturb-seq",
+      "action": "add",
+      "new_name": "perturb-seq",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "preprocessing",
+      "action": "add",
+      "new_name": "preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scatac-analysis",
+      "action": "add",
+      "new_name": "scatac-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "trajectory-inference",
+      "action": "add",
+      "new_name": "trajectory-inference",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "differential-mirna",
+      "action": "add",
+      "new_name": "differential-mirna",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mirdeep2-analysis",
+      "action": "add",
+      "new_name": "mirdeep2-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mirge3-analysis",
+      "action": "add",
+      "new_name": "mirge3-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "smrna-preprocessing",
+      "action": "add",
+      "new_name": "smrna-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "target-prediction",
+      "action": "add",
+      "new_name": "target-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "image-analysis",
+      "action": "add",
+      "new_name": "image-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-communication",
+      "action": "add",
+      "new_name": "spatial-communication",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-data-io",
+      "action": "add",
+      "new_name": "spatial-data-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-deconvolution",
+      "action": "add",
+      "new_name": "spatial-deconvolution",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-domains",
+      "action": "add",
+      "new_name": "spatial-domains",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-multiomics",
+      "action": "add",
+      "new_name": "spatial-multiomics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-neighbors",
+      "action": "add",
+      "new_name": "spatial-neighbors",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-preprocessing",
+      "action": "add",
+      "new_name": "spatial-preprocessing",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-proteomics",
+      "action": "add",
+      "new_name": "spatial-proteomics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-statistics",
+      "action": "add",
+      "new_name": "spatial-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-visualization",
+      "action": "add",
+      "new_name": "spatial-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "alphafold-predictions",
+      "action": "add",
+      "new_name": "alphafold-predictions",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "geometric-analysis",
+      "action": "add",
+      "new_name": "geometric-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "modern-structure-prediction",
+      "action": "add",
+      "new_name": "modern-structure-prediction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structure-io",
+      "action": "add",
+      "new_name": "structure-io",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structure-modification",
+      "action": "add",
+      "new_name": "structure-modification",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structure-navigation",
+      "action": "add",
+      "new_name": "structure-navigation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "context-specific-models",
+      "action": "add",
+      "new_name": "context-specific-models",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "flux-balance-analysis",
+      "action": "add",
+      "new_name": "flux-balance-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gene-essentiality",
+      "action": "add",
+      "new_name": "gene-essentiality",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metabolic-reconstruction",
+      "action": "add",
+      "new_name": "metabolic-reconstruction",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "model-curation",
+      "action": "add",
+      "new_name": "model-curation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "immcantation-analysis",
+      "action": "add",
+      "new_name": "immcantation-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "mixcr-analysis",
+      "action": "add",
+      "new_name": "mixcr-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "repertoire-visualization",
+      "action": "add",
+      "new_name": "repertoire-visualization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scirpy-analysis",
+      "action": "add",
+      "new_name": "scirpy-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "vdjtools-analysis",
+      "action": "add",
+      "new_name": "vdjtools-analysis",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "circadian-rhythms",
+      "action": "add",
+      "new_name": "circadian-rhythms",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "periodicity-detection",
+      "action": "add",
+      "new_name": "periodicity-detection",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "temporal-clustering",
+      "action": "add",
+      "new_name": "temporal-clustering",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "temporal-grn",
+      "action": "add",
+      "new_name": "temporal-grn",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "trajectory-modeling",
+      "action": "add",
+      "new_name": "trajectory-modeling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clinical-interpretation",
+      "action": "add",
+      "new_name": "clinical-interpretation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "consensus-sequences",
+      "action": "add",
+      "new_name": "consensus-sequences",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "deepvariant",
+      "action": "add",
+      "new_name": "deepvariant",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "filtering-best-practices",
+      "action": "add",
+      "new_name": "filtering-best-practices",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gatk-variant-calling",
+      "action": "add",
+      "new_name": "bio-gatk-variant-calling",
+      "used_prefix": true
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "joint-calling",
+      "action": "add",
+      "new_name": "joint-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "structural-variant-calling",
+      "action": "add",
+      "new_name": "structural-variant-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "variant-annotation",
+      "action": "add",
+      "new_name": "variant-annotation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "variant-calling",
+      "action": "add",
+      "new_name": "variant-calling",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "variant-normalization",
+      "action": "add",
+      "new_name": "variant-normalization",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "vcf-basics",
+      "action": "add",
+      "new_name": "vcf-basics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "vcf-manipulation",
+      "action": "add",
+      "new_name": "vcf-manipulation",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "vcf-statistics",
+      "action": "add",
+      "new_name": "vcf-statistics",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cwl-workflows",
+      "action": "add",
+      "new_name": "cwl-workflows",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "nextflow-pipelines",
+      "action": "add",
+      "new_name": "nextflow-pipelines",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "snakemake-workflows",
+      "action": "add",
+      "new_name": "snakemake-workflows",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "wdl-workflows",
+      "action": "add",
+      "new_name": "wdl-workflows",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "atacseq-pipeline",
+      "action": "add",
+      "new_name": "atacseq-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "biomarker-pipeline",
+      "action": "add",
+      "new_name": "biomarker-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "causal-genomics-pipeline",
+      "action": "add",
+      "new_name": "causal-genomics-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "chipseq-pipeline",
+      "action": "add",
+      "new_name": "chipseq-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clinical-trial-pipeline",
+      "action": "add",
+      "new_name": "clinical-trial-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "clip-pipeline",
+      "action": "add",
+      "new_name": "clip-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cnv-pipeline",
+      "action": "add",
+      "new_name": "cnv-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "crispr-editing-pipeline",
+      "action": "add",
+      "new_name": "crispr-editing-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "crispr-screen-pipeline",
+      "action": "add",
+      "new_name": "crispr-screen-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "cytometry-pipeline",
+      "action": "add",
+      "new_name": "cytometry-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "edna-pipeline",
+      "action": "add",
+      "new_name": "edna-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "expression-to-pathways",
+      "action": "add",
+      "new_name": "expression-to-pathways",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "fastq-to-variants",
+      "action": "add",
+      "new_name": "fastq-to-variants",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "genome-annotation-pipeline",
+      "action": "add",
+      "new_name": "genome-annotation-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "genome-assembly-pipeline",
+      "action": "add",
+      "new_name": "genome-assembly-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "grn-pipeline",
+      "action": "add",
+      "new_name": "grn-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "gwas-pipeline",
+      "action": "add",
+      "new_name": "gwas-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "hic-pipeline",
+      "action": "add",
+      "new_name": "hic-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "imc-pipeline",
+      "action": "add",
+      "new_name": "imc-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "liquid-biopsy-pipeline",
+      "action": "add",
+      "new_name": "liquid-biopsy-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "longread-sv-pipeline",
+      "action": "add",
+      "new_name": "longread-sv-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "merip-pipeline",
+      "action": "add",
+      "new_name": "merip-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metabolic-modeling-pipeline",
+      "action": "add",
+      "new_name": "metabolic-modeling-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metabolomics-pipeline",
+      "action": "add",
+      "new_name": "metabolomics-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "metagenomics-pipeline",
+      "action": "add",
+      "new_name": "metagenomics-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "methylation-pipeline",
+      "action": "add",
+      "new_name": "methylation-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "microbiome-pipeline",
+      "action": "add",
+      "new_name": "microbiome-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multi-omics-pipeline",
+      "action": "add",
+      "new_name": "multi-omics-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "multiome-pipeline",
+      "action": "add",
+      "new_name": "multiome-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "neoantigen-pipeline",
+      "action": "add",
+      "new_name": "neoantigen-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "outbreak-pipeline",
+      "action": "add",
+      "new_name": "outbreak-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "proteomics-pipeline",
+      "action": "add",
+      "new_name": "proteomics-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "riboseq-pipeline",
+      "action": "add",
+      "new_name": "riboseq-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "rnaseq-to-de",
+      "action": "add",
+      "new_name": "rnaseq-to-de",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "scrnaseq-pipeline",
+      "action": "add",
+      "new_name": "scrnaseq-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "smrna-pipeline",
+      "action": "add",
+      "new_name": "smrna-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "somatic-variant-pipeline",
+      "action": "add",
+      "new_name": "somatic-variant-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "spatial-pipeline",
+      "action": "add",
+      "new_name": "spatial-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "splicing-pipeline",
+      "action": "add",
+      "new_name": "splicing-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "tcr-pipeline",
+      "action": "add",
+      "new_name": "tcr-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "bioSkills",
+      "slug": "timecourse-pipeline",
+      "action": "add",
+      "new_name": "timecourse-pipeline",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "ai-sdk-agents",
+      "action": "add",
+      "new_name": "ai-sdk-agents",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "ai-sdk-core",
+      "action": "add",
+      "new_name": "ai-sdk-core",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "ai-sdk-ui",
+      "action": "add",
+      "new_name": "ai-sdk-ui",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "aws-architecture",
+      "action": "add",
+      "new_name": "aws-architecture",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "browser-workbench-setup",
+      "action": "add",
+      "new_name": "browser-workbench-setup",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "bun-audit",
+      "action": "add",
+      "new_name": "bun-audit",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "bun-dev",
+      "action": "add",
+      "new_name": "bun-dev",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "caveman-compress",
+      "action": "add",
+      "new_name": "caveman-compress",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "codex-sdk",
+      "action": "add",
+      "new_name": "codex-sdk",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "commit",
+      "action": "add",
+      "new_name": "commit",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "context7-research",
+      "action": "add",
+      "new_name": "context7-research",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "convex-audit",
+      "action": "add",
+      "new_name": "convex-audit",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "convex-feature-spec",
+      "action": "add",
+      "new_name": "convex-feature-spec",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "dash-audit",
+      "action": "add",
+      "new_name": "dash-audit",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "dmc-best-practices",
+      "action": "add",
+      "new_name": "dmc-best-practices",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "dmc-py",
+      "action": "add",
+      "new_name": "dmc-py",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "docker-architect",
+      "action": "add",
+      "new_name": "docker-architect",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "docs-align",
+      "action": "add",
+      "new_name": "docs-align",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "gh-deps-intel",
+      "action": "add",
+      "new_name": "gh-deps-intel",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "gh-pr-review-fix",
+      "action": "add",
+      "new_name": "gh-pr-review-fix",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "langgraph-multiagent",
+      "action": "add",
+      "new_name": "langgraph-multiagent",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "notebook-ml-architect",
+      "action": "add",
+      "new_name": "notebook-ml-architect",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "opensrc-inspect",
+      "action": "add",
+      "new_name": "opensrc-inspect",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "platform-architect",
+      "action": "add",
+      "new_name": "platform-architect",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "pytest-dev",
+      "action": "add",
+      "new_name": "pytest-dev",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "repo-docs-align",
+      "action": "add",
+      "new_name": "repo-docs-align",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "streamdown",
+      "action": "add",
+      "new_name": "streamdown",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "streamlit-master-architect",
+      "action": "add",
+      "new_name": "streamlit-master-architect",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "subspawn",
+      "action": "add",
+      "new_name": "subspawn",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "supabase-ts",
+      "action": "add",
+      "new_name": "supabase-ts",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "vitest-dev",
+      "action": "add",
+      "new_name": "vitest-dev",
+      "used_prefix": false
+    },
+    {
+      "repo": "dev-skills",
+      "slug": "zod-v4",
+      "action": "add",
+      "new_name": "zod-v4",
+      "used_prefix": false
+    },
+    {
+      "repo": "superpowers",
+      "slug": "brainstorming",
+      "action": "add",
+      "new_name": "sp-brainstorming",
+      "used_prefix": true
+    },
+    {
+      "repo": "superpowers",
+      "slug": "dispatching-parallel-agents",
+      "action": "skip_similar",
+      "sim": 0.97,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "executing-plans",
+      "action": "add",
+      "new_name": "sp-executing-plans",
+      "used_prefix": true
+    },
+    {
+      "repo": "superpowers",
+      "slug": "finishing-a-development-branch",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "receiving-code-review",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "requesting-code-review",
+      "action": "skip_similar",
+      "sim": 0.96,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "subagent-driven-development",
+      "action": "skip_similar",
+      "sim": 0.9,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "systematic-debugging",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "test-driven-development",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "using-git-worktrees",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "using-superpowers",
+      "action": "add",
+      "new_name": "sp-using-superpowers",
+      "used_prefix": true
+    },
+    {
+      "repo": "superpowers",
+      "slug": "verification-before-completion",
+      "action": "skip_similar",
+      "sim": 1.0,
+      "new_name": null
+    },
+    {
+      "repo": "superpowers",
+      "slug": "writing-plans",
+      "action": "add",
+      "new_name": "sp-writing-plans",
+      "used_prefix": true
+    },
+    {
+      "repo": "superpowers",
+      "slug": "writing-skills",
+      "action": "skip_similar",
+      "sim": 0.99,
+      "new_name": null
+    }
+  ]
+}
