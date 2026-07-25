@@ -53,7 +53,7 @@ from unified_runner.claw_grader_adapter import (
     collect_audit_from_services, grade_with_native_grader, format_dim_scores,
 )
 
-BASE_DIR = Path(os.environ.get("SKILLRL_ROOT", str(Path(__file__).resolve().parents[3])))
+BASE_DIR = Path("/path/to/skillRL")
 CLAW_DIR = BASE_DIR / "datasets/claw-eval"
 TASKS_DIR = CLAW_DIR / "tasks"
 RESULTS_DIR = BASE_DIR / "experiments"
@@ -281,9 +281,9 @@ class ServiceManager:
     """Start/stop claw-eval mock HTTP services for one task.
 
     Two modes:
-      - host  (default): spawn each service as a host subprocess on loopback.
+      - host  (default): spawn each service as a tidalfs subprocess on loopback.
       - docker (v6 new): spawn all services inside the SHARED mock container
-                        on the remote Docker host. Agent sandbox container joins shared
+                        on your-docker-host. Agent sandbox container joins shared
                         network and sees mock via --add-host host.docker.internal.
                         Use when UNIFIED_CLAW_USE_DOCKER_SANDBOX=1.
 
@@ -441,7 +441,7 @@ class ServiceManager:
             status.append(f"  {name} port {port} " + ("✓ ready" if ready else "✗ NOT ready"))
 
             # Reset endpoint (optional). In shared mode, call via docker exec curl
-            # from INSIDE the mock container (this client can't reach the remote docker0 IPs).
+            # from INSIDE the mock container (tidalfs can't reach your-docker-host docker0 IPs).
             if svc.get("reset_endpoint") and ready:
                 url = svc["reset_endpoint"]
                 # Convert to localhost URL (mock container's loopback) with task's port
@@ -600,7 +600,15 @@ def _build_conversation_str(traj) -> str:
             content = "\n".join(parts)
         content = str(content)[:2000]  # truncate
         out.append(f"[{role}] {content}")
-    return "\n\n".join(out)[:15000]
+    joined = "\n\n".join(out)
+    # Keep the TAIL of long conversations. The final deliverable/answer lives
+    # at the end of the trajectory; the old head-keep truncation ([:15000])
+    # silently dropped it for long runs, zeroing every llm_judge component
+    # regardless of output quality.
+    limit = 15000
+    if len(joined) > limit:
+        joined = "...(earlier turns truncated)...\n\n" + joined[-limit:]
+    return joined
 
 
 def _build_actions_summary(dispatches: list[dict]) -> str:
@@ -623,9 +631,7 @@ def _get_judge():
         sys.path.insert(0, str(BASE_DIR / "datasets/claw-eval/src"))
         from claw_eval.graders.llm_judge import LLMJudge
         # Config from GeneralAgent/eval_scripts/claw_eval/config_qwen3.5_27b_local.yaml judge: section
-        judge_api_key = os.environ.get("CLAW_JUDGE_API_KEY", "")
-        if not judge_api_key:
-            raise RuntimeError("CLAW_JUDGE_API_KEY not set; llm_judge scoring disabled")
+        judge_api_key = os.environ.get("CLAW_JUDGE_API_KEY", "your-maas-api-key")
         judge_base_url = os.environ.get("CLAW_JUDGE_BASE_URL", "https://your-llm-endpoint/v1")
         judge_model = os.environ.get("CLAW_JUDGE_MODEL", "deepseek-v3.2")
         _JUDGE = LLMJudge(model_id=judge_model, api_key=judge_api_key, base_url=judge_base_url)
@@ -781,7 +787,7 @@ def _docker_run(cmd, timeout=60, retry_sec_override=None):
     Default timeout 60s (was 30s) — concurrent v6 + DOCKER_HOST tunnel adds latency.
     Image-pull paths set their own higher timeout.
 
-    Docker is reached through the local SSH tunnel to the Docker host. If the tunnel briefly
+    Docker is reached through the local your-docker-host tunnel. If the tunnel briefly
     drops during a long Claw run, a single failed docker call can otherwise turn
     every remaining task into a false sandbox failure. Retry only daemon/tunnel
     connectivity errors; return immediately for normal docker command failures
@@ -828,7 +834,7 @@ def start_sandbox_container(
 ) -> str:
     """Start docker sandbox container for a Claw task.
 
-    Note: DOCKER_HOST 指向远程 Docker 主机，无法 bind mount 本地网络盘目录。
+    Note: DOCKER_HOST 指向远程 your-docker-host，无法 bind mount 本地 tidalfs 目录。
     所以不用 -v，而是 `docker cp` 把 host_workdir 初始内容 copy 进 container
     的 /workspace，agent 结束后再 cp 回来。
     """
@@ -901,7 +907,7 @@ def start_sandbox_container_docker_mode(
     worker_suffix: str | None = None,
 ) -> str:
     """v6 docker mode: sandbox container on shared claw-net, `host.docker.internal`
-    → mock container IP (not the remote docker0). Agent curl host.docker.internal:9100
+    → mock container IP (not your-docker-host docker0). Agent curl host.docker.internal:9100
     routes into the mock container.
     """
     suffix = worker_suffix if worker_suffix is not None else _CLAW_WORKER_SUFFIX
@@ -1049,7 +1055,7 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
                 "fail-hard to avoid silently collecting host-mode trajectories."
             ) from e
     else:
-        print(f"  [sandbox] host mode (mock services on host localhost; path guard enabled)", flush=True)
+        print(f"  [sandbox] host mode (mock services on tidalfs localhost; path guard enabled)", flush=True)
 
     # Inject retrieval/irrelevant skills (docker mode → into container;
     # host mode → into the task workdir so agent can read them there)
@@ -1084,9 +1090,9 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
     # system identity/tooling prompt.
     tool_docs = build_tool_docs(task_def)
     if cname:
-        # Docker sandbox: URL needs host.docker.internal (the remote dockerd routes back to host)
+        # Docker sandbox: URL needs host.docker.internal (your-docker-host routes back to host)
         tool_docs = tool_docs.replace("localhost:", "host.docker.internal:")
-    # (host mode: keep localhost:PORT as-is — agent runs on the host)
+    # (host mode: keep localhost:PORT as-is — agent runs on tidalfs host)
     skills_prompt = ""
     if retrieval_mapping is not None:
         hint = build_retrieval_prompt_hint(
@@ -1177,7 +1183,7 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
                 # Pull audit logs from running mock services (before stop_all).
                 # In docker mode, services live INSIDE sm.mock_cname container; pass it
                 # so collect_audit_from_services uses `docker exec curl` instead of
-                # client-side HTTP (which can't reach the remote docker0 IPs).
+                # tidalfs HTTP (which can't reach your-docker-host docker0 IPs).
                 audit_data = collect_audit_from_services(
                     task_def.get("services") or [],
                     mock_cname=getattr(sm, "mock_cname", None) if sm.mode == "docker" else None,

@@ -29,7 +29,7 @@ rl_reset_algorithm_env() {
 }
 
 rl_apply_common_defaults() {
-  export PYTHON_BIN="${PYTHON_BIN:-${SKILLRL_CONDA_ROOT:-$HOME/anaconda3}/envs/relax/bin/python}"
+  export PYTHON_BIN="${PYTHON_BIN:-/path/to/conda/envs/relax/bin/python}"
   export RAY_PYTHON_BIN="${RAY_PYTHON_BIN:-/usr/bin/python3}"
   export RELAX_PYTHON="${RELAX_PYTHON:-/usr/bin/python3}"
 
@@ -88,7 +88,7 @@ rl_apply_common_defaults() {
   export UNIFIED_LAUNCHER_MODE=real
   export UNIFIED_DISABLE_THINKING=1
   export UNIFIED_DOCKER_NETWORK_HOST="${UNIFIED_DOCKER_NETWORK_HOST:-1}"
-  export UNIFIED_CONTAINER_PROXY="${UNIFIED_CONTAINER_PROXY:-http://your-proxy:3128}"
+  export UNIFIED_CONTAINER_PROXY="${UNIFIED_CONTAINER_PROXY:-http://<proxy-host>:3128}"
   export UNIFIED_DOCKER_PIDS_LIMIT="${UNIFIED_DOCKER_PIDS_LIMIT:-1024}"
   export UNIFIED_TOOL_TIMEOUT_CHILD_CLEANUP="${UNIFIED_TOOL_TIMEOUT_CHILD_CLEANUP:-0}"
   export UNIFIED_DOCKER_ULIMIT_FSIZE_GB="${UNIFIED_DOCKER_ULIMIT_FSIZE_GB:-32}"
@@ -193,10 +193,8 @@ rl_load_wandb_credentials() {
     source "${ROOT}/secrets/.env.secrets"
     set +a
   fi
-  # Optional extra fallback: point SKILLRL_WANDB_ENV_FILE at a shell file that
-  # contains `export WANDB_API_KEY=...` (and optionally WANDB_SILENT).
-  if [[ -z "${WANDB_API_KEY:-}" && -n "${SKILLRL_WANDB_ENV_FILE:-}" && -f "${SKILLRL_WANDB_ENV_FILE}" ]]; then
-    eval "$(grep -E '^export WANDB_(API_KEY|SILENT)=' "${SKILLRL_WANDB_ENV_FILE}" || true)"
+  if [[ -z "${WANDB_API_KEY:-}" && -f ${SKILLRL_WANDB_ENV_FILE} ]]; then
+    eval "$(grep -E '^export WANDB_(API_KEY|SILENT)=' ${SKILLRL_WANDB_ENV_FILE} || true)"
   fi
   [[ -n "${WANDB_API_KEY:-}" ]] || {
     echo "FATAL: WANDB_API_KEY is unavailable; refusing to launch an untracked RL run." >&2
@@ -349,7 +347,7 @@ PY
   local local_ips ray_ips
   local_ips=$(hostname -I | tr ' ' ',' | sed 's/,,*/,/g;s/,$//')
   ray_ips=$(tr ' ' ',' <<<"${gpu_nodes}")
-  export RELAX_NO_PROXY="127.0.0.1,localhost,0.0.0.0,10.0.0.0/8,172.16.0.0/12,mirrors.tuna.tsinghua.edu.cn,pypi.tuna.tsinghua.edu.cn,hf-mirror.com,${local_ips},${ray_ips}"
+  export RELAX_NO_PROXY="127.0.0.1,localhost,0.0.0.0,10.0.0.0/8,172.16.0.0/12,your-org.example,*.devopsyour-org.example,mirrors.tuna.tsinghua.edu.cn,pypi.tuna.tsinghua.edu.cn,hf-mirror.com,${local_ips},${ray_ips}"
   export NO_PROXY="${RELAX_NO_PROXY}"
   export no_proxy="${NO_PROXY}"
 }
@@ -512,18 +510,13 @@ rl_init_run_dir() {
 rl_prepare_relax_entrypoint() {
   cd "${ROOT}/Relax"
   "${PYTHON_BIN}" "${ROOT}/ops/launch/patch_ray_serve_controller_pin.py"
-  export MEGATRON="${MEGATRON:-${ROOT}/Relax/deps/Megatron-LM}"
-  export PYTHONPATH="${ROOT}/Relax:${MEGATRON}:${ROOT}/GeneralAgent/eval_scripts:${PYTHONPATH:-}"
-  # Optional egress proxy for driver-side downloads. Leave unset for direct
-  # networking; set http_proxy (and UNIFIED_CONTAINER_PROXY for rollout
-  # containers) in your environment when your cluster requires one.
-  if [[ -n "${http_proxy:-}" ]]; then
-    export https_proxy="${https_proxy:-${http_proxy}}"
-    export HTTP_PROXY="${HTTP_PROXY:-${http_proxy}}"
-    export HTTPS_PROXY="${HTTPS_PROXY:-${https_proxy}}"
-    export ALL_PROXY="${ALL_PROXY:-${http_proxy}}"
-    export all_proxy="${all_proxy:-${ALL_PROXY}}"
-  fi
+  export PYTHONPATH="${ROOT}/Relax:/root/Megatron-LM:${ROOT}/GeneralAgent/eval_scripts:${PYTHONPATH:-}"
+  export http_proxy="${http_proxy:-http://<proxy-host>:3128}"
+  export https_proxy="${https_proxy:-http://<proxy-host>:3128}"
+  export HTTP_PROXY="${HTTP_PROXY:-${http_proxy}}"
+  export HTTPS_PROXY="${HTTPS_PROXY:-${https_proxy}}"
+  export ALL_PROXY="${ALL_PROXY:-${http_proxy}}"
+  export all_proxy="${all_proxy:-${ALL_PROXY}}"
   # shellcheck source=/dev/null
   source scripts/entrypoint/ray-job.sh
   set +x
@@ -548,6 +541,27 @@ rl_record_finish() {
     --experiment-id "${EXPERIMENT_ID}" --experiment-dir "${EXPERIMENT_DIR}" \
     --segment-id "${RUN_NAME}" --run-dir "${RUN_DIR}" --return-code "${rc}"
   RL_MANIFEST_FINALIZED=1
+}
+
+rl_verify_training_completion() {
+  local expected latest marker iter_dir
+  expected=$((NUM_ROLLOUT - 1))
+  marker="${CHECKPOINT_DIR}/latest_checkpointed_iteration.txt"
+  if [[ ! -f "${marker}" ]]; then
+    echo "FATAL: training returned success without final checkpoint marker: ${marker}" >&2
+    return 70
+  fi
+  latest=$(tr -d '[:space:]' <"${marker}")
+  if [[ "${latest}" != "${expected}" ]]; then
+    echo "FATAL: training returned success before completion: checkpoint=${latest:-missing} expected=${expected}" >&2
+    return 70
+  fi
+  printf -v iter_dir '%s/iter_%07d' "${CHECKPOINT_DIR}" "${expected}"
+  if [[ ! -f "${iter_dir}/.metadata" || ! -f "${iter_dir}/.relax_complete.json" ]]; then
+    echo "FATAL: final checkpoint is incomplete despite success return: ${iter_dir}" >&2
+    return 70
+  fi
+  echo "COMPLETION CONTRACT OK: final checkpoint iter=${expected} dir=${iter_dir}"
 }
 
 rl_launch_training() {

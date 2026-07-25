@@ -1,0 +1,54 @@
+### model
+model_name_or_path: /path/to/skillRL/GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger
+trust_remote_code: true
+flash_attn: auto
+disable_gradient_checkpointing: false
+use_reentrant_gc: true
+enable_liger_kernel: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target: all
+deepspeed: /path/to/skillRL/GeneralAgent/third_party/LLaMA-Factory/examples/deepspeed/ds_z3_config.json
+
+### dataset
+dataset: skillgate_gold_selector_bc_20260721
+dataset_dir: /path/to/skillRL/GeneralAgent/sft_training/llamafactory_data/20260721_selection_bc
+template: qwen3_5_nothink
+cutoff_len: 24576
+train_on_prompt: false
+mask_history: false
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+
+### output
+output_dir: /path/to/skillRL/experiments/rl/runs/goldbc-selection-sft9b-20260721/segments/20260721-initial/checkpoints
+logging_steps: 1
+save_strategy: epoch
+save_total_limit: 3
+plot_loss: false
+overwrite_output_dir: false
+save_only_model: false
+report_to: none
+
+### train
+# 8 GPUs x micro=1 x GA=2 gives the same effective batch 16 as the SFT9B campaign.
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 1.0e-4
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+val_size: 0.0

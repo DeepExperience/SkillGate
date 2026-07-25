@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+CLAW_TASKS_DIR = PROJECT_ROOT / "datasets/claw-eval/tasks"
 SFT_COLLECTION_DIR = PROJECT_ROOT / "GeneralAgent" / "sft_data_collection"
 if str(SFT_COLLECTION_DIR) not in sys.path:
     sys.path.insert(0, str(SFT_COLLECTION_DIR))
@@ -100,26 +101,51 @@ def apply_task_limit(tasks: list[dict[str, str]], limit: int) -> list[dict[str, 
     return selected
 
 
-def load_task_list(path_value: str | Path) -> set[tuple[str, str]]:
-    """Parse a `bench\\ttask_id` TSV (failed_tasks.tsv format) into a key set."""
-    keys: set[tuple[str, str]] = set()
-    for line in repo_path(path_value).read_text(encoding="utf-8").splitlines():
+def load_task_list(path_value: str | Path) -> dict[tuple[str, str], int | None]:
+    """Parse `bench\\ttask_id[\\trepeats]` rows into task repeat overrides."""
+    tasks: dict[tuple[str, str], int | None] = {}
+    for line_number, line in enumerate(
+        repo_path(path_value).read_text(encoding="utf-8").splitlines(), start=1
+    ):
         line = line.strip()
-        if not line:
+        if not line or line.startswith("#"):
             continue
-        bench, task_id = line.split("\t", 1)
-        keys.add((bench.strip(), task_id.strip()))
-    return keys
+        parts = [part.strip() for part in line.split("\t")]
+        if len(parts) not in {2, 3} or not all(parts):
+            raise ValueError(
+                f"invalid task-list row {line_number}: expected "
+                "bench<TAB>task_id[<TAB>repeats]"
+            )
+        bench, task_id = parts[:2]
+        repeats = None
+        if len(parts) == 3:
+            try:
+                repeats = int(parts[2])
+            except ValueError as exc:
+                raise ValueError(
+                    f"invalid task-list repeats on row {line_number}: {parts[2]!r}"
+                ) from exc
+            if repeats <= 0:
+                raise ValueError(
+                    f"task-list repeats must be positive on row {line_number}: {repeats}"
+                )
+        key = (bench, task_id)
+        if key in tasks:
+            raise ValueError(f"duplicate task-list row {line_number}: {key}")
+        tasks[key] = repeats
+    return tasks
 
 
-def load_tasks(args: argparse.Namespace) -> list[dict[str, str]]:
+def load_tasks(args: argparse.Namespace) -> list[dict[str, Any]]:
     tasks = load_task_universe(repo_path(args.train_parquet), repo_path(args.eval_parquet))
     allowed: set[tuple[str, str]] | None = None
+    task_repeat_overrides: dict[tuple[str, str], int | None] = {}
     if getattr(args, "task_list", ""):
-        allowed = load_task_list(args.task_list)
+        task_repeat_overrides = load_task_list(args.task_list)
+        allowed = set(task_repeat_overrides)
         if not allowed:
             raise SystemExit(f"--task-list {args.task_list} parsed to 0 tasks")
-    deduped: list[dict[str, str]] = []
+    deduped: list[dict[str, Any]] = []
     seen: set[tuple[str, str]] = set()
     for task in tasks:
         bench = task["bench"]
@@ -134,8 +160,32 @@ def load_tasks(args: argparse.Namespace) -> list[dict[str, str]]:
         if key in seen:
             continue
         seen.add(key)
-        deduped.append(task)
+        selected_task = dict(task)
+        override = task_repeat_overrides.get(key)
+        if override is not None:
+            selected_task["_eval_trials"] = override
+        deduped.append(selected_task)
     if allowed is not None:
+        # The historical RL parquets cover only the earlier Claw task subset.
+        # An explicit task list may select newer filesystem-backed Claw tasks;
+        # these use the same unified Claw runner and do not need a parquet row.
+        for bench, task_id in sorted(allowed - seen):
+            if bench != "claw":
+                continue
+            if task_id not in filter_known_bad_tasks(bench, [task_id]):
+                continue
+            if not (CLAW_TASKS_DIR / task_id / "task.yaml").is_file():
+                continue
+            selected_task: dict[str, Any] = {
+                "bench": bench,
+                "task_id": task_id,
+                "split": "task_list",
+            }
+            override = task_repeat_overrides.get((bench, task_id))
+            if override is not None:
+                selected_task["_eval_trials"] = override
+            deduped.append(selected_task)
+            seen.add((bench, task_id))
         missing = allowed - seen
         if missing:
             print(f"[make-plan] warning: {len(missing)} task-list entries not in universe: "
@@ -184,7 +234,7 @@ def extract_task_prompt(prompt: Any) -> str:
 
 def build_plan_records(
     *,
-    tasks: list[dict[str, str]],
+    tasks: list[dict[str, Any]],
     run_id: str,
     date: str,
     model: str,
@@ -214,7 +264,8 @@ def build_plan_records(
         if arm == "retrieval":
             retrieval_jsonl = (retrieval_jsonl_by_bench or {}).get(bench)
             retrieval_covered = bool(retrieval_jsonl and task_id in retrieval_coverage.get(bench, set()))
-        for trial_index in range(trials):
+        task_trials = int(task.get("_eval_trials", trials))
+        for trial_index in range(task_trials):
             record = make_record(
                 run_id=run_id,
                 date=date,
@@ -290,6 +341,9 @@ def cmd_make_plan(args: argparse.Namespace) -> None:
             "arm": args.arm,
             "records": len(records),
             "trials": args.trials,
+            "task_repeat_schedule": dict(sorted(Counter(
+                int(task.get("_eval_trials", args.trials)) for task in tasks
+            ).items())),
             "task_count": len(tasks),
             "counts": {f"{split}/{bench}": count for (split, bench), count in sorted(counts.items())},
             "retrieval_root": display_path(args.retrieval_root) if args.retrieval_root else "",
@@ -815,10 +869,15 @@ def add_common_task_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--eval-parquet", default=DEFAULT_EVAL_PARQUET)
     parser.add_argument("--bench", action="append", choices=BENCHES)
     parser.add_argument("--task-limit", type=int, default=0)
-    parser.add_argument("--task-list", default="",
-                        help="Optional TSV of `bench\\ttask_id` lines (same format as "
-                             "failed_tasks.tsv). When set, restrict the plan to exactly "
-                             "these tasks — e.g. a hard subset that needs more rollouts.")
+    parser.add_argument(
+        "--task-list",
+        default="",
+        help=(
+            "Optional TSV of `bench\\ttask_id[\\trepeats]` lines. When set, "
+            "restrict the plan to exactly these tasks; the optional third column "
+            "overrides --trials for that task."
+        ),
+    )
 
 
 def main() -> None:

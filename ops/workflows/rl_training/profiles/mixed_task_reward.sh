@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# V8-production mixed-skill control: ordinary GRPO on verifier task reward only.
+# Mixed-skill control: ordinary GRPO on verifier task reward only.  The
+# historical V8-production dataset remains the default.  Point DATA_DIR at the
+# frozen FINAL Hybrid-train/V8-fixed4-eval directory to run the paper-final data
+# protocol; that branch is accepted only when both frozen parquet hashes match.
 
 rl_profile_configure() {
   export RL_PROFILE=mixed_task_reward
@@ -51,6 +54,46 @@ rl_profile_configure() {
 }
 
 rl_profile_prepare() {
+  local final_data_dir="${ROOT}/datasets/rl/parquet_4bench_final_hybridtrain_v8prodfixed4eval_20260720"
+  if [[ "${DATA_DIR}" == "${final_data_dir}" ]]; then
+    local train="${DATA_DIR}/train.parquet" evaluation="${DATA_DIR}/eval.parquet"
+    local expected_train="6dd2350879c6337fc0304f6ea08973ee9d8697ed6a72c70467aab9ae41f30732"
+    local expected_eval="4d6ebedecc0c9d730f0c6800d68a674b1fe7699978f06e13170ab766de346b35"
+    [[ -f "${train}" && -f "${evaluation}" ]] || {
+      echo "FATAL: FINAL train/eval parquet missing: ${DATA_DIR}" >&2
+      return 2
+    }
+    [[ "$(sha256sum "${train}" | awk '{print $1}')" == "${expected_train}" ]] || {
+      echo "FATAL: FINAL train parquet hash drifted: ${train}" >&2
+      return 2
+    }
+    [[ "$(sha256sum "${evaluation}" | awk '{print $1}')" == "${expected_eval}" ]] || {
+      echo "FATAL: FINAL eval parquet hash drifted: ${evaluation}" >&2
+      return 2
+    }
+    "${PYTHON_BIN:-python3}" - "${train}" "${evaluation}" <<'PY'
+import sys
+import pandas as pd
+
+for path, expected in ((sys.argv[1], 491), (sys.argv[2], 56)):
+    frame = pd.read_parquet(path, columns=["prompt", "reward_model", "extra_info"])
+    keys = {
+        (str(row["reward_model"]["bench"]), str(row["reward_model"]["task_id"]))
+        for _, row in frame.iterrows()
+    }
+    assert len(frame) == len(keys) == expected, (path, len(frame), len(keys))
+    assert all(float(extra["slate_contains_gold"]) == 1 for extra in frame["extra_info"]), path
+    assert all(int(extra["slate_size"]) == 16 for extra in frame["extra_info"]), path
+    assert all(len(extra["retrieval_skills_top_n"]) == 16 for extra in frame["extra_info"]), path
+    assert all(
+        sum(str(message.get("content", "")).count("<skill>") for message in prompt) == 16
+        for prompt in frame["prompt"]
+    ), path
+print("PROFILE_DATA_OK mixed_task_reward FINAL train=491 Hybrid eval=56 V8-fixed4 slate16 all_gold frozen_hashes")
+PY
+    return
+  fi
+
   local builder="${ROOT}/ops/workflows/rl_data_prep/make_4bench_mixed_skill_bonus_compare_parquet.py"
   local -a args=(
     --output-dir "${DATA_DIR}"

@@ -109,17 +109,21 @@ def owner_pid_is_alive(name: str) -> bool:
 
 
 def cleanup_once(args: argparse.Namespace) -> int:
-    if args.run_dir:
-        run_dir = Path(args.run_dir)
+    if args.cutoff_utc:
+        cutoff = dt.datetime.fromisoformat(args.cutoff_utc.replace("Z", "+00:00")).astimezone(CST)
+        step: int | str = "explicit-cutoff"
     else:
-        pointer = Path(args.run_pointer)
-        if not pointer.exists():
-            raise RuntimeError(f"run pointer not found: {pointer}")
-        run_dir = Path(pointer.read_text().strip())
-    if not run_dir.exists():
-        raise RuntimeError(f"run dir not found: {run_dir}")
-    step, step_start = current_step_start(run_dir)
-    cutoff = step_start - dt.timedelta(seconds=args.grace_sec)
+        if args.run_dir:
+            run_dir = Path(args.run_dir)
+        else:
+            pointer = Path(args.run_pointer)
+            if not pointer.exists():
+                raise RuntimeError(f"run pointer not found: {pointer}")
+            run_dir = Path(pointer.read_text().strip())
+        if not run_dir.exists():
+            raise RuntimeError(f"run dir not found: {run_dir}")
+        step, step_start = current_step_start(run_dir)
+        cutoff = step_start - dt.timedelta(seconds=args.grace_sec)
     scanned = 0
     stale: list[tuple[str, str, str, str]] = []
 
@@ -173,6 +177,14 @@ def main() -> int:
         default="experiments/rl/current/latest.txt",
     )
     parser.add_argument("--run-dir", default="")
+    parser.add_argument(
+        "--cutoff-utc",
+        default="",
+        help=(
+            "explicit ISO-8601 cutoff for interrupted eval cleanup; skips the RL driver-log lookup "
+            "and removes only dead-owner containers with the selected prefix created before it"
+        ),
+    )
     parser.add_argument("--prefix", default="claw-sb-")
     parser.add_argument("--grace-sec", type=int, default=30)
     parser.add_argument("--rm-timeout-sec", type=int, default=25)

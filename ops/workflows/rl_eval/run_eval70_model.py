@@ -45,6 +45,7 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -58,7 +59,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-ROOT = Path(os.environ.get("ROOT", Path(__file__).resolve().parents[3])).resolve()
+ROOT = Path("/path/to/skillRL")
 DEFAULT_TASK_LIST = ROOT / "ops/workflows/rl_eval/specs/eval70_v1/tasks.tsv"
 DEFAULT_ORACLE_SNAPSHOT = ROOT / "skill_libraries/snapshots/rl/eval70_oracle_selfread_20260612"
 DEFAULT_SOURCE_PLAN = ROOT / "ops/workflows/rl_eval/specs/eval70_v1/source_plan_retrieval.jsonl"
@@ -98,8 +99,11 @@ def abs_path(path: str | Path) -> Path:
 
 
 def safe_name(value: str, max_len: int = 80) -> str:
-    text = re.sub(r"[^A-Za-z0-9_.-]+", "-", value).strip("-_.")
-    return (text or "eval70")[:max_len]
+    text = re.sub(r"[^A-Za-z0-9_.-]+", "-", value).strip("-_.") or "eval70"
+    if len(text) <= max_len:
+        return text
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()[:8]
+    return f"{text[: max_len - len(digest) - 1]}-{digest}"
 
 
 def run(
@@ -216,6 +220,7 @@ def patch_plan_env(args: argparse.Namespace, plan: Path, api_base: str) -> None:
         env["UNIFIED_TOOLS_SCHEMA_MODE"] = args.tools_schema
         env["UNIFIED_OPENCLAW_PROFILE"] = args.prompt_profile
         env["UNIFIED_PROMPT_PROFILE"] = args.prompt_profile
+        env["UNIFIED_SKILL_SELECTION_INSTRUCTION"] = args.skill_selection_instruction
         env["AGENT_BENCH_DOCKER_START_CONCURRENCY"] = str(args.docker_start_cap)
         env["DOCKER_START_CAP"] = str(args.docker_start_cap)
         env["DOCKER_HOST"] = args.docker_host
@@ -422,7 +427,7 @@ def start_local_serving(args: argparse.Namespace) -> None:
         session = f"eval70-{prefix}-router"
         log = args.run_root / "logs" / "sglang" / "router.log"
         body = (
-            f"source {os.environ.get('SKILLRL_CONDA_ROOT', os.path.expanduser('~/anaconda3'))}/etc/profile.d/conda.sh; "
+            "source /path/to/conda/etc/profile.d/conda.sh; "
             "conda activate slime; "
             f"cd {q(ROOT)}; "
             f"export NO_PROXY={q(args.no_proxy)} no_proxy={q(args.no_proxy)}; "
@@ -519,8 +524,7 @@ def run_eval(args: argparse.Namespace, plan: Path, api_base: str) -> None:
     (args.run_root / "reports").mkdir(parents=True, exist_ok=True)
     log = args.run_root / "logs" / "eval.log"
     env_exports = {
-        "PATH": os.environ.get("SKILLRL_CONDA_ROOT", os.path.expanduser("~/anaconda3"))
-        + "/envs/slime/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PATH": "/path/to/conda/envs/slime/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         "EXPERIMENT_ROOT": rel(args.run_root),
         "RUN_INTENT": args.intent,
         "DOCKER_HOST": args.docker_host,
@@ -643,6 +647,11 @@ def main() -> None:
     parser.add_argument("--served-name", default="", help="Served model id; required unless --tables-only")
     parser.add_argument("--tools-schema", choices=["manual_schema", "openai_tools"], default="manual_schema")
     parser.add_argument("--prompt-profile", default="openclaw_full")
+    parser.add_argument(
+        "--skill-selection-instruction",
+        default="",
+        help="Optional instruction appended after the available-skills block. Empty preserves the existing prompt.",
+    )
     parser.add_argument("--serve-mode", choices=["local", "existing"], default="local")
     parser.add_argument("--engine", type=parse_engine, action="append", default=None,
                         help="Local engine as GPUS:PORT. Repeat for multiple local engines. "
@@ -663,7 +672,7 @@ def main() -> None:
     parser.add_argument("--docker-host", default=DEFAULT_DOCKER_HOST)
     parser.add_argument("--docker-start-cap", type=int, default=128)
     parser.add_argument("--min-images", type=int, default=500)
-    parser.add_argument("--container-proxy", default="http://your-proxy:3128")
+    parser.add_argument("--container-proxy", default="http://<proxy-host>:3128")
     parser.add_argument("--no-proxy", default="127.0.0.1,localhost,0.0.0.0")
     parser.add_argument("--cpuset", default="24-179")
     parser.add_argument("--pids-limit", type=int, default=1024)
@@ -718,6 +727,19 @@ def main() -> None:
         )
     if not args.run_root.is_absolute():
         args.run_root = ROOT / args.run_root
+    # Plan construction imports the shared experiment path resolver in a child
+    # process. Anchor that child to this explicit row root instead of relying on
+    # ambient owner/eval variables from the parent workflow.
+    os.environ["EXPERIMENT_ROOT"] = rel(args.run_root)
+    if args.owner_experiment or args.eval_id or args.row_id:
+        if not (args.owner_experiment and args.eval_id and args.row_id):
+            raise SystemExit(
+                "evaluation ownership must provide all of "
+                "--owner-experiment/--eval-id/--row-id"
+            )
+        os.environ["OWNER_EXPERIMENT_ID"] = args.owner_experiment
+        os.environ["EVAL_ID"] = args.eval_id
+        os.environ["EVAL_ROW_ID"] = args.row_id
     if not args.tables_only and not args.served_name:
         raise SystemExit("--served-name is required unless --tables-only")
     api_base = determine_api_base(args)

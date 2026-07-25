@@ -3,8 +3,7 @@
 # segments, model exports, and evals under experiments/rl/runs/EXPERIMENT_ID.
 set -Eeuo pipefail
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${ROOT:-$(cd "${SCRIPT_DIR}/../../.." && pwd)}"
+ROOT="${ROOT:-/path/to/skillRL}"
 export ROOT
 cd "${ROOT}"
 
@@ -18,6 +17,7 @@ Profiles:
   mixed_task_reward 16 mixed skills; standard task-reward-only GRPO control.
   mixed_separated  16 mixed skills; separate outcome-stratified selector advantage.
   selector_action_credit 16 mixed skills; token-local oracle-vs-distractor selector credit.
+  selector_clean_oracle_action_credit 16 V8-production skills; exactly-one-oracle-read token-local selector credit.
   hybrid_slate     Paired no-skill/mixed hybrid slate regret + stratified advantage.
 
 For a first launch, EXPERIMENT_ID and RUN_NAME are generated automatically.
@@ -60,18 +60,13 @@ if declare -F rl_profile_validate_algorithm >/dev/null; then
   rl_profile_validate_algorithm
 fi
 rl_validate_common_config
+rl_resolve_nodes
 
 if [[ "${DRY_RUN:-0}" == "1" ]]; then
-  # Dry-run validates the profile, algorithm flags, data, and model wiring
-  # without requiring a live multi-node Ray cluster. Topology resolution
-  # (rl_resolve_nodes) still runs on real launches below.
-  echo "DRY_RUN: skipping Ray topology resolution (rl_resolve_nodes)"
   rl_dump_resolved_config
   echo "DRY_RUN_OK profile=${RL_PROFILE}; direct delegate=Relax/examples/agent_bench/run_agent_grpo_9B.sh"
   exit 0
 fi
-
-rl_resolve_nodes
 
 rl_load_wandb_credentials
 rl_init_run_dir
@@ -102,6 +97,13 @@ rl_start_guards
 set +e
 rl_launch_training
 rc=$?
+if (( rc == 0 )); then
+  rl_verify_training_completion
+  completion_rc=$?
+  if (( completion_rc != 0 )); then
+    rc=${completion_rc}
+  fi
+fi
 set -e
 rl_record_finish "${rc}"
 exit "${rc}"

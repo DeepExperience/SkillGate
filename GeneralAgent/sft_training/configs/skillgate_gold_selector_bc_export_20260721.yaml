@@ -1,0 +1,10 @@
+model_name_or_path: /path/to/skillRL/GeneralAgent/sft_training/merged_models/qwen35_9b_sft_campaign_20260512_clean_plus_claw_thinkwrap_4gpu_49k_5epoch_r32_liger
+adapter_name_or_path: /path/to/skillRL/experiments/rl/runs/goldbc-selection-sft9b-20260721/segments/20260721-initial/checkpoints
+template: qwen3_5_nothink
+finetuning_type: lora
+trust_remote_code: true
+
+export_dir: /path/to/skillRL/experiments/rl/runs/goldbc-selection-sft9b-20260721/model/exports/bc-lora-merged
+export_size: 5
+export_device: auto
+export_legacy_format: false

@@ -24,13 +24,22 @@ Method implementation (all paths are in this repository):
 
 | Piece | File |
 |---|---|
+| **Clean-oracle utility + reward post-processing (the final method)** | `Relax/examples/agent_bench/selector_clean_oracle_action_credit.py` |
 | Selection-span detection + token-local selector advantage | `Relax/examples/agent_bench/selector_action_credit.py` |
 | Custom GRPO loss combining task + selector credit streams | `Relax/examples/agent_bench/selector_action_grpo_loss.py` |
-| Training profile (env knobs, data, gating) | `ops/workflows/rl_training/profiles/selector_action_credit.sh` |
-| CPU smoke test of the credit math | `ops/workflows/rl_training/tools/smoke_selector_action_credit.py` |
+| **Training profile of the final method** | `ops/workflows/rl_training/profiles/selector_clean_oracle_action_credit.sh` |
+| Training profile of the earlier non-clean variant | `ops/workflows/rl_training/profiles/selector_action_credit.sh` |
+| CPU smoke test of the credit math | `ops/workflows/rl_training/tools/smoke_selector_clean_oracle_action_credit.py` |
 
 Key env knobs: `RELAX_SELECTOR_ACTION_CREDIT=1`,
 `RELAX_SELECTOR_ACTION_LOSS_COEF` (see the profile for the full set).
+
+**Which variant is the paper's method.** The final SkillGate results use the
+*clean-oracle* utility: a read action earns positive utility only when the whole
+trajectory contains exactly one attributed skill read *and* that read is the
+oracle. An earlier variant credited the first oracle read even when the agent
+kept reading other skills; it is retained as `selector_action_credit` and reported
+as an ablation, not as the method.
 
 ## Repository map
 
@@ -126,7 +135,23 @@ Maintained profiles (all share the same 4-benchmark GRPO base recipe):
 | `mixed_task_reward` | 16-skill mixed slate, outcome-only reward (control) |
 | `mixed_separated` | outcome-stratified separated behavior advantage (ablation) |
 | `hybrid_slate` | paired regret + stratified behavior advantage (ablation) |
-| `selector_action_credit` | **SkillGate** — token-local selector credit (main method) |
+| `selector_action_credit` | non-clean token-local selector credit (ablation) |
+| `selector_clean_oracle_masked_task_only` | task mask only, selector coefficient exactly 0 (ablation) |
+| **`selector_clean_oracle_action_credit`** | **SkillGate — clean-oracle token-local selector credit (main method)** |
+
+Two supervised selection baselines share the same direct-SFT9B init and are built
+by `GeneralAgent/rl_data_prep/build_selector_bc_dpo_data.py`, then trained through
+`ops/workflows/sft_training/run_skillgate_selection_baseline.sh`:
+
+| Baseline | What it learns |
+|---|---|
+| Gold Selector BC | teacher-forces the first-turn `read(gold)` on the training tasks; no negative candidates, no outcome signal |
+| SelSkill-style DPO | `read(gold) > read(misleading)` preference pairs (each gold paired with 5 misleading); a documented adaptation of [SelSkill](https://arxiv.org/abs/2606.00510) to a 16-way slate, not a reproduction of its entropy-branching pipeline |
+
+Evaluation beyond the frozen eval70 protocol: `ops/workflows/rl_eval/build_eval_claw_147_slate.py`
+builds the independent, corrected 147-task Claw slate, and
+`ops/workflows/rl_eval/build_skillgate_paper_analysis.py` rebuilds every reported
+table and figure from the raw evaluation artifacts.
 
 Init-model note: the SkillGate profile defaults to a mid-training export of an
 oracle-GRPO warmup run (`experiments/rl/runs/.../model/exports/...`, manifest

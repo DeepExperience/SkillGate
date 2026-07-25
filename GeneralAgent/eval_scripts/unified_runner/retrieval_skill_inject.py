@@ -44,7 +44,7 @@ from unified_runner.openclaw_compat import (
     format_skills_for_openclaw,
 )
 
-SKILL_LIB_ROOT = Path(os.environ.get("SKILLRL_ROOT", str(Path(__file__).resolve().parents[3]))) / "skill_libraries/merged"
+SKILL_LIB_ROOT = Path("/path/to/skillRL/skill_libraries/merged")
 
 # Agent skill paths, mirrors SkillsBench Dockerfile COPY pattern.
 AGENT_SKILL_DIRS = [
@@ -332,7 +332,7 @@ def inject_retrieval_skills(
         remote_stage = "/tmp/retrieval-skills"
         quoted_dirs = " ".join(shlex.quote(d) for d in AGENT_SKILL_DIRS)
         # 2026-04-26: bumped 60→120s to match the other inject steps. Under
-        # remote dockerd contention from concurrent workloads, a 60s ceiling
+        # your-docker-host dockerd contention from concurrent workloads, a 60s ceiling
         # was tight enough to occasionally fail; 120s covers the same worst-
         # case as the cp/fan-out steps below.
         _, stderr, rc = run_retry(
@@ -426,7 +426,18 @@ def build_retrieval_prompt_hint(
                 location=f"/root/.claude/skills/{name}/SKILL.md",
             )
         )
-    return format_skills_for_openclaw(entries)
+    hint = format_skills_for_openclaw(entries)
+    selection_instruction = os.environ.get("UNIFIED_SKILL_SELECTION_INSTRUCTION", "").strip()
+    if not selection_instruction:
+        return hint
+    return "\n".join(
+        [
+            hint,
+            "<skill_selection_instruction>",
+            selection_instruction,
+            "</skill_selection_instruction>",
+        ]
+    )
 
 
 def build_top1_skill_text_prompt(
@@ -489,7 +500,7 @@ def inject_retrieval_skills_host(
 ) -> int:
     """Host-mode variant: shutil.copytree into workdir/.claude/skills/<name>.
 
-    Used by run_unified_claw.py when agent runs on the host (not in container).
+    Used by run_unified_claw.py when agent runs on tidalfs (not in container).
     """
     import shutil
     skills = mapping.get(task_id, [])

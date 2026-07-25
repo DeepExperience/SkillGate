@@ -4,9 +4,7 @@
 # cross-model report and small orchestration state.
 set -Eeuo pipefail
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${ROOT:-$(cd "${SCRIPT_DIR}/../../.." && pwd)}"
-export ROOT
+ROOT="${ROOT:-/path/to/skillRL}"
 cd "${ROOT}"
 
 usage() {
@@ -23,9 +21,24 @@ Core options:
   --snapshot DIR                               Required for mixed/retrieve
   --manifest JSONL                             Enables oracle/misleading/read tables
   --eval-id ID                                  Optional explicit protocol id
-  --task-list TSV                               Default: canonical eval70_v1 split
+  --eval-spec-id ID                             Default: eval70_v1
+  --task-list TSV                               Default: canonical eval70_v1 split;
+                                                optional third column overrides
+                                                repeats for an individual task
   --report PATH                                Default: z_cc_terminal_imgs/NAME_results.md
   --report-style full|main-only                Default: full
+  --skill-selection-instruction TEXT           Optional prompt-only selector baseline;
+                                                empty preserves the existing prompt
+  --parallel-two-rows                          Exactly two rows; serve row 1 on two
+                                                local TP4 engines and row 2 on two
+                                                remote TP4 engines, then evaluate
+                                                both rows concurrently
+  --local-only                                Use one 8-GPU node. Sequential rows get
+                                                two local TP4 replicas; with
+                                                --parallel-two-rows each row gets one
+                                                local TP4 engine on disjoint GPUs
+  --fingerprint-referenced-skills             Include every SKILL.md referenced by the
+                                                manifest in the protocol fingerprint
   --dry-run
 
 The default topology is two local TP4 engines plus two TP4 engines on the other
@@ -36,6 +49,7 @@ EOF
 
 GROUP=""
 EVAL_ID="${EVAL_ID:-}"
+EVAL_SPEC_ID="${EVAL_SPEC_ID:-eval70_v1}"
 SKILL_MODE="${SKILL_MODE:-mixed}"
 SNAPSHOT="${SNAPSHOT:-}"
 MANIFEST="${MANIFEST:-}"
@@ -53,11 +67,16 @@ EVAL_TIMEOUT_SEC="${EVAL_TIMEOUT_SEC:-43200}"
 GPU_IDLE_MEM_MB="${GPU_IDLE_MEM_MB:-5000}"
 CHECKPOINT_WAIT_SEC="${CHECKPOINT_WAIT_SEC:-120}"
 DRY_RUN="${DRY_RUN:-0}"
+PARALLEL_TWO_ROWS="${PARALLEL_TWO_ROWS:-0}"
+LOCAL_ONLY="${LOCAL_ONLY:-0}"
+FINGERPRINT_REFERENCED_SKILLS="${FINGERPRINT_REFERENCED_SKILLS:-0}"
+PARALLEL_DOCKER_START_CAP="${PARALLEL_DOCKER_START_CAP:-64}"
 TASK_LIST="${TASK_LIST:-${ROOT}/ops/workflows/rl_eval/specs/eval70_v1/tasks.tsv}"
 TRAIN_PARQUET="${TRAIN_PARQUET:-${ROOT}/datasets/rl/parquet_4bench_base_20260523/train.parquet}"
 EVAL_PARQUET="${EVAL_PARQUET:-${ROOT}/datasets/rl/parquet_4bench_base_20260523/eval.parquet}"
 TOOLS_SCHEMA="${TOOLS_SCHEMA:-manual_schema}"
 PROMPT_PROFILE="${PROMPT_PROFILE:-openclaw_full}"
+SKILL_SELECTION_INSTRUCTION="${SKILL_SELECTION_INSTRUCTION:-}"
 
 declare -a ROW_KIND=() ROW_OWNER=() ROW_LABEL=() ROW_PATH=() ROW_ITER=() ROW_ROLE=()
 
@@ -65,6 +84,7 @@ while (($#)); do
   case "$1" in
     --group) GROUP="$2"; shift 2 ;;
     --eval-id) EVAL_ID="$2"; shift 2 ;;
+    --eval-spec-id) EVAL_SPEC_ID="$2"; shift 2 ;;
     --skill-mode) SKILL_MODE="$2"; shift 2 ;;
     --snapshot) SNAPSHOT="$2"; shift 2 ;;
     --manifest) MANIFEST="$2"; shift 2 ;;
@@ -73,8 +93,12 @@ while (($#)); do
     --eval-parquet) EVAL_PARQUET="$2"; shift 2 ;;
     --tools-schema) TOOLS_SCHEMA="$2"; shift 2 ;;
     --prompt-profile) PROMPT_PROFILE="$2"; shift 2 ;;
+    --skill-selection-instruction) SKILL_SELECTION_INSTRUCTION="$2"; shift 2 ;;
     --report) REPORT="$2"; shift 2 ;;
     --report-style) REPORT_STYLE="$2"; shift 2 ;;
+    --parallel-two-rows) PARALLEL_TWO_ROWS=1; shift ;;
+    --local-only) LOCAL_ONLY=1; shift ;;
+    --fingerprint-referenced-skills) FINGERPRINT_REFERENCED_SKILLS=1; shift ;;
     --remote-node) REMOTE_NODE="$2"; shift 2 ;;
     --workers) WORKERS="$2"; shift 2 ;;
     --repeats) REPEATS="$2"; shift 2 ;;
@@ -103,9 +127,16 @@ while (($#)); do
 done
 
 [[ -n "${GROUP}" ]] || { echo "FATAL: --group is required" >&2; exit 2; }
+[[ "${EVAL_SPEC_ID}" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,159}$ ]] || {
+  echo "FATAL: unsafe eval spec id: ${EVAL_SPEC_ID}" >&2; exit 2;
+}
 ((${#ROW_KIND[@]} > 0)) || { echo "FATAL: at least one --model or --checkpoint row is required" >&2; exit 2; }
 case "${SKILL_MODE}" in mixed|noskill|oracle|retrieve) ;; *) echo "FATAL: invalid --skill-mode ${SKILL_MODE}" >&2; exit 2 ;; esac
 case "${REPORT_STYLE}" in full|main-only) ;; *) echo "FATAL: invalid --report-style ${REPORT_STYLE}" >&2; exit 2 ;; esac
+if [[ "${PARALLEL_TWO_ROWS}" == 1 ]] && ((${#ROW_KIND[@]} != 2)); then
+  echo "FATAL: --parallel-two-rows requires exactly two model rows" >&2
+  exit 2
+fi
 if [[ "${SKILL_MODE}" == mixed || "${SKILL_MODE}" == retrieve ]]; then
   [[ -n "${SNAPSHOT}" && -d "${SNAPSHOT}" ]] || { echo "FATAL: --snapshot directory is required for ${SKILL_MODE}" >&2; exit 2; }
 fi
@@ -113,6 +144,41 @@ if [[ -n "${MANIFEST}" ]]; then
   [[ -f "${MANIFEST}" ]] || { echo "FATAL: manifest missing: ${MANIFEST}" >&2; exit 2; }
 fi
 [[ -f "${TASK_LIST}" ]] || { echo "FATAL: task list missing: ${TASK_LIST}" >&2; exit 2; }
+mapfile -t EVAL_TASK_STATS < <(python3 - "${TASK_LIST}" "${REPEATS}" <<'PY'
+import sys
+from collections import Counter
+from pathlib import Path
+
+rows = []
+default_repeats = int(sys.argv[2])
+for raw in Path(sys.argv[1]).read_text(encoding="utf-8").splitlines():
+    raw = raw.strip()
+    if not raw or raw.startswith("#"):
+        continue
+    parts = [part.strip() for part in raw.split("\t")]
+    if len(parts) not in {2, 3} or not all(parts):
+        raise SystemExit(f"invalid task-list row: {raw!r}")
+    repeats = default_repeats if len(parts) == 2 else int(parts[2])
+    if repeats <= 0:
+        raise SystemExit(f"task-list repeats must be positive: {raw!r}")
+    rows.append((parts[0], parts[1], repeats))
+if not rows:
+    raise SystemExit("task list is empty")
+if len(rows) != len({(bench, task) for bench, task, _repeats in rows}):
+    raise SystemExit("task list contains duplicate bench/task rows")
+print(len(rows))
+print(sum(repeats for _bench, _task, repeats in rows))
+schedule = Counter(repeats for _bench, _task, repeats in rows)
+print(",".join(f"{repeats}x{schedule[repeats]}" for repeats in sorted(schedule)))
+PY
+)
+EVAL_TASK_COUNT="${EVAL_TASK_STATS[0]}"
+EVAL_EXPECTED_RECORDS="${EVAL_TASK_STATS[1]}"
+EVAL_REPEAT_SCHEDULE="${EVAL_TASK_STATS[2]}"
+if [[ "${EVAL_REPEAT_SCHEDULE}" == *,* && "${REPORT_STYLE}" != main-only ]]; then
+  echo "FATAL: heterogeneous task repeats require --report-style main-only" >&2
+  exit 2
+fi
 [[ -f "${TRAIN_PARQUET}" && -f "${EVAL_PARQUET}" ]] || {
   echo "FATAL: canonical train/eval parquet missing: ${TRAIN_PARQUET}, ${EVAL_PARQUET}" >&2
   exit 2
@@ -129,7 +195,7 @@ done
 
 REPORT="${REPORT:-${ROOT}/z_cc_terminal_imgs/${GROUP}_results.md}"
 CONTROL_ROOT="${CONTROL_ROOT:-${ROOT}/z_cc_terminal_imgs/.eval_queues/${GROUP}}"
-ORIGIN_HF_DIR="${ORIGIN_HF_DIR:-${ROOT}/models/Qwen3.5-9B}"
+ORIGIN_HF_DIR="${ORIGIN_HF_DIR:-/path/to/skillRL/models/Qwen3.5-9B}"
 LOG="${CONTROL_ROOT}/logs/queue_$(date -u +%Y%m%d_%H%M%S).log"
 
 abs_path() {
@@ -141,10 +207,11 @@ safe_name() {
 }
 
 compute_eval_identity() {
-  EVAL_SPEC_FINGERPRINT=$(python3 - \
-    "${SKILL_MODE}" "${TASK_LIST}" "${SNAPSHOT}" "${MANIFEST}" \
+  read -r EVAL_SPEC_FINGERPRINT REFERENCED_SKILL_CONTENT_SHA256 < <(python3 - \
+    "${EVAL_SPEC_ID}" "${SKILL_MODE}" "${TASK_LIST}" "${SNAPSHOT}" "${MANIFEST}" \
     "${REPEATS}" "${SEED}" "${TOOLS_SCHEMA}" "${PROMPT_PROFILE}" \
-    "${CONTEXT_LENGTH}" <<'PY'
+    "${CONTEXT_LENGTH}" "${FINGERPRINT_REFERENCED_SKILLS}" \
+    "${SKILL_SELECTION_INSTRUCTION}" <<'PY'
 import hashlib
 import json
 import sys
@@ -173,9 +240,37 @@ def hash_path(raw):
     return h.hexdigest()
 
 
-mode, tasks, snapshot, manifest, repeats, seed, schema, prompt, context = sys.argv[1:]
+def hash_referenced_skills(raw_manifest):
+    if not raw_manifest:
+        raise SystemExit("referenced-skill fingerprinting requires --manifest")
+    manifest_path = Path(raw_manifest)
+    h = hashlib.sha256()
+    count = 0
+    for line in manifest_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        task_id = str(row.get("task_id") or "")
+        for category in ("oracle", "misleading", "relevant", "irrelevant"):
+            for entry in row.get(category) or []:
+                skill_path = Path(str(entry.get("path") or "")) / "SKILL.md"
+                if not skill_path.is_file():
+                    raise SystemExit(f"referenced skill missing: {skill_path}")
+                identity = f"{task_id}\t{category}\t{entry.get('name', '')}\n".encode()
+                h.update(identity)
+                h.update(skill_path.read_bytes())
+                count += 1
+    if count == 0:
+        raise SystemExit("manifest contains no referenced skills")
+    return h.hexdigest()
+
+
+(
+    spec_id, mode, tasks, snapshot, manifest, repeats, seed, schema, prompt,
+    context, fingerprint_skills, selection_instruction,
+) = sys.argv[1:]
 payload = {
-    "eval_spec": "eval70_v1",
+    "eval_spec": spec_id,
     "skill_mode": mode,
     "task_list_sha256": hash_path(tasks),
     "snapshot_sha256": hash_path(snapshot),
@@ -186,11 +281,16 @@ payload = {
     "prompt_profile": prompt,
     "context_length": int(context),
 }
-print(hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest())
+if int(fingerprint_skills):
+    payload["referenced_skill_content_sha256"] = hash_referenced_skills(manifest)
+if selection_instruction:
+    payload["skill_selection_instruction"] = selection_instruction
+fingerprint = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+print(fingerprint, payload.get("referenced_skill_content_sha256", ""))
 PY
   )
-  EVAL_ID="${EVAL_ID:-eval70-${SKILL_MODE}-r${REPEATS}-${EVAL_SPEC_FINGERPRINT:0:10}}"
-  export EVAL_ID EVAL_SPEC_FINGERPRINT
+  EVAL_ID="${EVAL_ID:-${EVAL_SPEC_ID}-${SKILL_MODE}-r${REPEATS}-${EVAL_SPEC_FINGERPRINT:0:10}}"
+  export EVAL_ID EVAL_SPEC_FINGERPRINT REFERENCED_SKILL_CONTENT_SHA256
 }
 
 row_root_for() {
@@ -202,19 +302,22 @@ row_root_for() {
 register_eval_row() {
   local owner="$1" row_id="$2" label="$3" model_ref="$4" run_root="$5"
   python3 - \
-    "${ROOT}" "${owner}" "${EVAL_ID}" "${EVAL_SPEC_FINGERPRINT}" \
+    "${ROOT}" "${owner}" "${EVAL_ID}" "${EVAL_SPEC_ID}" "${EVAL_SPEC_FINGERPRINT}" \
     "${row_id}" "${label}" "${model_ref}" "${run_root}" \
     "${SKILL_MODE}" "${TASK_LIST}" "${SNAPSHOT}" "${MANIFEST}" \
-    "${REPEATS}" "${SEED}" "${TOOLS_SCHEMA}" "${PROMPT_PROFILE}" <<'PY'
+    "${REPEATS}" "${EVAL_EXPECTED_RECORDS}" "${EVAL_REPEAT_SCHEDULE}" \
+    "${SEED}" "${TOOLS_SCHEMA}" "${PROMPT_PROFILE}" \
+    "${REFERENCED_SKILL_CONTENT_SHA256:-}" "${SKILL_SELECTION_INSTRUCTION}" <<'PY'
 import json
 import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-(root, owner, eval_id, fingerprint, row_id, label, model_ref, run_root,
- mode, task_list, snapshot, skill_manifest, repeats, seed, tools_schema,
- prompt_profile) = sys.argv[1:]
+(root, owner, eval_id, eval_spec_id, fingerprint, row_id, label, model_ref, run_root,
+ mode, task_list, snapshot, skill_manifest, repeats, expected_records,
+ repeat_schedule, seed, tools_schema, prompt_profile,
+ referenced_skill_content_sha256, selection_instruction) = sys.argv[1:]
 root = Path(root)
 owner_dir = root / "experiments/rl/runs" / owner
 eval_dir = owner_dir / "eval" / eval_id
@@ -248,7 +351,7 @@ evaluation = {
     "kind": "evaluation",
     "experiment_id": owner,
     "eval_id": eval_id,
-    "eval_spec_id": "eval70_v1",
+    "eval_spec_id": eval_spec_id,
     "eval_spec_fingerprint": fingerprint,
     "created_at": evaluation.get("created_at") or now,
     "updated_at": now,
@@ -258,9 +361,13 @@ evaluation = {
         "snapshot": snapshot,
         "skill_manifest": skill_manifest,
         "repeats": int(repeats),
+        "expected_records": int(expected_records),
+        "task_repeat_schedule": repeat_schedule,
         "seed": seed,
         "tools_schema": tools_schema,
         "prompt_profile": prompt_profile,
+        "referenced_skill_content_sha256": referenced_skill_content_sha256,
+        **({"skill_selection_instruction": selection_instruction} if selection_instruction else {}),
     },
     "rows": sorted(rows.values(), key=lambda item: item["row_id"]),
 }
@@ -290,22 +397,22 @@ PY
 
 finalize_eval_row() {
   local owner="$1" row_id="$2" run_root="$3"
-  python3 - "${ROOT}" "${owner}" "${EVAL_ID}" "${row_id}" "${run_root}" "${REPEATS}" <<'PY'
+  python3 - "${ROOT}" "${owner}" "${EVAL_ID}" "${row_id}" "${run_root}" "${EVAL_EXPECTED_RECORDS}" <<'PY'
 import json
 import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-root, owner, eval_id, row_id, run_root, repeats = sys.argv[1:]
+root, owner, eval_id, row_id, run_root, expected_records = sys.argv[1:]
 root, row_dir = Path(root), Path(run_root)
-repeats = int(repeats)
+expected_records = int(expected_records)
 sys.path.insert(0, str(root / "ops/workflows/rl_eval"))
 from analyze_eval70_3tables import analyze, collect
 
 trials = collect(str(row_dir))
 metrics = analyze(trials)
-metrics.update({"records": len(trials), "complete": len(trials) == 70 * repeats})
+metrics.update({"records": len(trials), "complete": len(trials) == expected_records})
 status = "completed" if metrics["complete"] else "incomplete"
 
 
@@ -336,7 +443,7 @@ evaluation["updated_at"] = datetime.now(timezone.utc).isoformat()
 write(eval_path, evaluation)
 if not metrics["complete"]:
     raise SystemExit(
-        f"eval row incomplete after finalization: records={len(trials)} expected={70 * repeats}"
+        f"eval row incomplete after finalization: records={len(trials)} expected={expected_records}"
     )
 PY
 }
@@ -522,6 +629,11 @@ PY
 }
 
 cluster_gpu_max_mem() {
+  if [[ "${LOCAL_ONLY}" == 1 ]]; then
+    nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits \
+      | awk 'BEGIN { max=0 } { if ($1 > max) max=$1 } END { print max }'
+    return
+  fi
   /usr/bin/python3 - <<'PY'
 import ray
 ray.init(address="auto", ignore_reinit_error=True, logging_level="ERROR")
@@ -551,7 +663,11 @@ PY
 
 wait_gpu_idle() {
   local used
-  echo "[wait-gpu] waiting for all Ray GPU nodes <= ${GPU_IDLE_MEM_MB} MB"
+  if [[ "${LOCAL_ONLY}" == 1 ]]; then
+    echo "[wait-gpu] waiting for local GPU node <= ${GPU_IDLE_MEM_MB} MB"
+  else
+    echo "[wait-gpu] waiting for all Ray GPU nodes <= ${GPU_IDLE_MEM_MB} MB"
+  fi
   while true; do
     used=$(cluster_gpu_max_mem || echo 999999)
     if (( used <= GPU_IDLE_MEM_MB )); then
@@ -645,6 +761,18 @@ if role in {"best", "final"}:
 tmp = selected_path.with_name(f".{selected_path.name}.tmp-{os.getpid()}")
 tmp.write_text(json.dumps(selected, indent=2) + "\n")
 os.replace(tmp, selected_path)
+
+experiment_path = root / "experiments/rl/runs" / owner / "experiment.json"
+experiment = json.loads(experiment_path.read_text())
+if experiment.get("experiment_id") != owner:
+    raise SystemExit(f"invalid owner experiment manifest: {experiment_path}")
+model = experiment.setdefault("model", {})
+model["exports"] = list(selected["exports"])
+model["selected"] = dict(selected)
+experiment["updated_at"] = selected["updated_at"]
+tmp = experiment_path.with_name(f".{experiment_path.name}.tmp-{os.getpid()}")
+tmp.write_text(json.dumps(experiment, ensure_ascii=False, indent=2) + "\n")
+os.replace(tmp, experiment_path)
 PY
   printf '%s\n' "${out}"
 }
@@ -690,41 +818,163 @@ remote_launch() {
   done
 }
 
+declare -a PARALLEL_RUNTIME_SESSIONS=() PARALLEL_EVAL_PIDS=()
+
+parallel_stop_runtime() {
+  local session pid
+  for pid in "${PARALLEL_EVAL_PIDS[@]:-}"; do
+    [[ -n "${pid}" ]] || continue
+    kill "${pid}" 2>/dev/null || true
+  done
+  PARALLEL_EVAL_PIDS=()
+  for session in "${PARALLEL_RUNTIME_SESSIONS[@]:-}"; do
+    [[ -n "${session}" ]] || continue
+    tmux kill-session -t "${session}" 2>/dev/null || true
+  done
+  PARALLEL_RUNTIME_SESSIONS=()
+  cleanup_remote
+}
+
+parallel_start_local_pair() {
+  local model_path="$1" served="$2" prefix idx spec gpus port session log deadline
+  prefix=$(safe_name "${GROUP}-parallel-local")
+  idx=0
+  for spec in "0,1,2,3:30000" "4,5,6,7:30001"; do
+    gpus="${spec%:*}"
+    port="${spec##*:}"
+    session="eval70-${prefix}-sglang-${idx}"
+    log="${CONTROL_ROOT}/logs/local_${port}.log"
+    tmux kill-session -t "${session}" 2>/dev/null || true
+    tmux new-session -d -s "${session}" \
+      "bash -lc 'cd $(printf %q "${ROOT}"); exec env CUDA_VISIBLE_DEVICES=$(printf %q "${gpus}") MODEL_PATH=$(printf %q "${model_path}") SERVED_NAME=$(printf %q "${served}") PORT=$(printf %q "${port}") TP_SIZE=4 CONTEXT_LENGTH=$(printf %q "${CONTEXT_LENGTH}") MEM_FRACTION=$(printf %q "${MEM_FRACTION}") RANDOM_SEED=$(printf %q "${SEED}") bash ops/launch/run_qwen35_sglang_server.sh >$(printf %q "${log}") 2>&1'"
+    PARALLEL_RUNTIME_SESSIONS+=("${session}")
+    idx=$((idx + 1))
+  done
+  deadline=$((SECONDS + 1800))
+  for port in 30000 30001; do
+    until curl -s --max-time 5 "http://127.0.0.1:${port}/v1/models" | grep -q "${served}"; do
+      ((SECONDS <= deadline)) || { echo "FATAL: local SGLang port ${port} did not become ready" >&2; return 2; }
+      sleep 20
+    done
+  done
+}
+
+parallel_start_local_single() {
+  local idx="$1" model_path="$2" served="$3" gpus port prefix session log deadline
+  if [[ "${idx}" == 0 ]]; then
+    gpus="0,1,2,3"
+    port=30000
+  else
+    gpus="4,5,6,7"
+    port=30001
+  fi
+  prefix=$(safe_name "${GROUP}-parallel-local-row${idx}")
+  session="eval70-${prefix}-sglang"
+  log="${CONTROL_ROOT}/logs/local_row${idx}_${port}.log"
+  tmux kill-session -t "${session}" 2>/dev/null || true
+  tmux new-session -d -s "${session}" \
+    "bash -lc 'cd $(printf %q "${ROOT}"); exec env CUDA_VISIBLE_DEVICES=$(printf %q "${gpus}") MODEL_PATH=$(printf %q "${model_path}") SERVED_NAME=$(printf %q "${served}") PORT=$(printf %q "${port}") TP_SIZE=4 CONTEXT_LENGTH=$(printf %q "${CONTEXT_LENGTH}") MEM_FRACTION=$(printf %q "${MEM_FRACTION}") RANDOM_SEED=$(printf %q "${SEED}") bash ops/launch/run_qwen35_sglang_server.sh >$(printf %q "${log}") 2>&1'"
+  PARALLEL_RUNTIME_SESSIONS+=("${session}")
+  deadline=$((SECONDS + 1800))
+  until curl -s --max-time 5 "http://127.0.0.1:${port}/v1/models" | grep -q "${served}"; do
+    ((SECONDS <= deadline)) || {
+      echo "FATAL: local-only row ${idx} SGLang port ${port} did not become ready" >&2
+      return 2
+    }
+    sleep 20
+  done
+}
+
+parallel_start_router() {
+  local name="$1" served="$2" port="$3" prom_port="$4"
+  shift 4
+  local session log deadline worker_args=() worker
+  session="eval70-$(safe_name "${GROUP}-parallel-${name}-router")"
+  log="${CONTROL_ROOT}/logs/${name}_router.log"
+  for worker in "$@"; do
+    worker_args+=("$(printf %q "${worker}")")
+  done
+  tmux kill-session -t "${session}" 2>/dev/null || true
+  tmux new-session -d -s "${session}" \
+    "bash -lc 'source /path/to/conda/etc/profile.d/conda.sh; conda activate slime; cd $(printf %q "${ROOT}"); export NO_PROXY=$(printf %q "${NO_PROXY}") no_proxy=$(printf %q "${NO_PROXY}"); exec python -m sglang_router.launch_router --host 0.0.0.0 --port $(printf %q "${port}") --worker-urls ${worker_args[*]} --policy round_robin --prometheus-port $(printf %q "${prom_port}") >$(printf %q "${log}") 2>&1'"
+  PARALLEL_RUNTIME_SESSIONS+=("${session}")
+  deadline=$((SECONDS + 600))
+  until curl -s --max-time 5 "http://127.0.0.1:${port}/v1/models" | grep -q "${served}"; do
+    ((SECONDS <= deadline)) || { echo "FATAL: ${name} router did not become ready on ${port}" >&2; return 2; }
+    sleep 10
+  done
+}
+
 declare -a TABLE_ARGS=()
 
 validate_eval_row() {
   local run_root="$1"
-  python3 - "${ROOT}" "${run_root}" "${REPEATS}" <<'PY'
+  python3 - "${ROOT}" "${run_root}" "${REPEATS}" "${TASK_LIST}" <<'PY'
 import sys
 from collections import Counter
 from pathlib import Path
 
-repo, run_root, repeats = Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3])
+repo, run_root, repeats, task_list = (
+    Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4])
+)
 sys.path.insert(0, str(repo / "ops" / "workflows" / "rl_eval"))
 from analyze_eval70_3tables import collect
 
+bench_aliases = {
+    "claw": "claw",
+    "sb_ns": "sb_ns",
+    "skillsbench-no-skills": "sb_ns",
+    "seta_synth": "seta",
+    "seta-synth": "seta",
+    "swe_lite": "swe",
+    "swe": "swe",
+    "tb2": "tb2",
+}
+expected_tasks = {}
+for raw in task_list.read_text(encoding="utf-8").splitlines():
+    raw = raw.strip()
+    if not raw or raw.startswith("#"):
+        continue
+    parts = [item.strip() for item in raw.split("\t")]
+    if len(parts) not in {2, 3} or not all(parts):
+        raise SystemExit(f"[row-incomplete] invalid task-list row: {raw!r}")
+    bench, task = parts[:2]
+    if bench not in bench_aliases:
+        raise SystemExit(f"[row-incomplete] unsupported bench in task list: {bench}")
+    task_repeats = repeats if len(parts) == 2 else int(parts[2])
+    key = (bench_aliases[bench], task)
+    if key in expected_tasks:
+        raise SystemExit(f"[row-incomplete] duplicate task-list row: {key}")
+    expected_tasks[key] = task_repeats
+
 trials = collect(str(run_root))
-expected_records = 70 * repeats
+expected_records = sum(expected_tasks.values())
 if len(trials) != expected_records:
     raise SystemExit(f"[row-incomplete] records={len(trials)} expected={expected_records}: {run_root}")
 counts = Counter((trial["bench"], trial["task"]) for trial in trials)
-if len(counts) != 70 or set(counts.values()) != {repeats}:
-    bad = sorted((bench, task, count) for (bench, task), count in counts.items() if count != repeats)
-    raise SystemExit(f"[row-incomplete] tasks={len(counts)} expected=70 bad_repeat_counts={bad[:8]}")
-expected_benches = {
-    "claw": 14 * repeats,
-    "sb_ns": 8 * repeats,
-    "seta": 30 * repeats,
-    "swe": 10 * repeats,
-    "tb2": 8 * repeats,
-}
+if dict(counts) != expected_tasks:
+    bad = sorted(
+        (bench, task, counts.get((bench, task), 0), expected)
+        for (bench, task), expected in expected_tasks.items()
+        if counts.get((bench, task), 0) != expected
+    )
+    missing = sorted(set(expected_tasks) - set(counts))[:8]
+    extra = sorted(set(counts) - set(expected_tasks))[:8]
+    raise SystemExit(
+        f"[row-incomplete] tasks={len(counts)} expected={len(expected_tasks)} "
+        f"bad_repeat_counts={bad[:8]} missing={missing} extra={extra}"
+    )
+expected_benches = Counter()
+for (bench, _task), task_repeats in expected_tasks.items():
+    expected_benches[bench] += task_repeats
 actual_benches = Counter(trial["bench"] for trial in trials)
-if dict(actual_benches) != expected_benches:
+if actual_benches != expected_benches:
     raise SystemExit(f"[row-incomplete] bench counts={dict(actual_benches)} expected={expected_benches}")
 missing_trajectories = sum(not trial["has_traj"] for trial in trials)
 if missing_trajectories:
     raise SystemExit(f"[row-incomplete] parsed trajectories missing={missing_trajectories}: {run_root}")
-print(f"[row-ok] records={len(trials)} tasks={len(counts)} repeats={repeats} root={run_root}")
+schedule = Counter(expected_tasks.values())
+print(f"[row-ok] records={len(trials)} tasks={len(counts)} repeat_schedule={dict(schedule)} root={run_root}")
 PY
 }
 
@@ -735,6 +985,7 @@ render_report() {
   [[ "${SKILL_MODE}" == noskill ]] && table_context="no skill"
   mkdir -p "${CONTROL_ROOT}"
   EVAL70_TABLE_CONTEXT="${table_context}" EVAL70_TABLE_STYLE="${REPORT_STYLE}" \
+    EVAL70_REPEATS="${REPEATS}" \
     python3 "${ROOT}/ops/workflows/rl_eval/format_eval70_zcc.py" "${TABLE_ARGS[@]}" >"${tables}"
   if [[ -n "${MANIFEST}" && "${REPORT_STYLE}" == full ]]; then
     EVAL70_DUMP_TRIALS_DIR="${CONTROL_ROOT}" \
@@ -744,10 +995,16 @@ render_report() {
   {
     echo "# ${GROUP}"
     echo
-    echo "- condition: ${SKILL_MODE}; repeats: ${REPEATS}; workers: ${WORKERS}"
+    echo "- condition: ${SKILL_MODE}; task repeat schedule: ${EVAL_REPEAT_SCHEDULE}; workers: ${WORKERS}"
     echo "- eval id: \`${EVAL_ID}\`; protocol fingerprint: \`${EVAL_SPEC_FINGERPRINT}\`"
     [[ -n "${SNAPSHOT}" ]] && echo "- skill snapshot: \`${SNAPSHOT}\`"
-    echo "- serving: 4 x TP4 across the two Ray GPU nodes"
+    if [[ "${LOCAL_ONLY}" == 1 && "${PARALLEL_TWO_ROWS}" == 1 ]]; then
+      echo "- serving: single 8-GPU node; concurrent rows use one disjoint TP4 engine each"
+    elif [[ "${LOCAL_ONLY}" == 1 ]]; then
+      echo "- serving: single 8-GPU node; each sequential row uses two local TP4 replicas"
+    else
+      echo "- serving: 4 x TP4 across the two Ray GPU nodes"
+    fi
     echo
     echo "## Outcome tables"
     echo
@@ -762,8 +1019,18 @@ render_report() {
   echo "[report] ${REPORT}"
 }
 
+render_row_slate_reads() {
+  local label="$1" run_root="$2"
+  [[ -n "${MANIFEST}" ]] || return 0
+  EVAL70_DUMP_TRIALS_DIR="${run_root}/reports" \
+    python3 "${ROOT}/ops/workflows/rl_eval/analyze_slate_reads.py" \
+      --manifest "${MANIFEST}" --out "${run_root}/reports/slate_reads.md" \
+      "${label}=${run_root}"
+}
+
 run_row() {
   local owner="$1" label="$2" model_path="$3" model_ref="$4" safe served row_id run_root
+  local -a remote_router_args=()
   safe=$(safe_name "${label}")
   row_id="${safe}-$(printf '%s' "${model_ref}" | sha256sum | cut -c1-8)"
   served="qwen3.5-9b-${safe}"
@@ -773,6 +1040,7 @@ run_row() {
   if [[ -f "${run_root}/ROW_DONE" ]]; then
     if validate_eval_row "${run_root}"; then
       echo "[row] ${label} already complete"
+      [[ -f "${run_root}/reports/slate_reads.md" ]] || render_row_slate_reads "${label}" "${run_root}"
       finalize_eval_row "${owner}" "${row_id}" "${run_root}"
       return 0
     fi
@@ -781,50 +1049,211 @@ run_row() {
   fi
   if validate_eval_row "${run_root}" >/dev/null 2>&1; then
     echo "[row] ${label} artifacts are complete; recovering ROW_DONE without rerunning"
+    render_row_slate_reads "${label}" "${run_root}"
     render_report
     touch "${run_root}/ROW_DONE"
     finalize_eval_row "${owner}" "${row_id}" "${run_root}"
     return 0
   fi
-  remote_launch "${model_path}" "${served}"
+  if [[ "${LOCAL_ONLY}" == 0 ]]; then
+    remote_launch "${model_path}" "${served}"
+    remote_router_args=(
+      --router-worker-url "http://${REMOTE_NODE}:30000"
+      --router-worker-url "http://${REMOTE_NODE}:30001"
+    )
+  fi
   set +e
   python3 "${ROOT}/ops/workflows/rl_eval/run_eval70_model.py" \
     --run-id "${owner}_${EVAL_ID}_${row_id}" --label "${label}-${SKILL_MODE}" --run-root "${run_root}" \
     --owner-experiment "${owner}" --eval-id "${EVAL_ID}" --row-id "${row_id}" \
     --intent "canonical checkpoint-set eval70 under identical ${SKILL_MODE} skill condition" \
     --model-path "${model_path}" --served-name "${served}" --tools-schema "${TOOLS_SCHEMA}" \
-    --prompt-profile "${PROMPT_PROFILE}" --task-list "${TASK_LIST}" \
+    --prompt-profile "${PROMPT_PROFILE}" --skill-selection-instruction "${SKILL_SELECTION_INSTRUCTION}" \
+    --task-list "${TASK_LIST}" \
     --train-parquet "${TRAIN_PARQUET}" --eval-parquet "${EVAL_PARQUET}" \
     --skill-mode "${SKILL_MODE}" ${SNAPSHOT:+--retrieval-root "${SNAPSHOT}"} \
     --context-length "${CONTEXT_LENGTH}" --mem-fraction "${MEM_FRACTION}" --seed "${SEED}" \
     --workers "${WORKERS}" --docker-start-cap "${DOCKER_START_CAP}" --repeats "${REPEATS}" \
-    --concurrent-trials --expected-records $((70 * REPEATS)) \
+    --concurrent-trials --expected-records "${EVAL_EXPECTED_RECORDS}" \
     --engine 0,1,2,3:30000 --engine 4,5,6,7:30001 \
-    --router-worker-url "http://${REMOTE_NODE}:30000" --router-worker-url "http://${REMOTE_NODE}:30001" \
+    "${remote_router_args[@]}" \
     --router-policy round_robin --docker-host "${DOCKER_HOST_VALUE}" --min-images 500 \
-    --no-proxy "127.0.0.1,localhost,0.0.0.0,${REMOTE_NODE}" \
+    --no-proxy "${NO_PROXY}" \
     --start-guards --eval-timeout-sec "${EVAL_TIMEOUT_SEC}" --execute
   eval_rc=$?
   set -e
-  remote_stop
+  if [[ "${LOCAL_ONLY}" == 0 ]]; then
+    remote_stop
+  fi
   if ((eval_rc != 0)); then
     mark_eval_row_failed "${owner}" "${row_id}" "${run_root}" "${eval_rc}"
     return "${eval_rc}"
   fi
   validate_eval_row "${run_root}"
-  if [[ -n "${MANIFEST}" ]]; then
-    EVAL70_DUMP_TRIALS_DIR="${run_root}/reports" \
-      python3 "${ROOT}/ops/workflows/rl_eval/analyze_slate_reads.py" \
-        --manifest "${MANIFEST}" --out "${run_root}/reports/slate_reads.md" \
-        "${label}=${run_root}"
-  fi
+  render_row_slate_reads "${label}" "${run_root}"
   render_report
   touch "${run_root}/ROW_DONE"
   finalize_eval_row "${owner}" "${row_id}" "${run_root}"
 }
 
+declare -a PARALLEL_MODEL=() PARALLEL_MODEL_REF=() PARALLEL_ROW_ID=()
+declare -a PARALLEL_RUN_ROOT=() PARALLEL_SERVED=() PARALLEL_NEEDS_RUN=()
+declare -a PARALLEL_API_BASE=()
+
+prepare_parallel_row() {
+  local idx="$1" owner label model model_ref safe row_id run_root served
+  owner="${ROW_OWNER[$idx]}"
+  label="${ROW_LABEL[$idx]}"
+  model="${PARALLEL_MODEL[$idx]}"
+  model_ref="${PARALLEL_MODEL_REF[$idx]}"
+  safe=$(safe_name "${label}")
+  row_id="${safe}-$(printf '%s' "${model_ref}" | sha256sum | cut -c1-8)"
+  served="qwen3.5-9b-${safe}"
+  run_root=$(row_root_for "${owner}" "${row_id}")
+  PARALLEL_ROW_ID[$idx]="${row_id}"
+  PARALLEL_RUN_ROOT[$idx]="${run_root}"
+  PARALLEL_SERVED[$idx]="${served}"
+  PARALLEL_NEEDS_RUN[$idx]=1
+  register_eval_row "${owner}" "${row_id}" "${label}" "${model_ref}" "${run_root}"
+  TABLE_ARGS+=("${label}=${run_root}")
+  if [[ -f "${run_root}/ROW_DONE" ]] && validate_eval_row "${run_root}"; then
+    echo "[row] ${label} already complete"
+    [[ -f "${run_root}/reports/slate_reads.md" ]] || render_row_slate_reads "${label}" "${run_root}"
+    finalize_eval_row "${owner}" "${row_id}" "${run_root}"
+    PARALLEL_NEEDS_RUN[$idx]=0
+    return 0
+  fi
+  rm -f "${run_root}/ROW_DONE"
+  if validate_eval_row "${run_root}" >/dev/null 2>&1; then
+    echo "[row] ${label} artifacts are complete; recovering ROW_DONE without rerunning"
+    render_row_slate_reads "${label}" "${run_root}"
+    touch "${run_root}/ROW_DONE"
+    finalize_eval_row "${owner}" "${row_id}" "${run_root}"
+    PARALLEL_NEEDS_RUN[$idx]=0
+  fi
+}
+
+execute_parallel_row() {
+  local idx="$1" api_base="$2" owner label model row_id run_root served
+  owner="${ROW_OWNER[$idx]}"
+  label="${ROW_LABEL[$idx]}"
+  model="${PARALLEL_MODEL[$idx]}"
+  row_id="${PARALLEL_ROW_ID[$idx]}"
+  run_root="${PARALLEL_RUN_ROOT[$idx]}"
+  served="${PARALLEL_SERVED[$idx]}"
+  # Keep per-task Claw mock/network slots disjoint across concurrent rows.
+  # A fixed offset only works for task sets no larger than that constant.
+  UNIFIED_CLAW_SLOT_OFFSET=$((idx * EVAL_TASK_COUNT)) \
+  python3 "${ROOT}/ops/workflows/rl_eval/run_eval70_model.py" \
+    --run-id "${owner}_${EVAL_ID}_${row_id}" --label "${label}-${SKILL_MODE}" --run-root "${run_root}" \
+    --owner-experiment "${owner}" --eval-id "${EVAL_ID}" --row-id "${row_id}" \
+    --intent "canonical parallel checkpoint-set eval70 under identical ${SKILL_MODE} skill condition" \
+    --model-path "${model}" --served-name "${served}" --tools-schema "${TOOLS_SCHEMA}" \
+    --prompt-profile "${PROMPT_PROFILE}" --skill-selection-instruction "${SKILL_SELECTION_INSTRUCTION}" \
+    --task-list "${TASK_LIST}" \
+    --train-parquet "${TRAIN_PARQUET}" --eval-parquet "${EVAL_PARQUET}" \
+    --skill-mode "${SKILL_MODE}" ${SNAPSHOT:+--retrieval-root "${SNAPSHOT}"} \
+    --serve-mode existing --api-base "${api_base}" \
+    --context-length "${CONTEXT_LENGTH}" --mem-fraction "${MEM_FRACTION}" --seed "${SEED}" \
+    --workers "${WORKERS}" --docker-start-cap "${PARALLEL_DOCKER_START_CAP}" --repeats "${REPEATS}" \
+    --concurrent-trials --expected-records "${EVAL_EXPECTED_RECORDS}" \
+    --docker-host "${DOCKER_HOST_VALUE}" --min-images 500 \
+    --no-proxy "${NO_PROXY}" \
+    --start-guards --eval-timeout-sec "${EVAL_TIMEOUT_SEC}" --execute
+}
+
+run_parallel_two_rows() {
+  local idx rc any_failed=0 needs_count=0 single_idx=-1 router_port
+  declare -a row_rc=(0 0)
+  prepare_parallel_row 0
+  prepare_parallel_row 1
+  if [[ "${PARALLEL_NEEDS_RUN[0]}" == 0 && "${PARALLEL_NEEDS_RUN[1]}" == 0 ]]; then
+    render_report
+    return 0
+  fi
+
+  if [[ "${LOCAL_ONLY}" == 1 ]]; then
+    for idx in 0 1; do
+      if [[ "${PARALLEL_NEEDS_RUN[$idx]}" == 1 ]]; then
+        needs_count=$((needs_count + 1))
+        single_idx="${idx}"
+      fi
+    done
+    if ((needs_count == 2)); then
+      for idx in 0 1; do
+        parallel_start_local_single "${idx}" "${PARALLEL_MODEL[$idx]}" "${PARALLEL_SERVED[$idx]}"
+        PARALLEL_API_BASE[$idx]="http://127.0.0.1:$((30000 + idx))/v1"
+      done
+    else
+      parallel_start_local_pair "${PARALLEL_MODEL[$single_idx]}" "${PARALLEL_SERVED[$single_idx]}"
+      router_port=$((30100 + single_idx))
+      parallel_start_router "local-row${single_idx}" "${PARALLEL_SERVED[$single_idx]}" \
+        "${router_port}" "$((39100 + single_idx))" \
+        "http://127.0.0.1:30000" "http://127.0.0.1:30001"
+      PARALLEL_API_BASE[$single_idx]="http://127.0.0.1:${router_port}/v1"
+    fi
+  else
+    if [[ "${PARALLEL_NEEDS_RUN[0]}" == 1 ]]; then
+      parallel_start_local_pair "${PARALLEL_MODEL[0]}" "${PARALLEL_SERVED[0]}"
+      parallel_start_router local "${PARALLEL_SERVED[0]}" 30100 39100 \
+        "http://127.0.0.1:30000" "http://127.0.0.1:30001"
+      PARALLEL_API_BASE[0]="http://127.0.0.1:30100/v1"
+    fi
+    if [[ "${PARALLEL_NEEDS_RUN[1]}" == 1 ]]; then
+      remote_launch "${PARALLEL_MODEL[1]}" "${PARALLEL_SERVED[1]}"
+      parallel_start_router remote "${PARALLEL_SERVED[1]}" 30101 39101 \
+        "http://${REMOTE_NODE}:30000" "http://${REMOTE_NODE}:30001"
+      PARALLEL_API_BASE[1]="http://127.0.0.1:30101/v1"
+    fi
+  fi
+
+  set +e
+  if [[ "${PARALLEL_NEEDS_RUN[0]}" == 1 ]]; then
+    execute_parallel_row 0 "${PARALLEL_API_BASE[0]}" &
+    PARALLEL_EVAL_PIDS[0]=$!
+  fi
+  if [[ "${PARALLEL_NEEDS_RUN[1]}" == 1 ]]; then
+    execute_parallel_row 1 "${PARALLEL_API_BASE[1]}" &
+    PARALLEL_EVAL_PIDS[1]=$!
+  fi
+  for idx in 0 1; do
+    [[ "${PARALLEL_NEEDS_RUN[$idx]}" == 1 ]] || continue
+    wait "${PARALLEL_EVAL_PIDS[$idx]}"
+    row_rc[$idx]=$?
+  done
+  set -e
+  parallel_stop_runtime
+
+  for idx in 0 1; do
+    [[ "${PARALLEL_NEEDS_RUN[$idx]}" == 1 ]] || continue
+    rc="${row_rc[$idx]}"
+    if ((rc != 0)); then
+      mark_eval_row_failed "${ROW_OWNER[$idx]}" "${PARALLEL_ROW_ID[$idx]}" \
+        "${PARALLEL_RUN_ROOT[$idx]}" "${rc}"
+      any_failed=1
+      continue
+    fi
+    if ! validate_eval_row "${PARALLEL_RUN_ROOT[$idx]}"; then
+      mark_eval_row_failed "${ROW_OWNER[$idx]}" "${PARALLEL_ROW_ID[$idx]}" \
+        "${PARALLEL_RUN_ROOT[$idx]}" 3
+      any_failed=1
+      continue
+    fi
+    render_row_slate_reads "${ROW_LABEL[$idx]}" "${PARALLEL_RUN_ROOT[$idx]}"
+    touch "${PARALLEL_RUN_ROOT[$idx]}/ROW_DONE"
+    finalize_eval_row "${ROW_OWNER[$idx]}" "${PARALLEL_ROW_ID[$idx]}" \
+      "${PARALLEL_RUN_ROOT[$idx]}"
+  done
+  render_report
+  ((any_failed == 0))
+}
+
 compute_eval_identity
-echo "[config] group=${GROUP} eval_id=${EVAL_ID} condition=${SKILL_MODE} rows=${#ROW_KIND[@]}"
+echo "[config] group=${GROUP} eval_spec=${EVAL_SPEC_ID} eval_id=${EVAL_ID} condition=${SKILL_MODE} tasks=${EVAL_TASK_COUNT} records=${EVAL_EXPECTED_RECORDS} repeat_schedule=${EVAL_REPEAT_SCHEDULE} rows=${#ROW_KIND[@]}"
+echo "[config] parallel_two_rows=${PARALLEL_TWO_ROWS} local_only=${LOCAL_ONLY} fingerprint_referenced_skills=${FINGERPRINT_REFERENCED_SKILLS} workers_per_row=${WORKERS} parallel_docker_cap_per_row=${PARALLEL_DOCKER_START_CAP}"
+if [[ -n "${REFERENCED_SKILL_CONTENT_SHA256:-}" ]]; then
+  echo "[config] referenced_skill_content_sha256=${REFERENCED_SKILL_CONTENT_SHA256}"
+fi
 for idx in "${!ROW_KIND[@]}"; do
   echo "[row-config] owner=${ROW_OWNER[$idx]} ${ROW_KIND[$idx]} label=${ROW_LABEL[$idx]} path=${ROW_PATH[$idx]} iter=${ROW_ITER[$idx]:-n/a} role=${ROW_ROLE[$idx]}"
 done
@@ -834,27 +1263,34 @@ if [[ "${DRY_RUN}" == 1 ]]; then
   exit 0
 fi
 
-resolve_remote_node
-echo "[topology] remote=${REMOTE_NODE}"
+if [[ "${LOCAL_ONLY}" == 1 ]]; then
+  REMOTE_NODE=""
+  echo "[topology] local-only 8-GPU node"
+else
+  resolve_remote_node
+  echo "[topology] remote=${REMOTE_NODE}"
+fi
 
 mkdir -p "${CONTROL_ROOT}/logs" "$(dirname "${REPORT}")"
 # shellcheck source=/dev/null
 export NVCC_PREPEND_FLAGS="${NVCC_PREPEND_FLAGS:-}"
-source ${SKILLRL_CONDA_ROOT:-$HOME/anaconda3}/etc/profile.d/conda.sh
+source /path/to/conda/etc/profile.d/conda.sh
 conda activate slime
 export CUDA_HOME=/usr/local/cuda-12.9 CUDA_PATH=/usr/local/cuda-12.9 PYTHONUNBUFFERED=1
-# Relax checkpoints pickle launcher/config classes from the local package.  The
-# HF converter must be able to import them while loading common.pt.
-export PYTHONPATH="${ROOT}/Relax:/root/Megatron-LM:${PYTHONPATH:-}"
+# Relax checkpoints pickle launcher/config classes from the matching vendored
+# Megatron tree. Keep bridge and core on the same revision during HF export.
+export MEGATRON="${MEGATRON:-${ROOT}/Relax/deps/Megatron-LM}"
+export PYTHONPATH="${ROOT}/Relax/deps/Megatron-LM:${ROOT}/Relax/deps/Megatron-Bridge/src:${ROOT}/Relax:${PYTHONPATH:-}"
 export DOCKER_HOST="${DOCKER_HOST_VALUE}" DOCKER_HOST_VALUE
-export NO_PROXY="127.0.0.1,localhost,0.0.0.0,${REMOTE_NODE}"
+export NO_PROXY="127.0.0.1,localhost,0.0.0.0${REMOTE_NODE:+,${REMOTE_NODE}}"
 export no_proxy="${NO_PROXY}"
-trap cleanup_remote EXIT INT TERM
+trap parallel_stop_runtime EXIT INT TERM
 
 {
   echo "[queue-start] $(date -u +%FT%TZ)"
   wait_for_checkpoints
   wait_gpu_idle
+  declare -a RESOLVED_MODEL=() RESOLVED_MODEL_REF=()
   for idx in "${!ROW_KIND[@]}"; do
     if [[ "${ROW_KIND[$idx]}" == checkpoint ]]; then
       model=$(export_hf "${ROW_OWNER[$idx]}" "${ROW_LABEL[$idx]}" "${ROW_PATH[$idx]}" "${ROW_ITER[$idx]}" "${ROW_ROLE[$idx]}")
@@ -864,8 +1300,19 @@ trap cleanup_remote EXIT INT TERM
       validate_hf_model "${model}"
       model_ref="$(basename "$(realpath -m "${model}")")"
     fi
-    run_row "${ROW_OWNER[$idx]}" "${ROW_LABEL[$idx]}" "${model}" "${model_ref}"
+    RESOLVED_MODEL[$idx]="${model}"
+    RESOLVED_MODEL_REF[$idx]="${model_ref}"
   done
+  if [[ "${PARALLEL_TWO_ROWS}" == 1 ]]; then
+    PARALLEL_MODEL=("${RESOLVED_MODEL[@]}")
+    PARALLEL_MODEL_REF=("${RESOLVED_MODEL_REF[@]}")
+    run_parallel_two_rows
+  else
+    for idx in "${!ROW_KIND[@]}"; do
+      run_row "${ROW_OWNER[$idx]}" "${ROW_LABEL[$idx]}" \
+        "${RESOLVED_MODEL[$idx]}" "${RESOLVED_MODEL_REF[$idx]}"
+    done
+  fi
   render_report
   echo "[queue-done] $(date -u +%FT%TZ)"
 } 2>&1 | tee -a "${LOG}"
