@@ -706,7 +706,6 @@ Relax、runner、tool schema、prompt compatibility 或 data conversion 修改�
 本仓库的历史 owner 目录是轻量证据，不是可直接 resume 的完整 checkpoint。先读
 （这两个文件随旁挂资产包提供，见 assets/README.md）：
 
-    experiments/rl/HANDOVER_MANIFEST.json
     experiments/rl/catalog.json
 
 恢复外部权重后再执行 recipe。任何新 run 从一开始就应使用 owner-local 结构，避免

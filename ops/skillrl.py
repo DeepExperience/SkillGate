@@ -139,7 +139,6 @@ CORE_PATHS = [
     "ops/workflows/rl_eval/specs/eval70_v1/tasks.tsv",
     "ops/workflows/rl_training/run_rl.sh",
     "experiments/rl/catalog.json",
-    "experiments/rl/HANDOVER_MANIFEST.json",
 ]
 
 

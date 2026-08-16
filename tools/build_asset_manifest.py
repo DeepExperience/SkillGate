@@ -72,7 +72,6 @@ GROUPS: dict[str, list[str]] = {
     ],
     "experiment.provenance": [
         "experiments/rl/catalog.json",
-        "experiments/rl/HANDOVER_MANIFEST.json",
         "experiments/rl/runs",
         "experiments/rl/sample_trajectories",
         "experiments/infra/rl/local_docker_migration",

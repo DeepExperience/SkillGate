@@ -7,6 +7,8 @@ The repository must never resolve a path through the former `Projects` checkout.
 The repository tracks code,
 documentation, configuration, and lightweight manifests; the migrated 8+ GB
 asset bundle is intentionally ignored rather than written into Git objects.
-The bundle (datasets, frozen skill snapshots, cached verifier payloads) is
-distributed separately from Git; use `migrated-assets.json` to verify a
-restored bundle.
+The bundle is published as the Hugging Face dataset
+[`simonlqy/SkillGate-Assets`](https://huggingface.co/datasets/simonlqy/SkillGate-Assets)
+with repository-mirrored paths — restore it from the repo root with
+`hf download simonlqy/SkillGate-Assets --repo-type dataset --local-dir .` and
+verify with `migrated-assets.json`.

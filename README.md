@@ -5,8 +5,9 @@
 ### Training In-Policy Skill Selection in Long-Horizon Agents
 
 [![Python](https://img.shields.io/badge/python-3.12-blue.svg)](#installation)
-[![License](https://img.shields.io/badge/license-see_THIRD__PARTY-green.svg)](THIRD_PARTY.md)
-[![Model](https://img.shields.io/badge/%F0%9F%A4%97%20HF-SkillGate--9B-yellow)](https://huggingface.co/simonlqy/SkillGate-9B)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+[![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-SkillGate--9B-yellow)](https://huggingface.co/simonlqy/SkillGate-9B)
+[![Data](https://img.shields.io/badge/%F0%9F%A4%97%20Data-SkillGate--Assets-yellow)](https://huggingface.co/datasets/simonlqy/SkillGate-Assets)
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX) -->
 
 [Demo](#-demo) · [Overview](#overview) · [Highlights](#highlights) · [Results](#results) ·
@@ -166,13 +167,20 @@ cp .env.example .env          # fill in W&B key etc.; see comments inside
 #   llamafactory — SFT                        GeneralAgent/third_party/LLaMA-Factory
 # See env/README.md for the exact builds.
 
+# Fetch the asset pack (slates, training data, benchmark bundles; ~1.7 GB).
+# Paths mirror the repo, so it restores in place:
+hf download simonlqy/SkillGate-Assets --repo-type dataset --local-dir .
+
 ./skillrl doctor              # validate wiring (no GPU needed)
 ./skillrl recipes             # list every maintained entrypoint
 ```
 
-Datasets, frozen skill snapshots and cached verifier payloads ship as a side-car
-asset bundle outside Git (`assets/README.md`; integrity via
-`assets/migrated-assets.json`).
+Everything Git deliberately excludes — the slate pack, RL/SFT data, benchmark
+task bundles, retrieval index — lives in the
+[SkillGate-Assets](https://huggingface.co/datasets/simonlqy/SkillGate-Assets)
+dataset; `assets/README.md` documents the layout and
+`assets/migrated-assets.json` the integrity hashes. Heavy Docker verifier
+images are rebuilt locally (see `ops/cache/`), not distributed.
 
 ## Evaluation
 
@@ -223,6 +231,11 @@ reads) is kept as the `Action credit` ablation.
   year    = {2026}
 }
 ```
+
+## License
+
+First-party code is released under [Apache-2.0](LICENSE). Vendored trees keep
+their upstream licenses — see [THIRD_PARTY.md](THIRD_PARTY.md).
 
 ## Acknowledgements
 
