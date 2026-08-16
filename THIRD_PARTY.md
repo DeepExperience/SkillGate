@@ -15,7 +15,7 @@ re-validate those changes.
 
 | Path | Upstream | Pinned commit | License | Local modifications |
 |---|---|---|---|---|
-| `Relax/` | An internal RL framework, vendored in this repo with permission — confirm licensing with the team before public release | `5215cf1605392d2724fe49b11d9037db8b0b3671` | Apache-2.0 (`Relax/LICENSE`) | Carries project patches for agent RL training. First-party code for this paper lives in `Relax/examples/agent_bench/` (selector action credit: `selector_action_credit.py`, `selector_action_grpo_loss.py`) |
+| `Relax/` | https://github.com/redai-infra/Relax (Apache-2.0, open-sourced by the Xiaohongshu AI Infra Team; paper: https://arxiv.org/abs/2604.11554) | `5215cf1605392d2724fe49b11d9037db8b0b3671` | Apache-2.0 (`Relax/LICENSE`) | Carries project patches for agent RL training. First-party code for this paper lives in `Relax/examples/agent_bench/` (selector action credit: `selector_action_credit.py`, `selector_action_grpo_loss.py`) |
 | `sglang/` | https://github.com/sgl-project/sglang | `a598eae1d1f5c85d99d6dc36c3c449f231a953eb` | Apache-2.0 (`sglang/LICENSE`) | Carries local patches for model serving used by evaluation and RL rollout (including Qwen3.5 support) |
 | `Relax/deps/sglang/` | https://github.com/sgl-project/sglang | `bbe9c7eeb520b0a67e92d133dfc137a3688dc7f2` | Apache-2.0 (`Relax/deps/sglang/LICENSE`) | Pinned serving dependency of Relax; carries local Qwen3.5-related changes for RL rollout |
 | `Megatron-LM/` | https://github.com/NVIDIA/Megatron-LM | `fcd446b52f47c9fe50b02546fb6d3efa6df6e224` | NVIDIA BSD-3-Clause-style license with per-file third-party notices, some files Apache-2.0 (`Megatron-LM/LICENSE`) | Carries local patches used by the training stack |
@@ -45,8 +45,8 @@ is not part of this repository.
 
 ## Pre-release checklist
 
-- [ ] Confirm authorization to publish `Relax/` (internal RL framework) with
-      the owning team, including how it should be attributed.
-- [ ] Restore upstream LICENSE files into `Relax/deps/Megatron-LM/` (see table).
+- [x] `Relax/` upstream identified: https://github.com/redai-infra/Relax,
+      Apache-2.0; attributed in the table above.
+- [x] Upstream LICENSE files restored into `Relax/deps/Megatron-LM/` (see table).
 - [ ] Verify licenses of the community skill repositories aggregated in the
       skill-library asset bundle before redistributing it.

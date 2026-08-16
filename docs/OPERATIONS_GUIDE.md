@@ -2,12 +2,10 @@
 
 更新时间：2026-07-13
 
-这份文档是交接后的唯一运行手册，覆盖数据采集、技能检索、SFT、RL、
-评测，以及两台 8 卡节点上的 Docker、Ray、SGLang 和保全措施。另一份
-EXPERIMENT_AND_INFRA_HISTORY.md 负责解释过去三个月做过什么、为什么失败、
-哪些结论已经被证伪。
+这份文档是本仓库的运行手册，覆盖数据采集、技能检索、SFT、RL、
+评测，以及两台 8 卡节点上的 Docker、Ray、SGLang 和保全措施。
 
-本仓库是精简交接版：代码、关键数据、冻结 skill snapshot、少量决定性实验
+本仓库是精简发布版：代码、关键数据、冻结 skill snapshot、少量决定性实验
 记录在；大模型权重、完整 RL checkpoint、全量 rollout 和私密凭据不在。
 datasets/、skill_libraries/snapshots/、experiments/ 等大体积输入与证据不进
 git，由旁挂资产包恢复；恢复机制与清单见 assets/README.md。
@@ -115,7 +113,7 @@ LLaMA-Factory：
 
 ## 3.2 外部权重恢复
 
-交接库的 models/ 默认只有说明文件。至少按需要恢复：
+本仓库的 models/ 默认只有说明文件。至少按需要恢复：
 
     models/Qwen3.5-9B/
     models/Qwen3.5-27B/
@@ -366,7 +364,7 @@ mixed_task_reward 是最干净的对照：代码仍统计 read/no-read/oracle/mi
 selector_action_credit 不是“给整条轨迹再加一个 reward”。任务成败仍用原始 GRPO；
 selector 信号只作用在选择具体 skill identity 的 token，避免把失败的 oracle-read
 整条轨迹抬到成功轨迹之上。其起点是 oracle-GRPO60 的 final99 export，而不是基础
-SFT；所以交接库未恢复该 export 时 recipe 会明确显示 missing。
+SFT；所以未恢复该 export 时 recipe 会明确显示 missing。
 
 ## 7.2 共同超参与拓扑
 
@@ -675,7 +673,7 @@ mixed(0704)、mixed(v8prod)、hybrid snapshot 不是同一环境，表中必须�
 | Docker exec 无 stderr/返回码异常 | local daemon/exec wrapper smoke |
 | Ray 只见一台 GPU node | 先修 cluster，不要用宽泛 kill |
 
-# 11. 修改与交接验收
+# 11. 修改与验收
 
 Relax、runner、tool schema、prompt compatibility 或 data conversion 修改后至少：
 
@@ -694,7 +692,7 @@ Relax、runner、tool schema、prompt compatibility 或 data conversion 修改�
 - eval：只生成 plan 或 1 个小 task；
 - export：完整性检查后原子 rename。
 
-一个有意义的训练或评测变更交接至少写清：
+一个有意义的训练或评测变更至少写清：
 
     Objective:
     Canonical entrypoint:
@@ -705,7 +703,7 @@ Relax、runner、tool schema、prompt compatibility 或 data conversion 修改�
     Validation performed:
     Known risks / next checks:
 
-本交接库的历史 owner 目录是轻量证据，不是可直接 resume 的完整 checkpoint。先读
+本仓库的历史 owner 目录是轻量证据，不是可直接 resume 的完整 checkpoint。先读
 （这两个文件随旁挂资产包提供，见 assets/README.md）：
 
     experiments/rl/HANDOVER_MANIFEST.json

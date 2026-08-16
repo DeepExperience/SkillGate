@@ -38,7 +38,7 @@ def main():
         long_description=open("README.md", "r", encoding="utf-8").read(),
         long_description_content_type="text/markdown",
         keywords=["RL", "Agentic", "Multi-modality", "pytorch", "deep learning", "megatron", "vllm", "sglang"],
-        license="Xiaohongshu",
+        license="Apache-2.0",
         url="https://github.com/redai-infra/Relax",
         package_dir={"": "."},
         package_data={"": ["*.yaml"]},
@@ -48,7 +48,7 @@ def main():
         extras_require=extra_require,
         classifiers=[
             "Development Status :: 4 - Beta",
-            "Intended Audience :: Xiaohongshu REDers",
+            "Intended Audience :: Developers",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3.9",

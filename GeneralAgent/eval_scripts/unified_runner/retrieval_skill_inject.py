@@ -500,7 +500,7 @@ def inject_retrieval_skills_host(
 ) -> int:
     """Host-mode variant: shutil.copytree into workdir/.claude/skills/<name>.
 
-    Used by run_unified_claw.py when agent runs on tidalfs (not in container).
+    Used by run_unified_claw.py when the agent runs on the host FS (not in container).
     """
     import shutil
     skills = mapping.get(task_id, [])

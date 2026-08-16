@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build deterministic aggregate hashes for the migrated handover assets."""
+"""Build deterministic aggregate hashes for the side-car asset bundle."""
 
 from __future__ import annotations
 

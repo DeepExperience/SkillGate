@@ -197,7 +197,7 @@ def _opsd_attach_teacher_prompt_ids(sample: Sample, tokenizer) -> None:
 # ---------------------------------------------------------------------------
 # M1 "skill-free shadow" clean transform
 #
-# Idea: docs/idea/skill_free_shadow_update.md (M1 variant). Run oracle-skill
+# Skill-free shadow update (M1 variant): run oracle-skill
 # rollouts for exploration, then strip ALL skill exposure from each trajectory
 # and feed the cleaned no-skill trajectory through the EXISTING GRPO path. The
 # model is updated as if it had solved the task without ever reading a skill.

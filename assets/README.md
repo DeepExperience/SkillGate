@@ -4,9 +4,9 @@
 
 The repository must never resolve a path through the former `Projects` checkout. Base model downloads and Docker image restore are explicit provisioning steps; training outputs remain outside version control.
 
-The handover directory is one Git repository. Its local commit tracks code,
+The repository tracks code,
 documentation, configuration, and lightweight manifests; the migrated 8+ GB
 asset bundle is intentionally ignored rather than written into Git objects.
-Decide on Git LFS versus independent artifact storage before publishing;
-distribute the whole checkout in the meantime and use `migrated-assets.json`
-to verify the ignored assets.
+The bundle (datasets, frozen skill snapshots, cached verifier payloads) is
+distributed separately from Git; use `migrated-assets.json` to verify a
+restored bundle.

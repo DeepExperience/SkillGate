@@ -347,7 +347,7 @@ PY
   local local_ips ray_ips
   local_ips=$(hostname -I | tr ' ' ',' | sed 's/,,*/,/g;s/,$//')
   ray_ips=$(tr ' ' ',' <<<"${gpu_nodes}")
-  export RELAX_NO_PROXY="127.0.0.1,localhost,0.0.0.0,10.0.0.0/8,172.16.0.0/12,your-org.example,*.devopsyour-org.example,mirrors.tuna.tsinghua.edu.cn,pypi.tuna.tsinghua.edu.cn,hf-mirror.com,${local_ips},${ray_ips}"
+  export RELAX_NO_PROXY="127.0.0.1,localhost,0.0.0.0,10.0.0.0/8,172.16.0.0/12,your-org.example,*.devops.your-org.example,mirrors.tuna.tsinghua.edu.cn,pypi.tuna.tsinghua.edu.cn,hf-mirror.com,${local_ips},${ray_ips}"
   export NO_PROXY="${RELAX_NO_PROXY}"
   export no_proxy="${NO_PROXY}"
 }

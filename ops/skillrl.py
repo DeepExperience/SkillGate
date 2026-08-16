@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small, safe operator interface for the handover repository."""
+"""Small, safe operator interface for this repository."""
 
 from __future__ import annotations
 
@@ -16,8 +16,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "ops/recipes/catalog.toml"
-FORMER_ROOT = "/mnt/tidalfs-bdsz01/usr/tusen/liqingyao/" + "Projects"
-FORMER_HANDOVER = "/mnt/tidalfs-bdsz01/usr/tusen/liqingyao/" + "skillRL_handover"
+# Original absolute roots of the checkout this tree was exported from, used
+# only to detect stale paths in control files after a relocation. Set via
+# environment when validating a restored asset bundle; empty disables the
+# corresponding check.
+FORMER_ROOT = os.environ.get("SKILLRL_FORMER_ROOT", "")
+FORMER_HANDOVER = os.environ.get("SKILLRL_FORMER_HANDOVER", "")
 
 
 def stale_roots() -> list[str]:
@@ -25,8 +29,8 @@ def stale_roots() -> list[str]:
 
     The original handover root only counts as stale when this checkout
     actually lives somewhere else (e.g. a fresh clone from Git)."""
-    roots = [FORMER_ROOT]
-    if str(ROOT) != FORMER_HANDOVER:
+    roots = [r for r in (FORMER_ROOT,) if r]
+    if FORMER_HANDOVER and str(ROOT) != FORMER_HANDOVER:
         roots.append(FORMER_HANDOVER)
     return roots
 

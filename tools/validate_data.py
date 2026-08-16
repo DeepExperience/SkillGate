@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate handover data invariants without GPU, Ray, Docker, or network."""
+"""Validate repository data invariants without GPU, Ray, Docker, or network."""
 
 from __future__ import annotations
 

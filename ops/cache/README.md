@@ -8,4 +8,4 @@ scripts:
 - `cuda_fast_home/`: five environment symlinks into `/usr/local/cuda`.
 
 Historical one-off waiters and remote launch helpers were removed with the
-legacy compatibility tree during the handover. New scripts do not belong here.
+legacy compatibility tree. New scripts do not belong here.

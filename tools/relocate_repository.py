@@ -15,11 +15,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STAMP = ROOT / ".skillrl-root"
-# Split these literals so the relocation pass does not rewrite its own source
-# markers while replacing the same strings elsewhere.
-FORMER_PROJECTS = Path("/mnt/tidalfs-bdsz01/usr/tusen/liqingyao") / "Projects"
-FORMER_HANDOVER = Path("/mnt/tidalfs-bdsz01/usr/tusen/liqingyao") / "skillRL_handover"
-FORMER_MODELS = Path("/mnt/tidalfs-bdsz01/usr/tusen/liqingyao/data") / "LLMWeights"
+# The original absolute roots are deliberately not hard-coded: pass the root
+# this tree (or a restored asset bundle) was exported from via --from-root,
+# or set the SKILLRL_FORMER_* environment variables. The values for a given
+# asset bundle are recorded alongside the bundle, not in Git.
+_env = os.environ.get
+FORMER_PROJECTS = Path(_env("SKILLRL_FORMER_PROJECTS", "/nonexistent/former/Projects"))
+FORMER_HANDOVER = Path(_env("SKILLRL_FORMER_HANDOVER", "/nonexistent/former/skillRL_handover"))
+FORMER_MODELS = Path(_env("SKILLRL_FORMER_MODELS", "/nonexistent/former/LLMWeights"))
 TEXT_SUFFIXES = {
     ".py", ".sh", ".md", ".toml", ".yaml", ".yml", ".json", ".jsonl",
     ".txt", ".tsv", ".csv", ".env", ".ini", ".cfg",

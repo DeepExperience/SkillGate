@@ -281,7 +281,7 @@ class ServiceManager:
     """Start/stop claw-eval mock HTTP services for one task.
 
     Two modes:
-      - host  (default): spawn each service as a tidalfs subprocess on loopback.
+      - host  (default): spawn each service as a host subprocess on loopback.
       - docker (v6 new): spawn all services inside the SHARED mock container
                         on your-docker-host. Agent sandbox container joins shared
                         network and sees mock via --add-host host.docker.internal.
@@ -441,7 +441,7 @@ class ServiceManager:
             status.append(f"  {name} port {port} " + ("✓ ready" if ready else "✗ NOT ready"))
 
             # Reset endpoint (optional). In shared mode, call via docker exec curl
-            # from INSIDE the mock container (tidalfs can't reach your-docker-host docker0 IPs).
+            # from INSIDE the mock container (the host cannot reach your-docker-host docker0 IPs).
             if svc.get("reset_endpoint") and ready:
                 url = svc["reset_endpoint"]
                 # Convert to localhost URL (mock container's loopback) with task's port
@@ -834,7 +834,7 @@ def start_sandbox_container(
 ) -> str:
     """Start docker sandbox container for a Claw task.
 
-    Note: DOCKER_HOST 指向远程 your-docker-host，无法 bind mount 本地 tidalfs 目录。
+    Note: DOCKER_HOST 指向远程 your-docker-host，无法 bind mount 本地宿主机目录。
     所以不用 -v，而是 `docker cp` 把 host_workdir 初始内容 copy 进 container
     的 /workspace，agent 结束后再 cp 回来。
     """
@@ -1055,7 +1055,7 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
                 "fail-hard to avoid silently collecting host-mode trajectories."
             ) from e
     else:
-        print(f"  [sandbox] host mode (mock services on tidalfs localhost; path guard enabled)", flush=True)
+        print(f"  [sandbox] host mode (mock services on host localhost; path guard enabled)", flush=True)
 
     # Inject retrieval/irrelevant skills (docker mode → into container;
     # host mode → into the task workdir so agent can read them there)
@@ -1092,7 +1092,7 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
     if cname:
         # Docker sandbox: URL needs host.docker.internal (your-docker-host routes back to host)
         tool_docs = tool_docs.replace("localhost:", "host.docker.internal:")
-    # (host mode: keep localhost:PORT as-is — agent runs on tidalfs host)
+    # (host mode: keep localhost:PORT as-is — agent runs on the host)
     skills_prompt = ""
     if retrieval_mapping is not None:
         hint = build_retrieval_prompt_hint(
@@ -1183,7 +1183,7 @@ def run_task(task_id: str, config: RunConfig, verbose: bool = False, keep_servic
                 # Pull audit logs from running mock services (before stop_all).
                 # In docker mode, services live INSIDE sm.mock_cname container; pass it
                 # so collect_audit_from_services uses `docker exec curl` instead of
-                # tidalfs HTTP (which can't reach your-docker-host docker0 IPs).
+                # host-side HTTP (which can't reach your-docker-host docker0 IPs).
                 audit_data = collect_audit_from_services(
                     task_def.get("services") or [],
                     mock_cname=getattr(sm, "mock_cname", None) if sm.mode == "docker" else None,

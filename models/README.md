@@ -1,6 +1,6 @@
 # External model restoration point
 
-Model shards are intentionally excluded from the handover repository.
+Model shards are intentionally excluded from the repository.
 
 Restore or mount complete Hugging Face model directories here:
 
