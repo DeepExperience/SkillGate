@@ -30,17 +30,28 @@ positive only when the trajectory's single read is the correct skill.
 
 ## 🎬 Demo
 
-<p align="center"><img src="assets/demo.gif" width="850" alt="SkillGate demo"></p>
+<p align="center"><img src="assets/demo.gif" width="880" alt="SkillGate mechanism demo"></p>
 
-Both runs are **real archived trajectories** of the same evaluation task
-(`tb2/custom-memory-heap-crash`, 16-candidate slate, identical prompts).
-The outcome-reward baseline reads `libstdc-plus-plus-heap-destroy-crash` — a
-misleading near-duplicate of the right skill — and follows it into editing a file
-the task forbids; 91 tool calls, fail. SkillGate reads the oracle skill
-`static-destructor-heap-order-crash`, fixes `user.cpp`, passes valgrind; 28 tool
-calls, score 1.0.
+Four scenes, no mock data. The slate, the two runs and every number are taken
+from the released artifacts: a held-out task where the whole decision is **8
+tokens** inside a read call; the failing run in which those tokens are **11 of
+30,487** (0.036% of the loss — counted with the released tokenizer over the
+archived trajectory); the credit partition SkillGate applies instead; and what
+that one change buys — the same policy going from reading the near-duplicate
+decoy (91 tool calls, fail) to the oracle skill (28 tool calls, valgrind-clean
+pass).
 
 ## Overview
+
+**The problem** — one broadcast advantage updates both the few tokens that chose
+a skill and the thousands that executed the task. Auditing 12,800 training
+trajectories shows the choice's share dilutes to a 0.14% median (*Share*), its
+credit is increasingly wrong-signed with horizon (*Sign*), yet the correct read
+is worth +11.2 pp task success (*Value*):
+
+<p align="center"><img src="assets/teaser.png" width="850" alt="Selector credit starvation"></p>
+
+**The fix** — SkillGate partitions the token support of a single GRPO update:
 
 <p align="center"><img src="assets/method.png" width="850" alt="SkillGate method"></p>
 
