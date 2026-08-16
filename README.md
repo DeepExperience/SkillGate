@@ -30,16 +30,27 @@ positive only when the trajectory's single read is the correct skill.
 
 ## 🎬 Demo
 
+### The problem and the fix, in 30 seconds
+
 <p align="center"><img src="assets/demo.gif" width="880" alt="SkillGate mechanism demo"></p>
 
-Four scenes, no mock data. The slate, the two runs and every number are taken
-from the released artifacts: a held-out task where the whole decision is **8
+Four scenes, no mock data. A held-out task where the whole decision is **8
 tokens** inside a read call; the failing run in which those tokens are **11 of
-30,487** (0.036% of the loss — counted with the released tokenizer over the
-archived trajectory); the credit partition SkillGate applies instead; and what
-that one change buys — the same policy going from reading the near-duplicate
-decoy (91 tool calls, fail) to the oracle skill (28 tool calls, valgrind-clean
-pass).
+30,487** — 0.036% of the loss, counted with the released tokenizer over the
+archived trajectory; the credit partition SkillGate applies instead; and what
+that one change buys on the same task pair.
+
+### Case study: one SkillGate episode, end to end
+
+<p align="center"><img src="assets/casestudy.gif" width="880" alt="SkillGate case study"></p>
+
+An archived run on `sb_ns/lake-warming-attribution` (verifier-checked data
+analysis). The policy starts working, reaches for the library **mid-episode**,
+picks the oracle out of six lake/trend lookalikes in one read, and lands the two
+traps the skill documents (Mann-Kendall instead of `linregress`; the *category*
+label `Heat`, not the individual driver). Score 1.0 in 14 tool calls — on the
+same slate, the outcome-only baseline read four skills, none of them the oracle,
+and failed.
 
 ## Overview
 
